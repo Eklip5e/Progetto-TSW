@@ -8,7 +8,6 @@ import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
 
-@WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = new User();
