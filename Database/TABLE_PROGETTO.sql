@@ -90,7 +90,7 @@ CREATE TABLE RECENSIONE (
 );
 
 CREATE TABLE CONTIENE (
-	quantità INT NOT NULL CHECK (quantità > 0),
+    quantità INT NOT NULL CHECK (quantità > 0),
     id_carrello INT NOT NULL,
     id_videogioco INT NOT NULL,
     PRIMARY KEY (id_carrello, id_videogioco),
