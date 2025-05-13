@@ -3,7 +3,7 @@ CREATE TABLE UTENTE (
 	usurname VARCHAR(50) PRIMARY KEY,
     nome VARCHAR(50) NOT NULL,
     cognome VARCHAR(50) NOT NULL,
-    email VARCHAR(254) NOT NULL,
+    email VARCHAR(254) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 );
 
@@ -26,14 +26,14 @@ CREATE TABLE VIDEOGIOCO (
     data_rilascio date NOT NULL,
     descrizione TEXT NOT NULL,
     prezzo DECIMAL(6, 2) NOT NULL,
-    sconto INT NOT NULL,
+    sconto INT NOT NULL CHECK (sconto >= 0 AND sconto <= 100),
     screenshot VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE CHIAVE (
 	codice_chiave VARCHAR(50) PRIMARY KEY,
     stato BOOLEAN NOT NULL DEFAULT TRUE,
-    data_attivazione DATE NOT NULL,
+    data_attivazione DATE,
     id_videogioco INT NOT NULL,
     FOREIGN KEY (id_videogioco) REFERENCES VIDEOGIOCO (codice)
 );
@@ -47,7 +47,7 @@ CREATE TABLE CARRELLO (
 	id_carrello INT AUTO_INCREMENT PRIMARY KEY,
     totale DECIMAL(6, 2) NOT NULL DEFAULT 0.00,
     id_user VARCHAR(50) NOT NULL,
-    id_promozione INT,
+    id_promozione INT NOT NULL,
     FOREIGN KEY (id_user) REFERENCES UTENTE (usurname) ON DELETE CASCADE,
     FOREIGN KEY (id_promozione) REFERENCES PROMOZIONE (id_promozione)
 );
@@ -58,7 +58,7 @@ CREATE TABLE PROMOZIONE (
     descrizione TEXT NOT NULL,
     stato BOOLEAN NOT NULL DEFAULT TRUE,
     tipo_sconto VARCHAR(10) CHECK (tipo_sconto IN ('percentuale', 'fisso')) NOT NULL,
-    sconto INT NOT NULL
+    sconto INT NOT NULL CHECK (sconto >= 0 AND sconto <= 100)
 );
 
 CREATE TABLE FATTURA (
