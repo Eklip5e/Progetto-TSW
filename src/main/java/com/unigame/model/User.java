@@ -6,9 +6,8 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String indirizzo;
-    private String cap;
-    private String citta;
+    private String name;
+    private String surname;
 
     public int getId() {
         return id;
@@ -42,28 +41,19 @@ public class User {
         this.password = password;
     }
 
-    public String getIndirizzo() {
-        return indirizzo;
+    public String getName() {
+        return name;
     }
 
-    public void setIndirizzo(String indirizzo) {
-        this.indirizzo = indirizzo;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCap() {
-        return cap;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setCap(String cap) {
-        this.cap = cap;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
-
-    public String getCitta() {
-        return citta;
-    }
-
-    public void setCitta(String citta) {
-        this.citta = citta;
-    }
-
 }

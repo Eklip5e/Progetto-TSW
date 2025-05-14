@@ -24,15 +24,14 @@ public class UserDAO {
     }
 
     public boolean insert(User user) throws SQLException, ClassNotFoundException {
-        String sql = "INSERT INTO utenti (username, email, password, indirizzo, cap, citta) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO utente (username, email, password, nome, cognome) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
-            stmt.setString(5, user.getIndirizzo());
-            stmt.setString(6, user.getCap());
-            stmt.setString(7, user.getCitta());
+            stmt.setString(4, user.getName());
+            stmt.setString(5, user.getSurname());
             return stmt.executeUpdate() > 0;
         }
     }
