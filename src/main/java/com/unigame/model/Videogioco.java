@@ -17,7 +17,7 @@ public class Videogioco {
     }
 
     public void setIdGame(int idGame) {
-        this.idGame += idGame;
+        this.idGame;
     }
 
     public String getTitolo() {

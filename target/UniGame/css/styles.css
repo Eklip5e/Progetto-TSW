@@ -82,7 +82,7 @@ header {
 /* Banner */
 .game-banner {
     display: block;
-    background-image: url('img/game-banner.png'); /* Percorso del banner */
+    background-image: url('../img/game-banner.png'); /* Percorso del banner */
     background-size: cover;
     background-position: center;
     color: white;

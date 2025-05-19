@@ -4,7 +4,9 @@ CREATE TABLE Utente (
     Nome VARCHAR(50) NOT NULL,
     Cognome VARCHAR(50) NOT NULL,
     Email VARCHAR(255) NOT NULL UNIQUE,
-    Password VARCHAR(255) NOT NULL
+    Password VARCHAR(255) NOT NULL,
+    Propic VARCHAR(255),
+    IsAdmin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE Genere (
@@ -35,7 +37,7 @@ FOREIGN KEY (IDUser) REFERENCES Utente (IDUtente)
 );
 
 CREATE TABLE DatiCarta (
-NumCarta INT(16) PRIMARY KEY,
+NumCarta VARCHAR(16) PRIMARY KEY,
 DataScadenza DATE NOT NULL,
 CVV INT(3) NOT NULL
 );
@@ -47,7 +49,7 @@ IDFatturazione INT REFERENCES Fattura (IDFatturazione)
 
 CREATE TABLE PaymentMethod (
 IDUser INT REFERENCES Utente (IDUtente),
-NumCarta INT(16) REFERENCES DatiCarta (NumCarta)
+NumCarta VARCHAR(16) REFERENCES DatiCarta (NumCarta)
 );
 
 CREATE TABLE Chiave (
@@ -59,7 +61,7 @@ IDVideogioco INT NOT NULL REFERENCES Videogioco (IDGame)
 
 CREATE TABLE Carrello (
 IDUser INT PRIMARY KEY ,
-FOREIGN KEY (IDUser) REFERENCES Utente(Username)
+FOREIGN KEY (IDUser) REFERENCES Utente(IDUtente)
 ); -- Il carrello e' un entita' poiche' l'utente puo' acquistare piu' volte lo stesso videogioco o puo' fare diversi acquisti --
 
 CREATE TABLE Screenshots (
@@ -78,7 +80,7 @@ Totale DECIMAL(5, 2)
 );
 
 CREATE TABLE VG (
-IDGenere VARCHAR(30) NOT NULL,
+IDGenere INT(7) NOT NULL,
 FOREIGN KEY (IDGenere) REFERENCES Genere (IDGenere),
 IDVideogioco INT NOT NULL,
 FOREIGN KEY (IDVideogioco) REFERENCES Videogioco (IDGame),

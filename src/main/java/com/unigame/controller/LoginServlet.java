@@ -1,7 +1,7 @@
 package com.unigame.controller;
 
-import com.unigame.model.DAO.UtenteDAO; // Assicurati che UtenteDAO sia aggiornato
-import com.unigame.model.Utente; // Aggiungi questa importazione se necessario
+import com.unigame.model.DAO.UtenteDAO;
+import com.unigame.model.Utente;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
-@WebServlet("/login") // URL del servlet
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,10 +32,10 @@ public class LoginServlet extends HttpServlet {
         UtenteDAO utenteDAO = new UtenteDAO();
 
         try {
-            // Verifica le credenziali
-            Utente utente = utenteDAO.doRetrieveByUsernameAndPassword(username, password);
+            // Recupera l'utente dal database tramite username
+            Utente utente = utenteDAO.doRetrieveByUsername(username);
 
-            if (utente != null) {
+            if (utente != null && utente.checkPassword(password)) {
                 // Credenziali valide: crea una sessione
                 HttpSession session = request.getSession();
                 session.setAttribute("username", utente.getUsername());
