@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession; // Importa HttpSession per gestire la sessione
 import com.unigame.model.DAO.UtenteDAO;
 import com.unigame.model.Utente;
 
@@ -44,12 +45,21 @@ public class RegisterServlet extends HttpServlet {
             UtenteDAO utenteDAO = new UtenteDAO();
             utenteDAO.doSave(utente);
 
+<<<<<<< Updated upstream
             // Reindirizza alla pagina di login dopo la registrazione
             response.sendRedirect("login.jsp");
+=======
+            // Crea una sessione per l'utente appena registrato
+            HttpSession session = request.getSession();
+            session.setAttribute("username", utente.getUsername());
+            session.setAttribute("idUtente", utente.getIdUtente());
+
+            // Reindirizza alla pagina del profilo dopo la registrazione
+            response.sendRedirect("profilo.jsp");
+>>>>>>> Stashed changes
         } catch (RuntimeException e) {
             // Gestisci eventuali errori durante la registrazione
             request.setAttribute("error", "Errore durante la registrazione: " + e.getMessage());
-            request.getRequestDispatcher("register.jsp").forward(request, response);
             request.getRequestDispatcher("register.jsp").forward(request, response);
         }
     }
@@ -59,4 +69,3 @@ public class RegisterServlet extends HttpServlet {
         doGet(req, resp);
     }
 }
-

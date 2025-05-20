@@ -41,8 +41,8 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("username", utente.getUsername());
                 session.setAttribute("idUtente", utente.getIdUtente()); // Salva anche l'ID dell'utente
 
-                // Reindirizza alla pagina di benvenuto
-                response.sendRedirect("home.jsp");
+                // Reindirizza alla pagina del profilo
+                response.sendRedirect("profilo.jsp");
             } else {
                 // Credenziali non valide: restituisci un messaggio di errore
                 request.setAttribute("error", "Credenziali errate!");

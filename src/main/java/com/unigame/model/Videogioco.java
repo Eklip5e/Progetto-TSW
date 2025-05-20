@@ -1,6 +1,6 @@
 package com.unigame.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Videogioco {
     private int idGame;
@@ -12,67 +12,75 @@ public class Videogioco {
     private int sconto;
     private String produttore;
 
-    public int getIDGame() {
+
+    public int getIDGame()
+    {
         return idGame;
     }
 
+<<<<<<< Updated upstream
     public void setIdGame(int idGame) {
+=======
+    public void setIdGame(int idGame)
+    {
+>>>>>>> Stashed changes
         this.idGame = idGame;
     }
 
-    public String getTitolo() {
-        return titolo;
+    public String getTitolo()
+    {
+    return titolo;
     }
-
-    public void setTitolo(String titolo) {
+    public void setTitolo(String titolo)
+    {
         this.titolo = titolo;
     }
-
-    public String getPiattaforma() {
+    public String getPiattaforma()
+    {
         return piattaforma;
     }
-
-    public void setPiattaforma(String piattaforma) {
+    public void setPiattaforma(String piattaforma)
+    {
         this.piattaforma = piattaforma;
     }
-
-    public Date getDataRilascio() {
+    public Date getDataRilascio()
+    {
         return dataRilascio;
     }
-
-    public void setDataRilascio(Date dataRilascio) {
+    public void setDataRilascio(Date dataRilascio)
+    {
         this.dataRilascio = dataRilascio;
     }
-
-    public String getDescrizione() {
+    public String getDescrizione()
+    {
         return descrizione;
     }
-
-    public void setDescrizione(String descrizione) {
+    public void setDescrizione(String descrizione)
+    {
         this.descrizione = descrizione;
     }
-
-    public double getPrezzo() {
+    public double getPrezzo()
+    {
         return prezzo;
     }
-
-    public void setPrezzo(double prezzo) {
+    public void setPrezzo(double prezzo)
+    {
         this.prezzo = prezzo;
     }
-
-    public int getSconto() {
+    public int getSconto()
+    {
         return sconto;
     }
-
-    public void setSconto(int sconto) {
+    public void setSconto(int sconto)
+    {
         this.sconto = sconto;
     }
-
-    public String getProduttore() {
+    public String getProduttore()
+    {
         return produttore;
     }
-
-    public void setProduttore(String produttore) {
+    public void setProduttore(String produttore)
+    {
         this.produttore = produttore;
     }
 }
