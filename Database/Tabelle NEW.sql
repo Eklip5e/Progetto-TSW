@@ -1,3 +1,6 @@
+create schema unigame;
+use unigame;
+
 CREATE TABLE Utente (
 	IDUtente INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50) UNIQUE,

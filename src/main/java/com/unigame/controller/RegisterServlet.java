@@ -45,7 +45,7 @@ public class RegisterServlet extends HttpServlet {
             utenteDAO.doSave(utente);
 
             // Reindirizza alla pagina di login dopo la registrazione
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("login.jsp");
         } catch (RuntimeException e) {
             // Gestisci eventuali errori durante la registrazione
             request.setAttribute("error", "Errore durante la registrazione: " + e.getMessage());

@@ -25,10 +25,10 @@
 
             <%-- Controllo utente loggato --%>
             <%
-                Object utente = session.getAttribute("utenteLoggato");
+                Object utente = session.getAttribute("username");
                 if (utente != null) {
             %>
-            <a href="profilo.jsp"><i class="fa-solid fa-user"></i></a>
+            <a href="profilo"><i class="fa-solid fa-user"></i></a>
             <% } else { %>
             <a href="register.jsp"><i class="fa-solid fa-user"></i></a>
             <% } %>
