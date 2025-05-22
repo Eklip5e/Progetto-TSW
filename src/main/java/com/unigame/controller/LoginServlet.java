@@ -39,7 +39,6 @@ public class LoginServlet extends HttpServlet {
                 // Credenziali valide: crea una sessione
                 HttpSession session = request.getSession();
                 session.setAttribute("username", utente.getUsername());
-                session.setAttribute("idUtente", utente.getIdUtente()); // Salva anche l'ID dell'utente
                 session.setAttribute("isAdmin", utente.isAdmin());
 
                 // Reindirizza alla pagina del profilo

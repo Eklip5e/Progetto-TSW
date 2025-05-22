@@ -39,8 +39,6 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
-
         // Prendi i parametri dal form
         String titolo = request.getParameter("titolo");
         String piattaforma = request.getParameter("piattaforma");
@@ -60,13 +58,13 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
                 || scontoStr == null || scontoStr.isEmpty()
                 || produttore == null || produttore.isEmpty()) {
 
-            request.setAttribute("error", "Tutti i campi obbligatori devono essere compilati.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
-            return;
+                request.setAttribute("error", "Tutti i campi obbligatori devono essere compilati.");
+                request.getRequestDispatcher("home.jsp").forward(request, response);
+                return;
         }
 
         try {
-            Date dataRilascio = Date.valueOf(dataRilascioStr);  // parsing yyyy-MM-dd
+            Date dataRilascio = Date.valueOf(dataRilascioStr);
             double prezzo = Double.parseDouble(prezzoStr);
             int sconto = Integer.parseInt(scontoStr);
 
@@ -88,10 +86,10 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", "Formato data o numeri non validi.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         } catch (Exception e) {
             request.setAttribute("error", "Errore interno: " + e.getMessage());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
 }
