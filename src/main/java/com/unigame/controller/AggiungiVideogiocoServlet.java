@@ -46,15 +46,16 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
         String piattaforma = request.getParameter("piattaforma");
         String dataRilascioStr = request.getParameter("rilascio");
         String descrizione = request.getParameter("descrizione");
+        String copertina = request.getParameter("copertina");
         String prezzoStr = request.getParameter("prezzo");
         String scontoStr = request.getParameter("sconto");
         String produttore = request.getParameter("produttore");
-        String screenshots = request.getParameter("immagineUrl");
 
         // Validazione semplice (puoi ampliare)
         if (titolo == null || titolo.isEmpty() || piattaforma == null || piattaforma.isEmpty()
                 || dataRilascioStr == null || dataRilascioStr.isEmpty()
                 || descrizione == null || descrizione.isEmpty()
+                || copertina == null || copertina.isEmpty()
                 || prezzoStr == null || prezzoStr.isEmpty()
                 || scontoStr == null || scontoStr.isEmpty()
                 || produttore == null || produttore.isEmpty()) {
@@ -74,6 +75,7 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
             videogioco.setPiattaforma(piattaforma);
             videogioco.setDataRilascio(dataRilascio);
             videogioco.setDescrizione(descrizione);
+            videogioco.setCopertina(copertina);
             videogioco.setPrezzo(prezzo);
             videogioco.setSconto(sconto);
             videogioco.setProduttore(produttore);
@@ -83,12 +85,6 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
 
             // Ottieni l'id generato: nel tuo DAO devi modificarlo per tornare l'id (vedi nota sotto)
             int idVideogioco = videogioco.getIDGame();
-
-            Screenshot screenshot = new Screenshot();
-            screenshot.setScreenshot(String.valueOf(screenshot));
-
-            ScreenshotDAO screenshotDAO = new ScreenshotDAO();
-            screenshotDAO.doSave(screenshot);
 
             // Redirect alla home o pagina di conferma
             response.sendRedirect("home.jsp");

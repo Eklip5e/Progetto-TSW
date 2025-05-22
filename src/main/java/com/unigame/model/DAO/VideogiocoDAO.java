@@ -13,15 +13,16 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public void doSave(Videogioco videogioco) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO VIDEOGIOCO (titolo, piattaforma, ReleaseDate, descrizione, prezzo, sconto, Produttore) VALUES(?,?,?,?,?,?,?)",
+                    "INSERT INTO VIDEOGIOCO (titolo, piattaforma, ReleaseDate, Descrizione, Copertina, Prezzo, Sconto, Produttore) VALUES(?,?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, videogioco.getTitolo());
             ps.setString(2, videogioco.getPiattaforma());
             ps.setDate(3, new Date(videogioco.getDataRilascio().getTime()));
             ps.setString(4, videogioco.getDescrizione());
-            ps.setDouble(5, videogioco.getPrezzo());
-            ps.setInt(6, videogioco.getSconto());
-            ps.setString(7, videogioco.getProduttore());
+            ps.setString(5, videogioco.getCopertina());
+            ps.setDouble(6, videogioco.getPrezzo());
+            ps.setInt(7, videogioco.getSconto());
+            ps.setString(8, videogioco.getProduttore());
             if (ps.executeUpdate() != 1) {
                 throw new RuntimeException("INSERT error.");
             }

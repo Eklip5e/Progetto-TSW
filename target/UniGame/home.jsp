@@ -35,7 +35,7 @@
 <section class="game-grid">
     <% for (Videogioco gioco : giochi) { %>
     <div class="game-card">
-        <img src="img/giochi/<%= gioco.getIDGame() %>.jpg" alt="<%= gioco.getTitolo() %>">
+        <img src="img/<%=gioco.getCopertina()%>.png" alt="<%= gioco.getTitolo() %>">
         <h2><%= gioco.getTitolo() %></h2>
         <div class="card-price-row">
             <span class="discount-tag">-<%= gioco.getSconto() %>%</span>
@@ -66,10 +66,10 @@
             <input type="text" name="piattaforma" placeholder="Piattaforma" required><br>
             <input type="date" name="rilascio" required><br>
             <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
+            <input type="text" name="copertina" placeholder="copertina" required><br>
             <input type="number" step="0.01" name="prezzo" placeholder="Prezzo (€)" required><br>
             <input type="number" name="sconto" placeholder="Sconto (%)" value="0"><br>
             <input type="text" name="produttore" placeholder="Produttore" required><br>
-            <input type="text" name="immagineUrl" placeholder="URL immagine" required><br>
             <button type="submit">Aggiungi</button>
         </form>
     </div>

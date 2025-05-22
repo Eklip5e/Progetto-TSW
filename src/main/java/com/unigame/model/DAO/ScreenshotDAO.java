@@ -1,6 +1,7 @@
 package com.unigame.model.DAO;
 
 import com.unigame.model.Screenshot;
+import com.unigame.model.Videogioco;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

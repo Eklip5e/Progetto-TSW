@@ -24,6 +24,7 @@ Titolo VARCHAR(70) NOT NULL,
 Piattaforma VARCHAR(25) NOT NULL,
 ReleaseDate DATE NOT NULL,
 Descrizione TEXT,
+Copertina VARCHAR(255) NOT NULL,
 Prezzo DECIMAL (5, 2) NOT NULL,
 Sconto INT,
 Produttore VARCHAR(50) NOT NULL

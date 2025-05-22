@@ -8,6 +8,7 @@ public class Videogioco {
     private String piattaforma;
     private Date dataRilascio;
     private String descrizione;
+    private String copertina;
     private double prezzo;
     private int sconto;
     private String produttore;
@@ -53,6 +54,15 @@ public class Videogioco {
     {
         this.descrizione = descrizione;
     }
+
+    public String getCopertina() {
+        return copertina;
+    }
+
+    public void setCopertina(String copertina) {
+        this.copertina = copertina;
+    }
+
     public double getPrezzo()
     {
         return prezzo;
