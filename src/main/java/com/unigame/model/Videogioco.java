@@ -54,15 +54,12 @@ public class Videogioco {
     {
         this.descrizione = descrizione;
     }
-
     public String getCopertina() {
         return copertina;
     }
-
     public void setCopertina(String copertina) {
         this.copertina = copertina;
     }
-
     public double getPrezzo()
     {
         return prezzo;

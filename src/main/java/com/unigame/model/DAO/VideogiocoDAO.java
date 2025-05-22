@@ -112,6 +112,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
                 gioco.setPiattaforma(rs.getString("piattaforma"));
                 gioco.setDataRilascio(rs.getDate("ReleaseDate"));
                 gioco.setDescrizione(rs.getString("descrizione"));
+                gioco.setCopertina(rs.getString("copertina"));
                 gioco.setPrezzo(rs.getDouble("prezzo"));
                 gioco.setSconto(rs.getInt("sconto"));
                 gioco.setProduttore(rs.getString("Produttore"));

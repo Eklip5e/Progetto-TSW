@@ -83,9 +83,6 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
             VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
             videogiocoDAO.doSave(videogioco);
 
-            // Ottieni l'id generato: nel tuo DAO devi modificarlo per tornare l'id (vedi nota sotto)
-            int idVideogioco = videogioco.getIDGame();
-
             // Redirect alla home o pagina di conferma
             response.sendRedirect("home.jsp");
 
