@@ -1,17 +1,18 @@
-﻿<%@ include file="navbar.jsp" %>
+﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Navbar</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>UniGame</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<%@ include file="navbar.jsp" %>
 
 <!-- Game Banner Section -->
 <section class="game-banner">
@@ -24,26 +25,8 @@
     </div>
 </section>
 
-<!-- Game grid section -->
+<!-- Game Grid Section -->
 <section class="game-grid">
-    <div class="game-card">
-        <img src="img/game1.png" alt="Game 1">
-        <h2>The Last Of Us Part II Remastered (PC)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-50%</span>
-            <p class="price">€24,99</p>
-        </div>
-    </div>
-
-    <div class="game-card">
-        <img src="img/game2.png" alt="Game 2">
-        <h2>Marvel's Spider-Man 2 (PC)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-35%</span>
-            <p class="price">€38,99</p>
-        </div>
-    </div>
-
     <div class="game-card">
         <img src="img/game3.png" alt="Game 3">
         <h2>Grand Theft Auto V</h2>
@@ -52,71 +35,9 @@
             <p class="price">€47,99</p>
         </div>
     </div>
-
-    <div class="game-card">
-        <img src="img/game4.png" alt="Game 4">
-        <h2>EA Sports FC 24 (PS5)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-20%</span>
-            <p class="price">€47,99</p>
-        </div>
-    </div>
-
-    <div class="game-card">
-        <img src="game5.png" alt="Game 5">
-        <h2>Split Fiction (Xbox Series X|S)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-20%</span>
-            <p class="price">€47,99</p>
-        </div>
-    </div>
-
-    <div class="game-card">
-        <img src="img/game6.png" alt="Game 6">
-        <h2>Astro Bot (PS5)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-20%</span>
-            <p class="price">€47,99</p>
-        </div>
-    </div>
-
-    <div class="game-card">
-        <img src="img/game7.png" alt="Game 7">
-        <h2>Super Mario Bros. Wonder (Switch)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-20%</span>
-            <p class="price">€47,99</p>
-        </div>
-    </div>
-
-    <div class="game-card">
-        <img src="img/game8.png" alt="Game 8">
-        <h2>Tom Clancy's Rainbow Six Siege (PC)</h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-20%</span>
-            <p class="price">€47,99</p>
-        </div>
-    </div>
-
-    <!-- Aggiungi qui altri giochi -->
-
 </section>
 
-<footer class="footer">
-    <div class="footer-content">
-        <div class="footer-left">
-            <p>Copyright © 2025 UniGame - All rights reserved</p>
-        </div>
-        <div class="footer-right">
-            <ul class="social-links">
-                <li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
-                <li><a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
-            </ul>
-        </div>
-    </div>
-</footer>
+<%@ include file="footer.jsp" %>
 
 </body>
 </html>

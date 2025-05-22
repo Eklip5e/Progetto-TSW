@@ -45,10 +45,9 @@ public class RegisterServlet extends HttpServlet {
             UtenteDAO utenteDAO = new UtenteDAO();
             utenteDAO.doSave(utente);
 
-<<<<<<< Updated upstream
             // Reindirizza alla pagina di login dopo la registrazione
             response.sendRedirect("login.jsp");
-=======
+
             // Crea una sessione per l'utente appena registrato
             HttpSession session = request.getSession();
             session.setAttribute("username", utente.getUsername());
@@ -56,7 +55,7 @@ public class RegisterServlet extends HttpServlet {
 
             // Reindirizza alla pagina del profilo dopo la registrazione
             response.sendRedirect("profilo.jsp");
->>>>>>> Stashed changes
+
         } catch (RuntimeException e) {
             // Gestisci eventuali errori durante la registrazione
             request.setAttribute("error", "Errore durante la registrazione: " + e.getMessage());

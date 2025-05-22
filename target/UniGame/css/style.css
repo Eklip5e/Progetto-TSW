@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #24252A;
+    color: #edf0f1;
+    overflow-x: hidden;
+}
+
+/* ------------------------- */
+/* HEADER / NAVBAR */
+/* ------------------------- */
+header.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 5%;
+    background-color: #24252A;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_links li a {
+    display: flex;
+    align-items: center;
+    color: #edf0f1;
+    font-weight: 800;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav_links li a:hover {
+    color: #9B72CF;
+}
+
+.nav_links i {
+    margin-right: 8px;
+}
+
+.header-icons a i {
+    font-size: 30px;
+    color: #edf0f1;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.header-icons a i:hover {
+    color: #9B72CF;
+}
+
+/* ------------------------- */
+/* GAME BANNER */
+/* ------------------------- */
+.game-banner {
+    background-image: url('../img/game-banner.png');
+    background-size: cover;
+    background-position: center;
+    padding: 150px 10%;
+    text-align: left;
+}
+
+.banner-content h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.discount-tag,
+.card-price-row .discount-tag {
+    background-color: #9B72CF;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.price,
+.card-price-row .price {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ------------------------- */
+/* GAME GRID */
+/* ------------------------- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    background-color: #2f3136;
+    border-radius: 16px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.2s ease;
+    padding-bottom: 20px;
+}
+
+.game-card:hover {
+    transform: scale(1.03);
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.game-card h2 {
+    font-size: 1.1rem;
+    margin: 15px 0 20px;
+}
+
+.card-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* aumenta il valore se vuoi più spazio */
+    margin-top: 15px; /* se vuoi distanziare anche verticalmente */
+}
+
+/* ------------------------- */
+/* REDIRECTS */
+/* ------------------------- */
+.signup-redirect form,
+.login-redirect form {
+    font-size: 12px;
+    color: #ccc;
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+    text-decoration: none;
+}
+
+.signup-redirect:hover,
+.login-redirect:hover {
+    color: #9B72CF;
+    text-decoration: underline;
+}
+
+/* ------------------------- */
+/* FOOTER */
+/* ------------------------- */
+.footer {
+    background-color: #24252A;
+    padding: 40px 10%;
+    text-align: center;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    font-size: 0.9rem;
+}
+
+.footer-right .social-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-right .social-links li a {
+    color: #edf0f1;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-right .social-links li a:hover {
+    color: #9B72CF;
+}
+
+/* ------------------------- */
+/* RESPONSIVE DESIGN */
+/* ------------------------- */
+@media (max-width: 768px) {
+    header.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .game-banner {
+        padding: 80px 5%;
+    }
+
+    .banner-content h1 {
+        font-size: 32px;
+    }
+
+    .price-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .game-grid {
+        padding: 30px 5%;
+        gap: 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}

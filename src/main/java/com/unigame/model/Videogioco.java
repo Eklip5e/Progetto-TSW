@@ -12,31 +12,25 @@ public class Videogioco {
     private int sconto;
     private String produttore;
 
-
     public int getIDGame()
     {
         return idGame;
     }
 
-<<<<<<< Updated upstream
-    public void setIdGame(int idGame) {
-=======
     public void setIdGame(int idGame)
     {
->>>>>>> Stashed changes
         this.idGame = idGame;
     }
 
     public String getTitolo()
     {
-    return titolo;
+        return titolo;
     }
     public void setTitolo(String titolo)
     {
         this.titolo = titolo;
     }
-    public String getPiattaforma()
-    {
+    public String getPiattaforma() {
         return piattaforma;
     }
     public void setPiattaforma(String piattaforma)
