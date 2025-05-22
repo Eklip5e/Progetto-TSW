@@ -90,7 +90,7 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public Utente doRetrieveByUsername(String username) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT IDUtente, username, nome, cognome, email, password FROM UTENTE WHERE username = ?");
+                    "SELECT IDUtente, username, nome, cognome, email, password, IsAdmin FROM UTENTE WHERE username = ?");
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
@@ -102,6 +102,7 @@ public class UtenteDAO implements MetodiDAO<Utente> {
                 utente.setCognome(rs.getString("cognome"));
                 utente.setEmail(rs.getString("email"));
                 utente.setPassword(rs.getString("password")); // Password hashata
+                utente.setAdmin(rs.getBoolean("isAdmin"));
                 return utente;
             }
             return null; // Nessun utente trovato

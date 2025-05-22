@@ -12,8 +12,8 @@
     <div class="header-icons">
         <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
         <%
-            Object utente = session.getAttribute("username");
-            if (utente != null) {
+            String utenteLoggato = (String) session.getAttribute("username");
+            if (utenteLoggato != null) {
         %>
         <a href="profilo"><i class="fa-solid fa-user"></i></a>
         <% } else { %>

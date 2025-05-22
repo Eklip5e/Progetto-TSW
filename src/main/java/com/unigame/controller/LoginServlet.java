@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session = request.getSession();
                 session.setAttribute("username", utente.getUsername());
                 session.setAttribute("idUtente", utente.getIdUtente()); // Salva anche l'ID dell'utente
+                session.setAttribute("isAdmin", utente.isAdmin());
 
                 // Reindirizza alla pagina del profilo
                 response.sendRedirect("profilo.jsp");

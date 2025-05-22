@@ -1,4 +1,10 @@
 ﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.unigame.model.DAO.VideogiocoDAO, com.unigame.model.Videogioco" %>
+<%@ page import="java.util.*" %>
+<%
+    VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+    List<Videogioco> giochi = videogiocoDAO.doRetrieveAll(); // Fai attenzione: serve un metodo `doRetrieveAll()` nel DAO
+%>
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -27,15 +33,60 @@
 
 <!-- Game Grid Section -->
 <section class="game-grid">
+    <% for (Videogioco gioco : giochi) { %>
     <div class="game-card">
-        <img src="img/game3.png" alt="Game 3">
-        <h2>Grand Theft Auto V</h2>
+        <img src="img/giochi/<%= gioco.getIDGame() %>.jpg" alt="<%= gioco.getTitolo() %>">
+        <h2><%= gioco.getTitolo() %></h2>
         <div class="card-price-row">
-            <span class="discount-tag">-20%</span>
-            <p class="price">€47,99</p>
+            <span class="discount-tag">-<%= gioco.getSconto() %>%</span>
+            <p class="price">€<%= gioco.getPrezzo() %></p>
         </div>
     </div>
+    <% } %>
+
+    <!-- Card per aggiungere un nuovo gioco -->
+    <%
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        if (isAdmin != null && isAdmin) {
+    %>
+    <div class="game-card add-game-card" onclick="document.getElementById('addModal').style.display='block'">
+        <div class="plus-sign">+</div>
+        <p>Aggiungi gioco</p>
+    </div>
+    <% } %>
 </section>
+
+<!-- Modale -->
+<div id="addModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="document.getElementById('addModal').style.display='none'">&times;</span>
+        <h2>Nuovo Videogioco</h2>
+        <form action="AggiungiVideogiocoServlet" method="post">
+            <input type="text" name="titolo" placeholder="Titolo" required><br>
+            <input type="text" name="piattaforma" placeholder="Piattaforma" required><br>
+            <input type="date" name="rilascio" required><br>
+            <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
+            <input type="number" step="0.01" name="prezzo" placeholder="Prezzo (€)" required><br>
+            <input type="number" name="sconto" placeholder="Sconto (%)" value="0"><br>
+            <input type="text" name="produttore" placeholder="Produttore" required><br>
+            <input type="text" name="immagineUrl" placeholder="URL immagine" required><br>
+            <button type="submit">Aggiungi</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function closeAddModal() {
+        document.getElementById('addModal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        let modal = document.getElementById('addModal');
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    }
+</script>
 
 <%@ include file="footer.jsp" %>
 

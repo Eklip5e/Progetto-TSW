@@ -151,6 +151,45 @@ header.navbar {
     margin-top: 15px; /* se vuoi distanziare anche verticalmente */
 }
 
+.add-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+    cursor: pointer;
+    color: #777;
+    font-size: 24px;
+}
+
+.add-card .add-icon {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+.modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
 /* ------------------------- */
 /* REDIRECTS */
 /* ------------------------- */

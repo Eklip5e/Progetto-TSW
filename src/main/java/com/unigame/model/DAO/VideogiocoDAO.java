@@ -4,6 +4,8 @@ import com.unigame.model.Utente;
 import com.unigame.model.Videogioco;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VideogiocoDAO implements MetodiDAO<Videogioco> {
 
@@ -15,7 +17,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, videogioco.getTitolo());
             ps.setString(2, videogioco.getPiattaforma());
-            ps.setDate(6, new Date(videogioco.getDataRilascio().getTime()));
+            ps.setDate(3, new Date(videogioco.getDataRilascio().getTime()));
             ps.setString(4, videogioco.getDescrizione());
             ps.setDouble(5, videogioco.getPrezzo());
             ps.setInt(6, videogioco.getSconto());
@@ -94,5 +96,29 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Videogioco> doRetrieveAll() {
+        List<Videogioco> giochi = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM VIDEOGIOCO ORDER BY IDGame DESC");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Videogioco gioco = new Videogioco();
+                gioco.setIdGame(rs.getInt("idGame"));
+                gioco.setTitolo(rs.getString("titolo"));
+                gioco.setPiattaforma(rs.getString("piattaforma"));
+                gioco.setDataRilascio(rs.getDate("ReleaseDate"));
+                gioco.setDescrizione(rs.getString("descrizione"));
+                gioco.setPrezzo(rs.getDouble("prezzo"));
+                gioco.setSconto(rs.getInt("sconto"));
+                gioco.setProduttore(rs.getString("Produttore"));
+                giochi.add(gioco);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return giochi;
     }
 }

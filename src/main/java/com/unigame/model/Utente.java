@@ -12,6 +12,7 @@ public class Utente {
     private String cognome;
     private String email;
     private String password;
+    private Boolean admin;
 
     public int getIdUtente() {
         return idUtente;
@@ -87,4 +88,12 @@ public class Utente {
                 throw new RuntimeException("Errore durante l'hashing della password", e);
             }
         }
+
+    public Boolean isAdmin() {
+        return admin;
     }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
+    }
+}
