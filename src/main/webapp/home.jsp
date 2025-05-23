@@ -24,7 +24,13 @@
 <%@ include file="navbar.jsp" %>
 
 <!-- Game Banner Section -->
-<section class="game-banner">
+<section class="game-banner" style="background-image: url('img/game-banner.png')">
+    <%
+        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        if (isAdmin != null && isAdmin) {
+    %>
+    <button class="update-button">Modifica banner</button> <!-- Bottone di modifica banner -->
+    <% } %>
     <div class="banner-content">
         <h1>Grand Theft Auto VI</h1>
         <div class="price-row">
@@ -39,7 +45,7 @@
     <% for (Videogioco videogioco : videogiochi) { %>
     <div class="game-card">
         <%
-            Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+            isAdmin = (Boolean) session.getAttribute("isAdmin");
             if (isAdmin != null && isAdmin) {
         %>
         <button class="delete-button" data-id="<%=videogioco.getIDGame()%>">−</button> <!-- Bottone di rimozione -->
@@ -56,7 +62,7 @@
 
     <!-- Card per aggiungere un nuovo gioco -->
     <%
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+        isAdmin = (Boolean) session.getAttribute("isAdmin");
         if (isAdmin != null && isAdmin) {
     %>
     <div class="game-card add-game-card" onclick="document.getElementById('addModal').style.display='block'">
@@ -118,6 +124,11 @@
         document.querySelectorAll(".delete-button").forEach(button => {
             button.addEventListener("click", function () {
                 const idGame = this.getAttribute("data-id");
+
+                const conferma = confirm("Sei sicuro di voler eliminare questo videogioco?");
+                if (!conferma) {
+                    return; // Annulla l'operazione se l'utente clicca "Annulla"
+                }
 
                 fetch("RimuoviVideogiocoServlet?id=" + idGame)
                     .then(res => {
