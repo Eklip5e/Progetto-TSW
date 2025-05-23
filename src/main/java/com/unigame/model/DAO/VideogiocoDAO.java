@@ -123,4 +123,30 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
         }
         return giochi;
     }
+
+    public List<Videogioco> doRetrieveByPiattaforma(String piattaforma) {
+        List<Videogioco> giochi = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM VIDEOGIOCO WHERE Piattaforma = ? ORDER BY idGame DESC");
+            ps.setString(1, piattaforma);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Videogioco gioco = new Videogioco();
+                gioco.setIdGame(rs.getInt("idGame"));
+                gioco.setTitolo(rs.getString("titolo"));
+                gioco.setPiattaforma(rs.getString("piattaforma"));
+                gioco.setDataRilascio(rs.getDate("ReleaseDate"));
+                gioco.setDescrizione(rs.getString("descrizione"));
+                gioco.setCopertina(rs.getString("copertina"));
+                gioco.setPrezzo(rs.getDouble("prezzo"));
+                gioco.setSconto(rs.getInt("sconto"));
+                gioco.setProduttore(rs.getString("Produttore"));
+                giochi.add(gioco);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return giochi;
+    }
 }
