@@ -1,7 +1,8 @@
 <header class="navbar">
     <a href="home.jsp" class="logo">
-        <img src="img/logo.png">
-    </a>
+        <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="40" fill="currentColor" />
+        </svg>
     <ul class="nav_links">
         <li><a href="#"><i class="fa-solid fa-laptop"></i>PC</a></li>
         <li><a href="#"><i class="fa-brands fa-playstation"></i>PlayStation</a></li>
