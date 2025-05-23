@@ -65,7 +65,7 @@
         isAdmin = (Boolean) session.getAttribute("isAdmin");
         if (isAdmin != null && isAdmin) {
     %>
-    <div class="game-card add-game-card" onclick="document.getElementById('addModal').style.display='block'">
+    <div class="game-card add-game-card" onclick="document.getElementById('addModal').style.display='flex'">
         <div class="plus-sign">+</div>
         <p>Aggiungi gioco</p>
     </div>
@@ -73,7 +73,7 @@
 </section>
 
 <!-- Modale -->
-<div id="addModal" class="modal" style="display:none;">
+<div id="addModal" class="modal" style="display: none">
     <div class="modal-content">
         <span class="close" onclick="document.getElementById('addModal').style.display='none'">&times;</span>
         <h2>Nuovo Videogioco</h2>
