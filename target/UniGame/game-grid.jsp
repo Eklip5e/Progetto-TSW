@@ -19,11 +19,11 @@
         <%
             if (isAdmin != null && isAdmin) {
         %>
-        <button class="delete-button" data-id="<%=videogioco.getIDGame()%>">−</button> <!-- Bottone di rimozione -->
+        <button class="delete-button" data-id="<%=videogioco.getIdGame()%>">−</button> <!-- Bottone di rimozione -->
         <%
             }
         %>
-        <a href="game-page.jsp?id=<%=videogioco.getIDGame()%>"><img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>"></a>
+        <a href="game-page.jsp?id=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
         <h2><%= videogioco.getTitolo() %>
         </h2>
         <div class="card-price-row">
@@ -39,11 +39,11 @@
         <%
             if (isAdmin != null && isAdmin) {
         %>
-        <button class="delete-button" data-id="<%=videogioco.getIDGame()%>">−</button> <!-- Bottone di rimozione -->
+        <button class="delete-button" data-id="<%=videogioco.getIdGame()%>">−</button> <!-- Bottone di rimozione -->
         <%
             }
         %>
-        <a href="game-page.jsp?id=<%=videogioco.getIDGame()%>"><img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>"></a>
+        <a href="game-page.jsp?id=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
         <h2><%= videogioco.getTitolo() %>
         </h2>
         <div class="card-price-row">

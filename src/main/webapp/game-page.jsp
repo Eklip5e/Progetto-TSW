@@ -22,12 +22,12 @@
 <%@ include file="navbar.jsp" %>
 
 <!-- Game Banner Section -->
-<section class="game-banner" style="background-image: url('img/banners/theLastOfUs-banner.png')"></section>
+<section class="game-banner" style="background-image: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogioco.getAppIdSteam() %>/library_hero.jpg')"></section>
 
 <div class="content">
     <div class="panel-container">
         <div class="game-cover">
-            <img src="img/game1.png" alt="Copertina Gioco">
+            <a href="game-page.jsp?id=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
         </div>
         <div class="game-info">
             <h2><%= videogioco.getTitolo() %></h2>

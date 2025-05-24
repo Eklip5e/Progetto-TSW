@@ -39,10 +39,10 @@
             </select>
             <input type="date" name="rilascio" required><br>
             <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
-            <input type="text" name="copertina" placeholder="copertina" required><br>
+            <input type="text" name="produttore" placeholder="Produttore" required><br>
+            <input type="text" name="appIdSteam" placeholder="Id SteamDB" required><br>
             <input type="text" step="0.01" name="prezzo" placeholder="Prezzo (€)" required><br>
             <input type="text" name="sconto" placeholder="Sconto (%)" value="0"><br>
-            <input type="text" name="produttore" placeholder="Produttore" required><br>
             <button type="submit">Aggiungi</button>
         </form>
 

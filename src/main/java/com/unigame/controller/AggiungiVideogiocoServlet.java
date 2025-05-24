@@ -25,19 +25,19 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
         String piattaforma = request.getParameter("piattaforma");
         String dataRilascioStr = request.getParameter("rilascio");
         String descrizione = request.getParameter("descrizione");
-        String copertina = request.getParameter("copertina");
+        String produttore = request.getParameter("produttore");
+        String appIdSteamStr = request.getParameter("appIdSteam");
         String prezzoStr = request.getParameter("prezzo");
         String scontoStr = request.getParameter("sconto");
-        String produttore = request.getParameter("produttore");
 
         // Validazione semplice (puoi ampliare)
         if (titolo == null || titolo.isEmpty()
                 || dataRilascioStr == null || dataRilascioStr.isEmpty()
                 || descrizione == null || descrizione.isEmpty()
-                || copertina == null || copertina.isEmpty()
+                || produttore == null || produttore.isEmpty()
+                || appIdSteamStr == null || appIdSteamStr.isEmpty()
                 || prezzoStr == null || prezzoStr.isEmpty()
-                || scontoStr == null || scontoStr.isEmpty()
-                || produttore == null || produttore.isEmpty()) {
+                || scontoStr == null || scontoStr.isEmpty()) {
 
                 request.setAttribute("error", "Tutti i campi obbligatori devono essere compilati.");
                 request.getRequestDispatcher("home.jsp").forward(request, response);
@@ -46,6 +46,7 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
 
         try {
             Date dataRilascio = Date.valueOf(dataRilascioStr);
+            int appIdSteam = Integer.parseInt(appIdSteamStr);
             double prezzo = Double.parseDouble(prezzoStr);
             int sconto = Integer.parseInt(scontoStr);
 
@@ -54,10 +55,10 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
             videogioco.setPiattaforma(piattaforma);
             videogioco.setDataRilascio(dataRilascio);
             videogioco.setDescrizione(descrizione);
-            videogioco.setCopertina(copertina);
+            videogioco.setProduttore(produttore);
+            videogioco.setAppIdSteam(appIdSteam);
             videogioco.setPrezzo(prezzo);
             videogioco.setSconto(sconto);
-            videogioco.setProduttore(produttore);
 
             VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
             videogiocoDAO.doSave(videogioco);
