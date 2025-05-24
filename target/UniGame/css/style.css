@@ -150,7 +150,8 @@ body {
     position: relative;
     width: 100%;
     max-width: 300px;
-    background-color: #2f3136;
+    background-color: #24252A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
     border-radius: 16px;
     overflow: hidden;
     text-align: center;

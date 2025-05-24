@@ -1,35 +1,16 @@
 package com.unigame.controller;
 
-import com.unigame.model.DAO.ScreenshotDAO;
 import com.unigame.model.DAO.VideogiocoDAO;
-import com.unigame.model.Screenshot;
 import com.unigame.model.Videogioco;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
-import com.unigame.model.Videogioco;
-import com.unigame.model.DAO.VideogiocoDAO;
-import com.unigame.model.DAO.ScreenshotDAO;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import com.unigame.model.Videogioco;
-import com.unigame.model.DAO.VideogiocoDAO;
-import com.unigame.model.DAO.ScreenshotDAO;
 
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-import java.io.IOException;
 import java.sql.Date;
 
 @WebServlet("/AggiungiVideogiocoServlet")
