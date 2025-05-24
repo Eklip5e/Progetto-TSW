@@ -50,7 +50,7 @@ public class AggiungiVideogiocoServlet extends HttpServlet {
         String produttore = request.getParameter("produttore");
 
         // Validazione semplice (puoi ampliare)
-        if (titolo == null || titolo.isEmpty() || piattaforma == null || piattaforma.isEmpty()
+        if (titolo == null || titolo.isEmpty()
                 || dataRilascioStr == null || dataRilascioStr.isEmpty()
                 || descrizione == null || descrizione.isEmpty()
                 || copertina == null || copertina.isEmpty()

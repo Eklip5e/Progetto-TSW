@@ -2,11 +2,6 @@
 <%@ page import="com.unigame.model.DAO.VideogiocoDAO, com.unigame.model.Videogioco" %>
 <%@ page import="java.util.*" %>
 
-<%
-    VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-    List<Videogioco> videogiochi = videogiocoDAO.doRetrieveAll();
-%>
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -25,12 +20,6 @@
 
 <!-- Game Banner Section -->
 <section class="game-banner" style="background-image: url('img/game-banner.png')">
-    <%
-        Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
-        if (isAdmin != null && isAdmin) {
-    %>
-    <button class="update-button">Modifica banner</button> <!-- Bottone di modifica banner -->
-    <% } %>
     <div class="banner-content">
         <h1>Grand Theft Auto VI</h1>
         <div class="price-row">
@@ -41,62 +30,10 @@
 </section>
 
 <!-- Game Grid Section -->
-<section class="game-grid">
-    <% for (Videogioco videogioco : videogiochi) { %>
-    <div class="game-card">
-        <%
-            isAdmin = (Boolean) session.getAttribute("isAdmin");
-            if (isAdmin != null && isAdmin) {
-        %>
-        <button class="delete-button" data-id="<%=videogioco.getIDGame()%>">−</button> <!-- Bottone di rimozione -->
-        <% } %>
-        <img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>">
-        <h2><%= videogioco.getTitolo() %>
-        </h2>
-        <div class="card-price-row">
-            <span class="discount-tag">-<%= videogioco.getSconto() %>%</span>
-            <p class="price"><%=videogioco.getPrezzo()%> €</p>
-        </div>
-    </div>
-    <% } %>
-
-    <!-- Card per aggiungere un nuovo gioco -->
-    <%
-        isAdmin = (Boolean) session.getAttribute("isAdmin");
-        if (isAdmin != null && isAdmin) {
-    %>
-    <div class="game-card add-game-card" onclick="document.getElementById('addModal').style.display='flex'">
-        <div class="plus-sign">+</div>
-        <p>Aggiungi gioco</p>
-    </div>
-    <% } %>
-</section>
+<%@ include file="game-grid.jsp" %>
 
 <!-- Modale -->
-<div id="addModal" class="modal" style="display: none">
-    <div class="modal-content">
-        <span class="close" onclick="document.getElementById('addModal').style.display='none'">&times;</span>
-        <h2>Nuovo Videogioco</h2>
-        <form action="AggiungiVideogiocoServlet" method="post">
-            <input type="text" name="titolo" placeholder="Titolo" required><br>
-            <input type="text" name="piattaforma" placeholder="Piattaforma" required><br>
-            <input type="date" name="rilascio" required><br>
-            <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
-            <input type="text" name="copertina" placeholder="copertina" required><br>
-            <input type="text" step="0.01" name="prezzo" placeholder="Prezzo (€)" required><br>
-            <input type="text" name="sconto" placeholder="Sconto (%)" value="0"><br>
-            <input type="text" name="produttore" placeholder="Produttore" required><br>
-            <button type="submit">Aggiungi</button>
-        </form>
-
-        <% if (request.getAttribute("error") != null) { %>
-        <div class="error-message">
-            <%= request.getAttribute("error") %>
-        </div>
-        <% } %>
-
-    </div>
-</div>
+<%@ include file="modal.jsp" %>
 
 <script>
     function closeAddModal() {

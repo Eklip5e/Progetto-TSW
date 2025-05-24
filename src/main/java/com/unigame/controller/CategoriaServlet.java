@@ -1,5 +1,7 @@
 package com.unigame.controller;
 
+import com.mysql.cj.Session;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,18 +21,23 @@ public class CategoriaServlet extends HttpServlet {
         switch (categoria) {
             case "pc":
                 paginaDestinazione = "categorie/pc.jsp";
+                request.setAttribute("paginaAttuale", "pc");
                 break;
             case "playstation":
                 paginaDestinazione = "categorie/playstation.jsp";
+                request.setAttribute("paginaAttuale", "playstation");
                 break;
             case "xbox":
                 paginaDestinazione = "categorie/xbox.jsp";
+                request.setAttribute("paginaAttuale", "xbox");
                 break;
             case "nintendo":
                 paginaDestinazione = "categorie/nintendo.jsp";
+                request.setAttribute("paginaAttuale", "nintendo");
                 break;
             default:
-                paginaDestinazione = "home.jsp"; // oppure una pagina di errore
+                paginaDestinazione = "home.jsp";
+                request.setAttribute("paginaAttuale", "home");
                 break;
         }
 

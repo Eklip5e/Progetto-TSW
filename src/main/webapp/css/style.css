@@ -75,7 +75,7 @@ body {
     position: relative;
     background-size: cover;
     background-position: center;
-    height: 400px;
+    height: 300px;
     padding: 150px 10%;
     text-align: left;
 }
@@ -222,86 +222,6 @@ body {
 /* Testo sotto il + */
 .add-game-card p {
     font-size: 20px;
-}
-
-/* Modale - overlay */
-.modal {
-    display: flex; /* permette centratura */
-    justify-content: center; /* centra orizzontalmente */
-    align-items: center;     /* centra verticalmente */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1000;
-}
-
-/* Contenuto modale - stile simile a game-card */
-.modal-content {
-    background-color: #2f3136;
-    border-radius: 16px;
-    padding: 30px;
-    color: white;
-    max-width: 400px;
-    width: 100%;
-    box-sizing: border-box;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Bottone per chiudere */
-.modal-content .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    color: white;
-    cursor: pointer;
-}
-
-/* Input e textarea */
-.modal-content input,
-.modal-content textarea {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border-radius: 8px;
-    border: none;
-    background-color: #40444b;
-    color: white;
-    font-size: 1rem;
-    outline: none;
-}
-
-/* Pulsante submit */
-.modal-content button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 10px;
-    background-color: #9B72CF;
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.modal-content button:hover {
-    background-color: #9B72CF;
-}
-
-.error-message {
-    color: white;
-    padding: 10px;
-    margin-bottom: 15px;
-    text-align: center;
 }
 
 /* ------------------------- */
