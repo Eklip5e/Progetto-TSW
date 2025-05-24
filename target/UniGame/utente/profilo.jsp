@@ -21,13 +21,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Profilo Utente</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/profilo.css">
+    <link rel="stylesheet" href="../../../../target/UniGame/css/style.css">
+    <link rel="stylesheet" href="../../../../target/UniGame/css/profilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
 
-<%@ include file="navbar.jsp" %>
+<%@ include file="/principali/navbar.jsp" %>
 
 <div class="profile-container">
     <div class="profile-header">
@@ -44,7 +44,7 @@
     <a class="edit-button" href="#">Modifica Profilo</a>
 </div>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="/principali/footer.jsp" %>
 
 </body>
 </html>

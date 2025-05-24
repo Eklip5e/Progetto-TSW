@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<%@ include file="navbar.jsp" %>
+<jsp:include page="/principali/navbar.jsp"/>
 
 <!-- Game Banner Section -->
 <section class="game-banner" style="background-image: url('img/game-banner.png')">
@@ -143,7 +143,7 @@
     });
 </script>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="principali/footer.jsp" %>
 
 </body>
 </html>

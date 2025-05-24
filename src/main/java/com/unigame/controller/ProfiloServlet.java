@@ -20,10 +20,10 @@ public class ProfiloServlet extends HttpServlet {
 
         if (session != null && session.getAttribute("username") != null) {
             // Utente loggato → vai al profilo
-            request.getRequestDispatcher("/profilo.jsp").forward(request, response);
+            request.getRequestDispatcher("/utente/profilo.jsp").forward(request, response);
         } else {
             // Utente non loggato → reindirizza al login
-            response.sendRedirect("login.jsp");
+            response.sendRedirect("/utente/login.jsp");
         }
     }
 

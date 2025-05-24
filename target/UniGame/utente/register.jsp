@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UniGame - Registrazione</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/register.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-    <%@ include file="navbar.jsp"%>
+    <%@ include file="/principali/navbar.jsp"%>
 
 <section class="register">
     <form action="register" method="post" onsubmit="return validatePassword()">
@@ -58,7 +58,7 @@
         <input type="submit" id="register" value="Register">
 
         <div class="form-group" id="login-redirect">
-            <a href="login.jsp" class="login-redirect">Hai già un account?</a>
+            <a href="${pageContext.request.contextPath}/utente/login.jsp" class="login-redirect">Hai già un account?</a>
         </div>
 
         <% if (request.getAttribute("error") != null) { %>
@@ -68,7 +68,7 @@
     </form>
 </section>
 
-    <%@ include file="footer.jsp"%>
+    <%@ include file="/principali/footer.jsp"%>
 
 </body>
 </html>

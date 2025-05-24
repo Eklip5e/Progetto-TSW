@@ -24,7 +24,7 @@ public class LoginServlet extends HttpServlet {
         // Validazione dei parametri
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             request.setAttribute("error", "Username e password sono obbligatori.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("/utente/login.jsp").forward(request, response);
             return;
         }
 
@@ -42,16 +42,16 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("isAdmin", utente.isAdmin());
 
                 // Reindirizza alla pagina del profilo
-                response.sendRedirect("profilo.jsp");
+                response.sendRedirect("/utente/profilo.jsp");
             } else {
                 // Credenziali non valide: restituisci un messaggio di errore
                 request.setAttribute("error", "Credenziali errate!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("/utente/login.jsp").forward(request, response);
             }
         } catch (RuntimeException e) {
             // Gestisci eventuali errori durante la verifica delle credenziali
             request.setAttribute("error", "Errore durante il login: " + e.getMessage());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("/utente/login.jsp").forward(request, response);
         }
     }
 }
