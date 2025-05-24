@@ -8,6 +8,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     background-color: #24252A;
     color: white;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
 }
 
 /* ------------------------- */
@@ -245,6 +249,7 @@ body {
     box-sizing: border-box;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -321,10 +326,15 @@ body {
 /* ------------------------- */
 /* FOOTER */
 /* ------------------------- */
+.container {
+    min-height: calc(100vh - 84px - 80px);
+}
+
 .footer {
     background-color: #24252A;
     padding: 40px 10%;
     text-align: center;
+    margin-top: auto;
 }
 
 .footer-content {

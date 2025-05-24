@@ -16,6 +16,7 @@
 
 <%@ include file="navbar.jsp" %>
 
+<div class="container">
 <section class="register">
     <form action="login" method="post">
 
@@ -43,6 +44,7 @@
 
     </form>
 </section>
+</div>
 
 <%@ include file="footer.jsp" %>
 

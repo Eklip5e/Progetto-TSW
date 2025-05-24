@@ -61,7 +61,7 @@
             <h2>Nuovo Videogioco</h2>
             <form action="AggiungiVideogiocoServlet" method="post">
                 <input type="text" name="titolo" placeholder="Titolo" required><br>
-                <input type="text" name="piattaforma" value="pc" disabled required><br>
+                <input type="text" name="piattaforma" value="pc" disabled><br>
                 <input type="date" name="rilascio" required><br>
                 <textarea name="descrizione" placeholder="Descrizione" required></textarea><br>
                 <input type="text" name="copertina" placeholder="copertina" required><br>
