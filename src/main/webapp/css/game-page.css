@@ -1,38 +1,85 @@
-/* Game details section layout */
-.game-details {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 40px 0;
-    gap: 40px;
+.content {
+    position: relative;
+    top: -70px;
 }
 
-/* Left block: game cover */
-.game-cover {
-    background-color: white;
-    width: 250px;
-    height: 250px;
+.panel-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.game-cover img{
+    width: 600px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.game-info {
+    background-color: #24252A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 600px;
+    height: 300px;
+    padding: 20px;
+}
+
+.game-info select {
+    background-color: #24252A;
+    border: 1px solid #555;
+    width: 100%;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 10px;
+    font-size: 20px;
+}
+
+.stock i {
+    color: green;
+}
+
+.amount {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.discount {
+    background-color: #9B72CF;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.total {
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.actions, .wish-list {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    gap: 15px;
+    width: 100%;
 }
 
-/* Right block: game info */
-.game-info {
-    background-color: white;
-    width: 300px;
-    min-height: 250px;
-    padding: 20px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+.wish-list {
+    background-color: #9B72CF;
+    width: 10%;
+    padding: 10px;
+    border-radius: 10px;
 }
 
-.game-info p {
-    margin: 10px 0;
-    line-height: 1.5;
+.add-to-cart {
+    background-color: #9B72CF;
+    border: none;
+    padding: 10px;
+    color: white;
+    width: 90%;
+    border-radius: 10px;
 }

@@ -1,4 +1,4 @@
-<%@ page import="com.unigame.model.DAO.VideogiocoDAO" %>
+﻿<%@ page import="com.unigame.model.DAO.VideogiocoDAO" %>
 <%@ page import="com.unigame.model.Videogioco" %>
 <%@ page import="java.util.List" %>
 
@@ -23,7 +23,7 @@
         <%
             }
         %>
-        <a href="game-page.jsp"><img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>"></a>
+        <a href="game-page.jsp?id=<%=videogioco.getIDGame()%>"><img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>"></a>
         <h2><%= videogioco.getTitolo() %>
         </h2>
         <div class="card-price-row">
@@ -43,7 +43,7 @@
         <%
             }
         %>
-        <a href="game-page.jsp"><img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>"></a>
+        <a href="game-page.jsp?id=<%=videogioco.getIDGame()%>"><img src="img/<%=videogioco.getCopertina()%>.png" alt="<%= videogioco.getTitolo() %>"></a>
         <h2><%= videogioco.getTitolo() %>
         </h2>
         <div class="card-price-row">
