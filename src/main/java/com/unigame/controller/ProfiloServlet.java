@@ -18,7 +18,7 @@ public class ProfiloServlet extends HttpServlet {
             throws IOException, ServletException {
         HttpSession session = request.getSession(false); // false = non crearne una nuova
 
-        if (session != null && session.getAttribute("username") != null) {
+        if (session != null && session.getAttribute("utente") != null) {
             // Utente loggato → vai al profilo
             request.getRequestDispatcher("/profilo.jsp").forward(request, response);
         } else {

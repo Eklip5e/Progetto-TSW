@@ -39,7 +39,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public void doDelete(int idGame) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM VIDEOGIOCO WHERE idGame = ?");
+                    "DELETE FROM VIDEOGIOCO WHERE idVideogioco = ?");
             ps.setInt(1, idGame);
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -54,7 +54,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public void doUpdate(Videogioco videogioco, int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE VIDEOGIOCO SET titolo = ?, piattaforma = ?, ReleaseDate = ?, descrizione = ?, prezzo = ?, sconto = ?, Produttore = ?, appIdSteam = ? WHERE idGame = ?");
+                    "UPDATE VIDEOGIOCO SET titolo = ?, piattaforma = ?, ReleaseDate = ?, descrizione = ?, prezzo = ?, sconto = ?, Produttore = ?, appIdSteam = ? WHERE idVideogioco = ?");
             ps.setString(1, videogioco.getTitolo());
             ps.setString(2, videogioco.getPiattaforma());
             ps.setDate(3, new Date(videogioco.getDataRilascio().getTime()));
@@ -78,13 +78,13 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public Videogioco doRetrieveById(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM VIDEOGIOCO WHERE idGame = ?");
+                    "SELECT * FROM VIDEOGIOCO WHERE idVideogioco = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 Videogioco videogioco = new Videogioco();
-                videogioco.setIdGame(rs.getInt("idGame"));
+                videogioco.setIdGame(rs.getInt("idVideogioco"));
                 videogioco.setTitolo(rs.getString("titolo"));
                 videogioco.setPiattaforma(rs.getString("piattaforma"));
                 videogioco.setDataRilascio(rs.getDate("ReleaseDate"));
@@ -105,11 +105,11 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
         List<Videogioco> giochi = new ArrayList<>();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM VIDEOGIOCO ORDER BY idGame DESC");
+                    "SELECT * FROM VIDEOGIOCO ORDER BY idVideogioco DESC");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Videogioco gioco = new Videogioco();
-                gioco.setIdGame(rs.getInt("idGame"));
+                gioco.setIdGame(rs.getInt("idVideogioco"));
                 gioco.setTitolo(rs.getString("titolo"));
                 gioco.setPiattaforma(rs.getString("piattaforma"));
                 gioco.setDataRilascio(rs.getDate("ReleaseDate"));

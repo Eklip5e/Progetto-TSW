@@ -1,0 +1,137 @@
+﻿/* Layout generale */
+.contenitore-carrello {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 50px;
+}
+
+/* Blocco carrello */
+.carrello {
+    background-color: #24252A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+    padding: 20px;
+    width: 600px;
+}
+
+/* Riga singola nel carrello */
+.riga-carrello {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+/* Copertina immagine */
+.copertina img {
+    border-radius: 10px;
+}
+
+/* Informazioni e pulsanti */
+.info-gioco {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-around;
+}
+
+.info-gioco h3 {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.azioni {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.azioni a {
+    color: white;
+    font-size: 12px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+/* Prezzo */
+.prezzo-gioco {
+    align-items: center;
+    display: flex;
+}
+
+/* Riepilogo */
+.sezione-riepilogo {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-riepilogo {
+    background-color: #24252A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    justify-content: space-between;
+    padding: 20px;
+    width: 400px;
+}
+
+.info-riepilogo .pulsanti {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+}
+
+.info-riepilogo .pulsanti button {
+    background-color: #9B72CF;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 17px;
+    padding: 15px;
+    width: 100%;
+}
+
+.info-riepilogo .pulsanti a {
+    color: white;
+    text-decoration: none;
+}
+
+.info-riepilogo ul {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-riepilogo ul li {
+    list-style: none;
+}
+
+.riepilogo-lista {
+    display: flex;
+    gap: 25px;
+    list-style: none; /* toglie i pallini */
+    margin: 0;
+    padding: 0;
+}
+
+.riepilogo-riga {
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.riepilogo-riga:last-child {
+    font-size: 25px;   /* più grande l’ultimo */
+    font-weight: bold; /* grassetto */
+}

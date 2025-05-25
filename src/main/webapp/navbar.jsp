@@ -1,3 +1,4 @@
+<%@ page import="com.unigame.model.Utente" %>
 <header class="navbar">
     <a href="home.jsp" class="logo"><img src="img/logo.png" alt="logo"></a>
     <ul class="nav_links">
@@ -8,9 +9,9 @@
         <li><a href="#"><i class="fa-solid fa-magnifying-glass"></i></a></li>
     </ul>
     <div class="header-icons">
-        <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+        <a href="MostraCarrello"><i class="fa-solid fa-cart-shopping"></i></a>
         <%
-            String utenteLoggato = (String) session.getAttribute("username");
+            Utente utenteLoggato = (Utente) session.getAttribute("utente");
             if (utenteLoggato != null) {
         %>
         <a href="profilo"><i class="fa-solid fa-user"></i></a>

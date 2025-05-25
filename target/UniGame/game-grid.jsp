@@ -5,7 +5,7 @@
 <%
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
     List<Videogioco> videogiochi = videogiocoDAO.doRetrieveAll();
-    Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+    Utente utente = (Utente) session.getAttribute("utente");
     String paginaAttuale = (String) request.getAttribute("paginaAttuale");
 %>
 
@@ -17,13 +17,13 @@
     %>
     <div class="game-card">
         <%
-            if (isAdmin != null && isAdmin) {
+            if (utente != null && utente.isAdmin()) {
         %>
         <button class="delete-button" data-id="<%=videogioco.getIdGame()%>">−</button> <!-- Bottone di rimozione -->
         <%
             }
         %>
-        <a href="game-page.jsp?id=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
+        <a href="game-page.jsp?idVideogioco=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
         <h2><%= videogioco.getTitolo() %>
         </h2>
         <div class="card-price-row">
@@ -37,13 +37,13 @@
     %>
     <div class="game-card">
         <%
-            if (isAdmin != null && isAdmin) {
+            if (utente != null && utente.isAdmin()) {
         %>
         <button class="delete-button" data-id="<%=videogioco.getIdGame()%>">−</button> <!-- Bottone di rimozione -->
         <%
             }
         %>
-        <a href="game-page.jsp?id=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
+        <a href="game-page.jsp?idVideogioco=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
         <h2><%= videogioco.getTitolo() %>
         </h2>
         <div class="card-price-row">
@@ -58,7 +58,7 @@
 
     <!-- Card per aggiungere un nuovo gioco -->
     <%
-        if (isAdmin != null && isAdmin) {
+        if (utente != null && utente.isAdmin()) {
     %>
     <div class="game-card add-game-card" onclick="document.getElementById('addModal').style.display='flex'">
         <div class="plus-sign">+</div>

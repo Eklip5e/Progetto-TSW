@@ -5,15 +5,12 @@
 
 <%
     session = request.getSession(false);
-    String username = (session != null) ? (String) session.getAttribute("username") : null;
+    Utente utente = (session != null) ? (Utente) session.getAttribute("utente") : null;
 
-    if (username == null) {
+    if (utente == null) {
         response.sendRedirect("login.jsp");
         return;
     }
-
-    UtenteDAO utenteDAO = new UtenteDAO();
-    Utente utente = utenteDAO.doRetrieveByUsername(username);  // QUI è importante il tipo Utente
 %>
 
 <!DOCTYPE html>

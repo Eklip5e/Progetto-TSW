@@ -18,7 +18,7 @@ public class UserServlet extends HttpServlet {
         // Recupera la sessione esistente (non crea una nuova sessione se non esiste)
         HttpSession session = request.getSession(false);
 
-        if (session != null && session.getAttribute("username") != null) {
+        if (session != null && session.getAttribute("utente") != null) {
             // Utente loggato: reindirizza alla pagina del profilo
             response.sendRedirect("profilo.jsp");
         } else {

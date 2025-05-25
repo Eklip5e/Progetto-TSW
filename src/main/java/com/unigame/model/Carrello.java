@@ -1,14 +1,31 @@
 package com.unigame.model;
 
 public class Carrello {
-    private String idUser;
+    private int idCarrello;
+    private int idUtente;
+    private int idVideogioco;
 
-    public String getIdUser() {
-        return idUser;
+    public int getIdCarrello() {
+        return idCarrello;
     }
 
-    public void setIdUser(String idUser) {
-        this.idUser = idUser;
+    public void setIdCarrello(int idCarrello) {
+        this.idCarrello = idCarrello;
     }
 
+    public int getIdUtente() {
+        return idUtente;
+    }
+
+    public void setIdUtente(int idUtente) {
+        this.idUtente = idUtente;
+    }
+
+    public int getIdVideogioco() {
+        return idVideogioco;
+    }
+
+    public void setIdVideogioco(int idVideogioco) {
+        this.idVideogioco = idVideogioco;
+    }
 }

@@ -80,6 +80,11 @@
     border: none;
     padding: 10px;
     color: white;
-    width: 90%;
+    width: 100%;
     border-radius: 10px;
+}
+
+.add-to-cart:hover {
+    background-color: #7a54b8;
+    cursor: pointer;
 }

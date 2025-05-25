@@ -19,15 +19,15 @@ Descrizione TEXT NOT NULL -- Necessaria per comprendere di cosa parla il genere 
 );
 
 CREATE TABLE Videogioco (
-IDGame INT AUTO_INCREMENT PRIMARY KEY,
-Titolo VARCHAR(70) NOT NULL,
-Piattaforma VARCHAR(25) NOT NULL,
-ReleaseDate DATE NOT NULL,
-Descrizione TEXT,
-Copertina VARCHAR(255) NOT NULL,
-Prezzo DECIMAL (5, 2) NOT NULL,
-Sconto INT,
-Produttore VARCHAR(50) NOT NULL
+idVideogioco INT AUTO_INCREMENT PRIMARY KEY,
+titolo VARCHAR(70) NOT NULL,
+piattaforma VARCHAR(25) NOT NULL,
+releaseDate DATE NOT NULL,
+descrizione TEXT,
+produttore VARCHAR(50) NOT NULL,
+appIdSteam INT NOT NULL,
+prezzo DECIMAL (5, 2) NOT NULL,
+sconto INT
 );
 
 CREATE TABLE Fattura (
@@ -64,12 +64,17 @@ IDVideogioco INT NOT NULL REFERENCES Videogioco (IDGame)
 );
 
 CREATE TABLE Carrello (
-IDUser INT PRIMARY KEY ,
-FOREIGN KEY (IDUser) REFERENCES Utente(IDUtente)
+idUtente INT PRIMARY KEY,
+idVideogioco INT NOT NULL,
+FOREIGN KEY (idUtente) REFERENCES Utente(idUtente),
+FOREIGN KEY (idVideogioco) REFERENCES Videogioco (idVideogioco)
 ); -- Il carrello e' un entita' poiche' l'utente puo' acquistare piu' volte lo stesso videogioco o puo' fare diversi acquisti --
 
-CREATE TABLE Screenshots (
-Screenshot VARCHAR(255) PRIMARY KEY,
+CREATE TABLE Img (
+Copertina VARCHAR(255) PRIMARY KEY,
+Banner VARCHAR(255) NOT NULL,
+
+Video VARCHAR(255) NOT NULL,
 IDVideogioco INT NOT NULL,
 FOREIGN KEY (IDVideogioco) REFERENCES Videogioco (IDGame)
 );

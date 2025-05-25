@@ -2,7 +2,7 @@
 <%@ page import="com.unigame.model.DAO.VideogiocoDAO" %>
 
 <%
-    String id = request.getParameter("id");
+    String id = request.getParameter("idVideogioco");
     Videogioco videogioco = new VideogiocoDAO().doRetrieveById(Integer.parseInt(id));
 %>
 
@@ -19,6 +19,17 @@
 </head>
 <body>
 
+<%
+    String aggiunto = request.getParameter("aggiunto");
+    if ("true".equals(aggiunto)) {
+%>
+<script>
+    alert("Il gioco è stato aggiunto al carrello!");
+</script>
+<%
+    }
+%>
+
 <%@ include file="navbar.jsp" %>
 
 <!-- Game Banner Section -->
@@ -27,7 +38,7 @@
 <div class="content">
     <div class="panel-container">
         <div class="game-cover">
-            <a href="game-page.jsp?id=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
+            <a href="game-page.jsp?idVideogioco=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
         </div>
         <div class="game-info">
             <h2><%= videogioco.getTitolo() %></h2>
@@ -53,7 +64,7 @@
                 <div class="wish-list">
                     <i class="fa-regular fa-heart"></i>
                 </div>
-                <button class="add-to-cart">Aggiungi al Carrello</button>
+                <a href="AggiungiAlCarrello?idVideogioco=<%=videogioco.getIdGame()%>" class="add-to-cart">Aggiungi al carrello</a>
             </div>
         </div>
     </div>
