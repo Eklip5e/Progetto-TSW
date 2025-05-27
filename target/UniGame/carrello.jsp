@@ -21,6 +21,8 @@
 </head>
 <body>
 
+<%@ include file="navbar.jsp" %>
+
 <div class="contenitore-carrello">
     <div class="sezione-prodotti">
         <h2>Carrello</h2>
@@ -92,6 +94,8 @@
         </div>
     </div>
 </div>
+
+<%@ include file="footer.jsp" %>
 
 </body>
 </html>
