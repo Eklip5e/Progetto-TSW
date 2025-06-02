@@ -19,18 +19,20 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String idVideogiocoStr = request.getParameter("idVideogioco");
+        HttpSession session = request.getSession();
+        Utente utente = (Utente) session.getAttribute("utente");
+
         if (idVideogiocoStr == null || idVideogiocoStr.isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Id videogioco mancante");
             return;
         }
 
         int idVideogioco = Integer.parseInt(idVideogiocoStr);
-        HttpSession session = request.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
 
         if (utente != null) {
-            // Utente loggato → salva su DB
+            // Utente loggato -> salva su DB
             RigaCarrello riga = new RigaCarrello();
             riga.setIdUtente(utente.getIdUtente());
             riga.setIdVideogioco(idVideogioco);
@@ -38,8 +40,8 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
             RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
             rigaCarrelloDAO.doSave(riga);
         } else {
-            // Utente ospite → salva in sessione
-            List<Integer> carrelloGuest = (List<Integer>) session.getAttribute("carrelloGuest");
+            // Utente ospite -> salva in sessione
+            List<Integer> carrelloGuest = (ArrayList<Integer>) session.getAttribute("carrelloGuest");
             if (carrelloGuest == null) {
                 carrelloGuest = new ArrayList<>();
             }

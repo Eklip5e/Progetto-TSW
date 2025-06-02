@@ -49,4 +49,16 @@ public class RigaCarrelloDAO {
             e.printStackTrace();
         }
     }
+
+    public void incrementaQuantita(int idUtente, int idVideogioco) {
+        String sql = "UPDATE RigaCarrello SET quantita = quantita + 1 WHERE idUtente = ? AND idVideogioco = ?";
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idUtente);
+            ps.setInt(2, idVideogioco);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

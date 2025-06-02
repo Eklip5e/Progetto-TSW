@@ -18,6 +18,7 @@ import java.util.List;
 public class MostraCarrelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
@@ -29,7 +30,7 @@ public class MostraCarrelloServlet extends HttpServlet {
             request.setAttribute("righeCarrello", righeCarrello);
         } else {
             // Utente ospite → prendi dalla sessione
-            List<Integer> carrelloGuest = (List<Integer>) session.getAttribute("carrelloGuest");
+            List<Integer> carrelloGuest = (ArrayList<Integer>) session.getAttribute("carrelloGuest");
             if (carrelloGuest == null) {
                 carrelloGuest = new ArrayList<>();
             }

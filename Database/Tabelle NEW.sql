@@ -1,6 +1,12 @@
 create schema unigame;
 use unigame;
 
+ALTER TABLE RigaCarrello 
+ADD COLUMN quantita INT NOT NULL DEFAULT 1;
+
+ALTER TABLE RigaCarrello 
+ADD UNIQUE (idUtente, idVideogioco);
+
 CREATE TABLE Utente (
 	IDUtente INT AUTO_INCREMENT PRIMARY KEY,
     Username VARCHAR(50) UNIQUE,
@@ -10,6 +16,14 @@ CREATE TABLE Utente (
     Password VARCHAR(255) NOT NULL,
     Propic VARCHAR(255),
     IsAdmin BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE RigaCarrello (
+    idRiga INT AUTO_INCREMENT PRIMARY KEY,
+    idUtente INT NOT NULL,
+    idVideogioco INT NOT NULL,
+    FOREIGN KEY (idUtente) REFERENCES Utente(idUtente),
+    FOREIGN KEY (idVideogioco) REFERENCES Videogioco(idVideogioco)
 );
 
 CREATE TABLE Genere (
@@ -73,10 +87,9 @@ FOREIGN KEY (idVideogioco) REFERENCES Videogioco (idVideogioco)
 CREATE TABLE Img (
 Copertina VARCHAR(255) PRIMARY KEY,
 Banner VARCHAR(255) NOT NULL,
-
 Video VARCHAR(255) NOT NULL,
 IDVideogioco INT NOT NULL,
-FOREIGN KEY (IDVideogioco) REFERENCES Videogioco (IDGame)
+FOREIGN KEY (IDVideogioco) REFERENCES Videogioco (idVideogioco)
 );
 
 CREATE TABLE Contiene (
