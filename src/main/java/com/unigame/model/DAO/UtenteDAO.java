@@ -10,18 +10,26 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doSave(Utente utente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO UTENTE (email, username, nome, cognome, password) VALUES(?,?,?,?,?)",
+                    "INSERT INTO Utente (admin, email, password, nome, cognome, dataDiNascita) VALUES(?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, utente.getEmail());
-            ps.setString(2, utente.getUsername());
-            ps.setString(3, utente.getNome());
-            ps.setString(4, utente.getCognome());
-            ps.setString(5, utente.getPassword());
-            if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("INSERT error.");
+
+            ps.setBoolean(1, utente.isAdmin() != null ? utente.isAdmin() : false);
+            ps.setString(2, utente.getEmail());
+            ps.setString(3, utente.getPassword());
+            ps.setString(4, utente.getNome());
+            ps.setString(5, utente.getCognome());
+            ps.setDate(6, new java.sql.Date(utente.getDataDiNascita().getTime()));
+
+            int rows = ps.executeUpdate();
+            if (rows != 1) {
+                throw new RuntimeException("Errore durante l'inserimento dell'utente.");
             }
-            ResultSet rs = ps.getGeneratedKeys();
-            rs.next();
+
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    utente.setIdUtente(rs.getInt(1));
+                }
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -31,7 +39,8 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doDelete(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM UTENTE WHERE IDUtente = ?");
+                    "DELETE FROM Utente WHERE idUtente = ?"
+            );
             ps.setInt(1, idUtente);
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -43,16 +52,17 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     }
 
     @Override
-    public void doUpdate(Utente utente, int id) {
+    public void doUpdate(Utente utente, int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE UTENTE SET email = ?, username = ?, nome = ?, cognome = ?, password = ? WHERE IDUtente = ?");
-            ps.setString(1, utente.getEmail());
-            ps.setString(2, utente.getUsername());
-            ps.setString(3, utente.getNome());
-            ps.setString(4, utente.getCognome());
-            ps.setString(5, utente.getPassword());
-            ps.setInt(6, id);
+                    "UPDATE Utente SET admin = ?, email = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
+            );
+            ps.setBoolean(1, utente.isAdmin());
+            ps.setString(2, utente.getEmail());
+            ps.setString(3, utente.getPassword());
+            ps.setString(4, utente.getNome());
+            ps.setString(5, utente.getCognome());
+            ps.setDate(6, new java.sql.Date(utente.getDataDiNascita().getTime()));
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -64,45 +74,51 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     }
 
     @Override
-    public Utente doRetrieveById(int id) {
+    public Utente doRetrieveById(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT IDUtente, username, nome, cognome, email, password FROM UTENTE WHERE IDUtente = ?");
-            ps.setInt(1, id);
+                    "SELECT idUtente, admin, email, password, nome, cognome, dataDiNascita FROM UTENTE WHERE idUtente = ?"
+            );
+            ps.setInt(1, idUtente);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 Utente utente = new Utente();
-                utente.setIdUtente(rs.getInt("IDUtente"));
-                utente.setUsername(rs.getString("username"));
-                utente.setNome(rs.getString("nome"));
-                utente.setCognome(rs.getString("cognome"));
+
+                utente.setIdUtente(rs.getInt(1));
+                utente.setAdmin(rs.getBoolean("admin"));
                 utente.setEmail(rs.getString("email"));
                 utente.setPassword(rs.getString("password"));
+                utente.setNome(rs.getString("nome"));
+                utente.setCognome(rs.getString("cognome"));
+                utente.setDataDiNascita(rs.getDate("dataDiNascita"));
+
                 return utente;
             }
             return null; // Nessun utente trovato
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Errore durante il recupero dell'utente con ID: " + idUtente, e);
         }
     }
 
-    public Utente doRetrieveByUsername(String username) {
+    public Utente doRetrieveByEmail(String email) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT IDUtente, username, nome, cognome, email, password, IsAdmin FROM UTENTE WHERE username = ?");
-            ps.setString(1, username);
+                    "SELECT idUtente, admin, email, password, nome, cognome, dataDiNascita FROM Utente WHERE email = ?"
+            );
+            ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
+            Utente utente = new Utente();
             if (rs.next()) {
-                Utente utente = new Utente();
-                utente.setIdUtente(rs.getInt("IDUtente"));
-                utente.setUsername(rs.getString("username"));
+                utente.setIdUtente(rs.getInt("idUtente"));
+                utente.setAdmin(rs.getBoolean("admin"));
+                utente.setEmail(rs.getString("email"));
+                utente.setPassword(rs.getString("password"));
                 utente.setNome(rs.getString("nome"));
                 utente.setCognome(rs.getString("cognome"));
-                utente.setEmail(rs.getString("email"));
-                utente.setPassword(rs.getString("password")); // Password hashata
-                utente.setAdmin(rs.getBoolean("isAdmin"));
+                utente.setDataDiNascita(rs.getDate("dataDiNascita"));
+
                 return utente;
             }
             return null; // Nessun utente trovato

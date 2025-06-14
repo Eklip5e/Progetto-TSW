@@ -1,0 +1,57 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 400px;
+    margin: auto;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input {
+    padding: 0.8rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    border: 1px solid var(--color-medium-light);
+    background-color: hsla(0,0%,6%,.4);
+    color: #fff;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+    outline: 2px solid var(--color);
+    outline-offset: -2px;
+}
+
+input:hover {
+    outline: none;
+    box-shadow: none;
+    outline: 2px solid var(--color);
+    outline-offset: -2px;
+}
+
+#login {
+    background: var(--fire-gradient);
+    border: none;
+}
+
+#login:hover {
+    outline: none;
+    background: var(--fire-gradient-hover);
+}
+
+.signup-redirect {
+    text-decoration: none;
+    text-align: center;
+    color: white;
+}
+
+.signup-redirect:hover {
+    color: var(link-hover);
+    text-decoration: none;
+}

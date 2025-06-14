@@ -1,0 +1,106 @@
+/* ================================
+   Contenitore Principale
+================================== */
+.register {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 25px;
+    min-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+.register form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ================================
+   Gruppi di Input
+================================== */
+
+form input {
+    padding: 0.8rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 1px solid var(--color-medium-light);
+    background-color: hsla(0,0%,6%,.4);
+    color: #fff;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+    border: 2px solid var(--color);
+}
+
+/* ================================
+   Campo Password + Requisiti
+================================== */
+.password-group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.password-hint {
+    display: none;
+    font-size: 0.9rem;
+    background-color: hsla(0,0%,6%,.4);
+    color: var(--color-medium-light);
+    text-align: left;
+    border: 1px solid var(--color-medium-light);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+.password-hint ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* ================================
+   Pulsante Registrazione
+================================== */
+#register {
+    background: var(--fire-gradient);
+    color: white;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#register:hover {
+    background: var(--fire-gradient-hover);
+}
+
+/* ================================
+   Link Login
+================================== */
+.login-redirect {
+    color: white;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.login-redirect:hover {
+    background: var(--link-hover);
+    text-decoration: none;
+}
+
+/* ================================
+   Messaggio Errore
+================================== */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 1rem;
+}

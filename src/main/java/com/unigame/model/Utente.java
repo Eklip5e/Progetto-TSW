@@ -4,15 +4,16 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 
 public class Utente {
     private int idUtente;
-    private String username;
-    private String nome;
-    private String cognome;
+    private Boolean admin;
     private String email;
     private String password;
-    private Boolean admin;
+    private String nome;
+    private String cognome;
+    private Date dataDiNascita;
 
     public int getIdUtente() {
         return idUtente;
@@ -22,28 +23,12 @@ public class Utente {
         this.idUtente = idUtente;
     }
 
-    public String getUsername() {
-        return username;
+    public Boolean isAdmin() {
+        return admin;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
     public String getEmail() {
@@ -75,25 +60,42 @@ public class Utente {
             this.password = password;
         }
     }
-        // Metodo per verificare la password
-        public boolean checkPassword (String rawPassword){
-            try {
-                // Hash della password inserita dall'utente
-                MessageDigest digest = MessageDigest.getInstance("SHA-1");
-                digest.reset();
-                digest.update(rawPassword.getBytes(StandardCharsets.UTF_8));
-                String hashedInput = String.format("%040x", new BigInteger(1, digest.digest()));
-                return this.password.equals(hashedInput);
-            } catch (NoSuchAlgorithmException e) {
-                throw new RuntimeException("Errore durante l'hashing della password", e);
-            }
-        }
 
-    public Boolean isAdmin() {
-        return admin;
+    // Metodo per verificare la password
+    public boolean checkPassword(String rawPassword) {
+        try {
+            // Hash della password inserita dall'utente
+            MessageDigest digest = MessageDigest.getInstance("SHA-1");
+            digest.reset();
+            digest.update(rawPassword.getBytes(StandardCharsets.UTF_8));
+            String hashedInput = String.format("%040x", new BigInteger(1, digest.digest()));
+            return this.password.equals(hashedInput);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Errore durante l'hashing della password", e);
+        }
     }
 
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public Date getDataDiNascita() {
+        return dataDiNascita;
+    }
+
+    public void setDataDiNascita(Date dataDiNascita) {
+        this.dataDiNascita = dataDiNascita;
     }
 }

@@ -1,0 +1,350 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Toni viola - sostituiscono le tonalità arancioni originali */
+    --color: #9B72CF;
+    --color-link-hover: #B98FE3;
+
+    --fire-gradient: linear-gradient(10deg, #a97ef2, #6e37cd);
+    --fire-gradient-hover: linear-gradient(10deg, #cda4f7, #7e4dde);
+
+    /* Toni neutri (da non modificare) */
+    --color-very-light: #b7b7b7;
+    --color-light: #a8a8a8;
+    --color-medium-light: #6d6d6d;
+    --color-medium: #3d3d3d;
+    --color-medium-dark: #323232;
+    --color-dark: #272727;
+    --color-very-dark: #1d1d1d;
+    --color-ultra-dark: #101010;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--color-dark);
+    color: white;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------- */
+/* HEADER NAVBAR             */
+/* ------------------------- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #24252A;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.nav_links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav_links li a {
+    color: #edf0f1;
+    font-weight: 800;
+    font-size: 16px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav_links li a:hover {
+    color: #9B72CF;
+}
+
+.nav_links i {
+    margin-right: 8px;
+}
+
+.header-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icons a i {
+    font-size: 30px;
+    color: #edf0f1;
+    transition: color 0.3s ease;
+}
+
+.header-icons a i:hover {
+    color: #9B72CF;
+}
+
+/* ------------------------- */
+/* GAME BANNER               */
+/* ------------------------- */
+.game-banner {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    padding: 150px 10%;
+    text-align: left;
+}
+
+
+.update-button {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background-color: #6b7280; /* grigio moderno */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    z-index: 2; /* Assicura che stia sopra eventuali altri contenuti */
+}
+
+.update-button:hover {
+    background-color: #4b5563; /* grigio scuro */
+}
+
+.banner-content h1 {
+    font-size: 50px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.price-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.discount-tag,
+.card-price-row .discount-tag {
+    background-color: #9B72CF;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.price {
+    font-size: 35px;
+    font-weight: 700;
+    color: white;
+}
+
+.card-price-row .price {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+/* ------------------------- */
+/* GAME GRID */
+/* ------------------------- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    gap: 20px;
+    max-width: 1400px;
+    margin: 50px auto;
+}
+
+.game-card {
+    background-color: #24252A;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    max-width: 300px;
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.2s ease;
+}
+
+.game-card:hover {
+    transform: scale(1.03);
+}
+
+.delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s;
+}
+
+.delete-button:hover {
+    background-color: darkred;
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.game-card h2 {
+    font-size: 20px;
+    margin: 20px 0 20px;
+    text-align: center;
+}
+
+.card-price-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.add-game-card {
+    border: 5px dashed white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Simbolo + grande */
+.add-game-card .plus-sign {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+/* Testo sotto il + */
+.add-game-card p {
+    font-size: 20px;
+}
+
+/* ------------------------- */
+/* REDIRECTS */
+/* ------------------------- */
+.signup-redirect form,
+.login-redirect form {
+    font-size: 12px;
+    color: #ccc;
+    position: relative;
+    bottom: 10px;
+    left: 10px;
+    text-decoration: none;
+}
+
+.signup-redirect:hover,
+.login-redirect:hover {
+    color: #9B72CF;
+    text-decoration: underline;
+}
+
+/* ------------------------- */
+/* FOOTER */
+/* ------------------------- */
+.container {
+    min-height: calc(100vh - 84px - 80px);
+}
+
+.footer {
+    background-color: #24252A;
+    padding: 40px 10%;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    font-size: 0.9rem;
+}
+
+.footer-right .social-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-right .social-links li a {
+    color: #edf0f1;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-right .social-links li a:hover {
+    color: #9B72CF;
+}
+
+/* ------------------------- */
+/* RESPONSIVE DESIGN */
+/* ------------------------- */
+@media (max-width: 768px) {
+    header.navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav_links {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .game-banner {
+        padding: 80px 5%;
+    }
+
+    .banner-content h1 {
+        font-size: 32px;
+    }
+
+    .price-row {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .game-grid {
+        padding: 30px 5%;
+        gap: 30px;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+}

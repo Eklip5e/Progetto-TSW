@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-Built-By: Asus
-Build-Jdk: Amazon Corretto 23.0.2
+Built-By: genna
+Build-Jdk: Oracle OpenJDK 24.0.1
 

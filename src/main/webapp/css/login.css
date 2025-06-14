@@ -1,0 +1,53 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
+    font-size: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+form input {
+    padding: 15px;
+    border: 1px solid var(--color-medium-light);
+    border-radius: 8px;
+    background-color: hsla(0, 0%, 6%, 0.4);
+    color: #fff;
+    font-size: 15px;
+}
+
+form input:hover,
+form input:focus {
+    outline: 2px solid var(--color);
+    outline-offset: -2px;
+}
+
+.login #login-button {
+    background: var(--fire-gradient);
+    border: none;
+}
+
+.login #login-button:hover {
+    background: var(--fire-gradient-hover);
+    outline: none;
+}
+
+.signup-redirect {
+    color: white;
+    text-decoration: none;
+}
+
+.signup-redirect:hover {
+    color: var(--color-link-hover);
+    text-decoration: none;
+}

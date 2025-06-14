@@ -32,10 +32,9 @@
     </div>
 
     <div class="profile-info">
-        <span><strong>Username:</strong> <%= utente.getUsername() %></span>
+        <span><strong>Username:</strong> <%= utente.getEmail() %></span>
         <span><strong>Nome:</strong> <%= utente.getNome() %></span>
         <span><strong>Cognome:</strong> <%= utente.getCognome() %></span>
-        <span><strong>Email:</strong> <%= utente.getEmail() %></span>
     </div>
 
     <a class="edit-button" href="#">Modifica Profilo</a>

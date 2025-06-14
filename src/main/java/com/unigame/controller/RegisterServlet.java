@@ -11,60 +11,72 @@ import com.unigame.model.Utente;
 
 import java.io.IOException;
 
-@WebServlet("/register") // Aggiorna l'URL del servlet se necessario
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
+
+    private static final String ATTR_ERROR = "error";
+    private static final String ATTR_UTENTE = "utente";
+    private static final String PAGE_REGISTER = "register.jsp";
+    private static final String PAGE_PROFILO = "profilo.jsp";
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        // Recupera i parametri della richiesta
-        String email = request.getParameter("e-mail");
-        String username = request.getParameter("username");
-        String nome = request.getParameter("name");
-        String cognome = request.getParameter("surname");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
+        String dataDiNascitaStr =  request.getParameter("dataDiNascita");
 
-        // Validazione semplice (puoi aggiungere controlli più rigorosi)
-        if (username == null || nome == null || cognome == null || email == null || password == null
-                || username.isEmpty() || nome.isEmpty() || cognome.isEmpty() || email.isEmpty() || password.isEmpty()) {
-            request.setAttribute("error", "Tutti i campi sono obbligatori.");
+        if (!isValidRegister(email, password, nome, cognome, dataDiNascitaStr)) {
+            request.setAttribute(ATTR_ERROR, "Tutti i campi sono obbligatori");
+            request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
+            return;
+        }
+
+        java.util.Date dataDiNascita;
+        try {
+            dataDiNascita = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(dataDiNascitaStr);
+        } catch (java.text.ParseException e) {
+            request.setAttribute("error", "Formato data non valido.");
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }
 
         // Crea un nuovo utente
         Utente utente = new Utente();
+        utente.setAdmin(false);
         utente.setEmail(email);
-        utente.setUsername(username);
+        utente.setPassword(password);
         utente.setNome(nome);
         utente.setCognome(cognome);
-        utente.setPassword(password);
+        utente.setDataDiNascita(dataDiNascita);
 
         try {
-            // Salva l'utente nel database
             UtenteDAO utenteDAO = new UtenteDAO();
             utenteDAO.doSave(utente);
 
-            // Reindirizza alla pagina di login dopo la registrazione
-            response.sendRedirect("login.jsp");
-
-            // Crea una sessione per l'utente appena registrato
             HttpSession session = request.getSession();
-            session.setAttribute("username", utente.getUsername());
-            session.setAttribute("idUtente", utente.getIdUtente());
+            session.setAttribute(ATTR_UTENTE, utente);
 
-            // Reindirizza alla pagina del profilo dopo la registrazione
-            response.sendRedirect("profilo.jsp");
-
+            response.sendRedirect(PAGE_PROFILO);
         } catch (RuntimeException e) {
-            // Gestisci eventuali errori durante la registrazione
-            request.setAttribute("error", "Errore durante la registrazione: " + e.getMessage());
-            request.getRequestDispatcher("register.jsp").forward(request, response);
+            request.setAttribute(ATTR_ERROR, "Errore durante la registrazione: " + e.getMessage());
+            request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doGet(req, resp);
+    private boolean isValidRegister(String email, String password, String nome, String cognome, String dataDiNascita) {
+        return email != null && !email.isEmpty()
+                && password != null && !password.isEmpty()
+                && nome != null && !nome.isEmpty()
+                && cognome != null && !cognome.isEmpty()
+                && dataDiNascita != null && !dataDiNascita.isEmpty();
     }
 }

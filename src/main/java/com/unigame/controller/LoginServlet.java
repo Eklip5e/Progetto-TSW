@@ -13,36 +13,45 @@ import java.io.IOException;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
+    private static final String ATTR_ERROR = "error";
+    private static final String ATTR_UTENTE = "utente";
+    private static final String PAGE_LOGIN = "login.jsp";
+    private static final String PAGE_PROFILO = "profilo.jsp";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
 
-        if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
-            request.setAttribute("error", "Username e password sono obbligatori.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+        if (!isValidLogin(email, password)) {
+            request.setAttribute(ATTR_ERROR, "Email e password sono obbligatori.");
+            request.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
             return;
         }
 
         UtenteDAO utenteDAO = new UtenteDAO();
-
         try {
-            Utente utente = utenteDAO.doRetrieveByUsername(username);
+            Utente utente = utenteDAO.doRetrieveByEmail(email);
 
             if (utente != null && utente.checkPassword(password)) {
                 HttpSession session = request.getSession();
-                session.setAttribute("utente", utente);
+                session.setAttribute(ATTR_UTENTE, utente);
 
-                response.sendRedirect("profilo.jsp");
+                response.sendRedirect(PAGE_PROFILO);
             } else {
-                request.setAttribute("error", "Credenziali errate!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.setAttribute(ATTR_ERROR, "Credenziali errate!");
+                request.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
             }
         } catch (RuntimeException e) {
-            request.setAttribute("error", "Errore durante il login: " + e.getMessage());
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.setAttribute(ATTR_ERROR, "Errore durante il login: " + e.getMessage());
+            request.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
         }
+    }
+
+    private boolean isValidLogin(String email, String password) {
+        return email != null && !email.isEmpty()
+                && password != null && !password.isEmpty();
     }
 }
