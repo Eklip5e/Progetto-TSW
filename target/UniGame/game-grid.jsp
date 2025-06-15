@@ -2,13 +2,6 @@
 <%@ page import="com.unigame.model.Videogioco" %>
 <%@ page import="java.util.List" %>
 
-<%
-    VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-    List<Videogioco> videogiochi = videogiocoDAO.doRetrieveAll();
-    Utente utente = (Utente) session.getAttribute("utente");
-    String paginaAttuale = (String) request.getAttribute("paginaAttuale");
-%>
-
 <section class="game-grid">
     <%
         for (Videogioco videogioco : videogiochi) {

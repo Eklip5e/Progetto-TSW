@@ -1,7 +1,9 @@
 .game-banner {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     height: 500px;
+    position: relative;
 }
 
 .banner-content {
@@ -9,6 +11,23 @@
     flex-direction: column;
     gap: 20px;
     padding: 0 10%;
+}
+
+#button-modifica {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+
+    background: var(--fire-gradient);
+    color: #fff;
+    font-size: 15px;
+}
+
+#button-modifica:hover {
+    background: var(--fire-gradient-hover);
 }
 
 .banner-content h1 {

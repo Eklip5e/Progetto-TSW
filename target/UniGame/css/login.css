@@ -24,7 +24,6 @@ form input {
     background-color: hsla(0, 0%, 6%, 0.4);
     color: #fff;
     font-size: 15px;
-    transition: outline 0.3s ease, background 0.3s ease;
 }
 
 form input:hover,

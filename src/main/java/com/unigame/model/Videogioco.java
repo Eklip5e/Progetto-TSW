@@ -3,7 +3,7 @@ package com.unigame.model;
 import java.sql.Date;
 
 public class Videogioco {
-    private int idGame;
+    private int idVideogioco;
     private String titolo;
     private String piattaforma;
     private Date dataRilascio;
@@ -14,11 +14,11 @@ public class Videogioco {
     private int sconto;
 
     public int getIdGame() {
-        return idGame;
+        return idVideogioco;
     }
 
     public void setIdGame(int idGame) {
-        this.idGame = idGame;
+        this.idVideogioco = idVideogioco;
     }
 
     public String getTitolo() {

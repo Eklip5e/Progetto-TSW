@@ -36,122 +36,10 @@ body {
 /* ------------------------- */
 /* HEADER NAVBAR             */
 /* ------------------------- */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    background-color: #24252A;
-}
-
-.logo img {
-    width: 50px;
-    height: 50px;
-}
-
-.nav_links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-.nav_links li a {
-    color: #edf0f1;
-    font-weight: 800;
-    font-size: 16px;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.nav_links li a:hover {
-    color: #9B72CF;
-}
-
-.nav_links i {
-    margin-right: 8px;
-}
-
-.header-icons {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.header-icons a i {
-    font-size: 30px;
-    color: #edf0f1;
-    transition: color 0.3s ease;
-}
-
-.header-icons a i:hover {
-    color: #9B72CF;
-}
 
 /* ------------------------- */
 /* GAME BANNER               */
 /* ------------------------- */
-.game-banner {
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    height: 300px;
-    padding: 150px 10%;
-    text-align: left;
-}
-
-
-.update-button {
-    position: absolute;
-    top: 25px;
-    right: 25px;
-    background-color: #6b7280; /* grigio moderno */
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    z-index: 2; /* Assicura che stia sopra eventuali altri contenuti */
-}
-
-.update-button:hover {
-    background-color: #4b5563; /* grigio scuro */
-}
-
-.banner-content h1 {
-    font-size: 50px;
-    font-weight: 700;
-    margin-bottom: 15px;
-}
-
-.price-row {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-
-.discount-tag,
-.card-price-row .discount-tag {
-    background-color: #9B72CF;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 8px;
-    font-weight: 400;
-    font-size: 15px;
-}
-
-.price {
-    font-size: 35px;
-    font-weight: 700;
-    color: white;
-}
-
-.card-price-row .price {
-    font-size: 20px;
-    font-weight: 700;
-    color: white;
-}
 
 /* ------------------------- */
 /* GAME GRID */
@@ -276,7 +164,6 @@ body {
 }
 
 .footer {
-    background-color: #24252A;
     padding: 40px 10%;
     text-align: center;
     margin-top: auto;

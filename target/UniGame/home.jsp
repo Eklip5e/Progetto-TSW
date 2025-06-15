@@ -1,6 +1,12 @@
-﻿<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="com.unigame.model.DAO.VideogiocoDAO, com.unigame.model.Videogioco" %>
-<%@ page import="java.util.*" %>
+﻿<%@ page import="com.unigame.model.DAO.UtenteDAO" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+    VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+    List<Videogioco> videogiochi = videogiocoDAO.doRetrieveAll();
+    Utente utente = (Utente) session.getAttribute("utente");
+    String paginaAttuale = (String) request.getAttribute("paginaAttuale");
+%>
 
 <!DOCTYPE html>
 <html lang="it">
@@ -21,9 +27,17 @@
             <h1>Grand Theft Auto VI</h1>
             <div class="price-row">
                 <span class="discount-tag">-30%</span>
-                <p class="price">59,99 €</p>
+                <p class="price">59,99€</p>
             </div>
         </div>
+
+        <%
+            if (utente != null && utente.isAdmin()) {
+        %>
+        <button id="button-modifica" onclick="location.href='/admin/edit-game/grand-theft-auto-vi';">Modifica</button>
+        <%
+            }
+        %>
     </section>
 
 <!-- Game Grid Section -->
