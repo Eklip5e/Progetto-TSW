@@ -28,7 +28,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                videogioco.setIdGame(rs.getInt(1));
+                videogioco.setIdVideogioco(rs.getInt(1));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -84,7 +84,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
 
             if (rs.next()) {
                 Videogioco videogioco = new Videogioco();
-                videogioco.setIdGame(rs.getInt("idVideogioco"));
+                videogioco.setIdVideogioco(rs.getInt("idVideogioco"));
                 videogioco.setTitolo(rs.getString("titolo"));
                 videogioco.setPiattaforma(rs.getString("piattaforma"));
                 videogioco.setDataRilascio(rs.getDate("ReleaseDate"));
@@ -109,7 +109,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Videogioco gioco = new Videogioco();
-                gioco.setIdGame(rs.getInt("idVideogioco"));
+                gioco.setIdVideogioco(rs.getInt("idVideogioco"));
                 gioco.setTitolo(rs.getString("titolo"));
                 gioco.setPiattaforma(rs.getString("piattaforma"));
                 gioco.setDataRilascio(rs.getDate("ReleaseDate"));
@@ -135,7 +135,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Videogioco gioco = new Videogioco();
-                gioco.setIdGame(rs.getInt("idGame"));
+                gioco.setIdVideogioco(rs.getInt("idGame"));
                 gioco.setTitolo(rs.getString("titolo"));
                 gioco.setPiattaforma(rs.getString("piattaforma"));
                 gioco.setDataRilascio(rs.getDate("ReleaseDate"));

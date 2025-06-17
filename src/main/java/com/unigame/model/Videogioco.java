@@ -13,11 +13,11 @@ public class Videogioco {
     private double prezzo;
     private int sconto;
 
-    public int getIdGame() {
+    public int getIdVideogioco() {
         return idVideogioco;
     }
 
-    public void setIdGame(int idGame) {
+    public void setIdVideogioco(int idVideogioco) {
         this.idVideogioco = idVideogioco;
     }
 

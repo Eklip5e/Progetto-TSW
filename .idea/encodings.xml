@@ -7,6 +7,6 @@
     <file url="file://$PROJECT_DIR$/src/main/webapp/css/carrello.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/game-grid.jsp" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/game-page.jsp" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/webapp/modal.jsp" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/webapp/modal-add-game.jsp" charset="UTF-8" />
   </component>
 </project>

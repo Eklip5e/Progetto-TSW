@@ -1,38 +1,21 @@
-.game-banner {
+.banner {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     height: 500px;
     position: relative;
+
 }
 
 .banner-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 0 10%;
-}
-
-#button-modifica {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-
-    background: var(--fire-gradient);
-    color: #fff;
-    font-size: 15px;
-}
-
-#button-modifica:hover {
-    background: var(--fire-gradient-hover);
+    padding-left: 10%;
 }
 
 .banner-content h1 {
     font-size: 40px;
-    font-weight: 600;
+    font-weight: normal;
 }
 
 .price-row {
@@ -41,15 +24,41 @@
     gap: 20px;
 }
 
-.price-row .discount-tag {
+.discount-tag {
     background: var(--fire-gradient);
-    padding: 6px 12px;
+    padding: 4px 8px;
     border-radius: 8px;
-    font-weight: 600;
-    font-size: 20px;
+    font-size: 15px;
+    font-weight: normal;
 }
 
-.price-row .price {
+.price {
     font-size: 30px;
-    font-weight: 600;
+    font-weight: normal;
+}
+
+.actions {
+    position: absolute;
+
+    display: flex;
+    justify-content: right;
+    right: 5%;
+    bottom: 10%;
+
+    width: 100%;
+}
+
+#update-banner {
+    background: var(--color-dark);
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#update-banner:hover {
+    transform: scale(1.03);
 }

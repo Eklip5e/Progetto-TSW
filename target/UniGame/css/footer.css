@@ -1,0 +1,32 @@
+.footer {
+    padding: 40px 10%;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-left {
+    font-size: 0.9rem;
+}
+
+.footer-right .social-links {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+.footer-right .social-links li a {
+    color: #edf0f1;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.footer-right .social-links li a:hover {
+    color: #9B72CF;
+}

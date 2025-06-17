@@ -21,7 +21,7 @@
 <%@ include file="../game-grid.jsp" %>
 
 <!-- Modale -->
-<%@ include file="../modal.jsp" %>
+<%@ include file="../modal-add-game.jsp" %>
 
 <script>
     function closeAddModal() {
