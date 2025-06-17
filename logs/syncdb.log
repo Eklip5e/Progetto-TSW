@@ -1,0 +1,12 @@
+[2025-06-17 13:29:58] 
+=== Avvio script di sincronizzazione da 'Framework-13' ===
+[2025-06-17 13:29:58] Tento connessione al DB come 'root'...
+[2025-06-17 13:33:34] 
+=== Avvio script di sincronizzazione da 'Framework-13' ===
+[2025-06-17 13:33:34] Tento connessione al DB come 'root'...
+[2025-06-17 13:33:34] Connessione riuscita.
+[2025-06-17 13:33:34] Il dump è già stato creato da questa macchina. Nessuna importazione necessaria.
+[2025-06-17 13:33:34] Creo dump del database...
+[2025-06-17 13:33:34] Dump creato correttamente.
+[2025-06-17 13:33:34] Script completato.
+

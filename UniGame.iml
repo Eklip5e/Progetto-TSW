@@ -3,4 +3,9 @@
   <component name="AdditionalModuleElements">
     <content url="file://$MODULE_DIR$/out" />
   </component>
+  <component name="FacetManager">
+    <facet type="Python" name="Python">
+      <configuration sdkName="Python 3.13" />
+    </facet>
+  </component>
 </module>
