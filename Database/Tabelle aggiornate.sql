@@ -15,12 +15,18 @@ CREATE TABLE Videogioco (
 idVideogioco INT AUTO_INCREMENT PRIMARY KEY,
 titolo VARCHAR(70) NOT NULL,
 piattaforma VARCHAR(25) NOT NULL,
-releaseDate DATE NOT NULL,
+dataRilascio DATE NOT NULL,
 descrizione TEXT,
 produttore VARCHAR(50) NOT NULL,
 appIdSteam INT NOT NULL,
 prezzo DECIMAL (5, 2) NOT NULL,
 sconto INT
+);
+
+CREATE TABLE Banner (
+	idBanner INT PRIMARY KEY,
+    idVideogioco INT NOT NULL,
+    FOREIGN KEY (idVideogioco) REFERENCES Videogioco (idVideogioco)
 );
 
 CREATE TABLE RigaCarrello (

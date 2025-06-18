@@ -9,21 +9,27 @@
         </div>
         <h2>Nuovo Videogioco</h2>
         <form action="AggiungiVideogiocoServlet">
-            <input placeholder="Titolo:" name="titolo" type="text" required>
+            <input name="titolo" type="text" placeholder="Titolo" required>
 
-            <select name="piattaforma">
+            <select name="piattaforma" required>
                 <option value="pc">PC</option>
                 <option value="playstation">PlayStation</option>
                 <option value="xbox">Xbox</option>
                 <option value="nintendo">Nintendo</option>
             </select>
 
-            <input placeholder="Data rilascio (dd/mm/yyyy)" id="dataDiNascita" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
-            <textarea placeholder="Descrizione:" name="descrizione" required></textarea>
-            <input type="text" name="produttore" placeholder="Produttore" required>
-            <input placeholder="Id DB:" name="idDB" type="text" required>
-            <input placeholder="Prezzo:" name="prezzo" type="text" required>
-            <input placeholder="Sconto:" name="sconto" type="text">
+            <input name="dataRilascio" type="text" placeholder="Data rilascio (dd/mm/yyyy)" pattern="\d\d\/\d\d\/\d\d\d\d" required>
+
+            <textarea name="descrizione" placeholder="Descrizione" required></textarea>
+
+            <input name="produttore" type="text" placeholder="Produttore" required>
+
+            <input name="appIdSteam" type="text" placeholder="App ID Steam" required>
+
+            <input name="prezzo" type="text" placeholder="Prezzo (€)" required>
+
+            <input name="sconto" type="text" placeholder="Sconto (%)">
+
             <input id="add-button" type="submit" value="Aggiungi Videogioco">
         </form>
     </div>

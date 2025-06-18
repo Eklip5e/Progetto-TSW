@@ -1,4 +1,4 @@
-.modal-add-game, .modal-update-game {
+.modal-add-game, .modal-update-banner, .modal-add-banner {
     display: none;
     justify-content: center;
     align-items: center;

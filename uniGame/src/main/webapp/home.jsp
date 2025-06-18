@@ -1,4 +1,5 @@
-﻿<%@ page import="com.unigame.model.DAO.UtenteDAO" %>
+﻿<%@ page import="com.unigame.model.DAO.VideogiocoDAO" %>
+<%@ page import="com.unigame.model.Videogioco" %>
 <%@ page import="com.unigame.model.DAO.BannerDAO" %>
 <%@ page import="com.unigame.model.Banner" %>
 
@@ -6,6 +7,7 @@
 
 <%
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+    request.setAttribute("videogiocoDAO", videogiocoDAO);
 
     BannerDAO bannerDAO = new BannerDAO();
     Banner banner = bannerDAO.doRetrieveById(1);
@@ -35,12 +37,23 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
+    <main>
         <%@ include file="navbar.jsp" %>
 
         <%
             if (videogiocoBanner != null) {
         %>
                 <div class="banner" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 40%, transparent 90%), url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg') no-repeat center center / cover;">
+
+                    <%
+                        if (utente != null && utente.isAdmin()) {
+                    %>
+                            <div class="action">
+                                <i class="fa-solid fa-pen-nib" onclick=apriModaleUpdateBanner()></i>
+                            </div>
+                    <%
+                        }
+                    %>
                     <div class="banner-content">
                         <h1><%= videogiocoBanner.getTitolo() %></h1>
                         <div class="price-row">
@@ -48,10 +61,21 @@
                             <p class="price"><%= videogiocoBanner.getPrezzo() %> €</p>
                         </div>
                     </div>
-
-                    <div class="actions">
-                        <button id="update-banner" onclick="apriModaleUpdate()">Modifica banner</button>
+                </div>
+        <%
+            } else {
+        %>
+                <div class="banner-not-found">
+                    <%
+                        if (utente != null && utente.isAdmin()) {
+                    %>
+                    <div class="action">
+                        <i class="fa-solid fa-plus" onclick=apriModaleAddBanner()></i>
                     </div>
+                    <%
+                        }
+                    %>
+                    <h1>Banner non disponibile</h1>
                 </div>
         <%
             }
@@ -59,10 +83,14 @@
 
         <%@ include file="game-grid.jsp" %>
 
-        <%@ include file="modal-add-game.jsp" %>
+        <%@ include file="modal-add-banner.jsp" %>
 
-        <%@ include file="modal-update-game.jsp" %>
+        <%@ include file="modal-update-banner.jsp" %>
+
+        <%@ include file="modal-add-game.jsp" %>
+    </main>
 
         <%@ include file="footer.jsp" %>
+
     </body>
 </html>

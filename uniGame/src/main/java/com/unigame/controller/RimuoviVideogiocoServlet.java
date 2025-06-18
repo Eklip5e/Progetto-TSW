@@ -14,18 +14,21 @@ public class RimuoviVideogiocoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String idVideogioco = request.getParameter("id");
+        String idVideogiocoStr = request.getParameter("idVideogioco");
 
-        if (idVideogioco == null) {
+        if (idVideogiocoStr == null) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID mancante");
             return;
         }
 
         try {
-            int id = Integer.parseInt(idVideogioco);
+            int idVideogioco = Integer.parseInt(idVideogiocoStr);
             VideogiocoDAO dao = new VideogiocoDAO();
-            dao.doDelete(id);
-            response.setStatus(HttpServletResponse.SC_OK);
+            dao.doDelete(idVideogioco);
+
+            request.getSession().setAttribute("messaggioConferma", "Videogioco eliminato correttamente!");
+            response.sendRedirect("home.jsp");
+
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID non valido");
         } catch (Exception e) {

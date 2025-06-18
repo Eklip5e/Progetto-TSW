@@ -6,7 +6,7 @@ public class Videogioco {
     private int idVideogioco;
     private String titolo;
     private String piattaforma;
-    private Date dataRilascio;
+    private java.util.Date dataRilascio;
     private String descrizione;
     private String produttore;
     private int appIdSteam;
@@ -37,11 +37,11 @@ public class Videogioco {
         this.piattaforma = piattaforma;
     }
 
-    public Date getDataRilascio() {
+    public java.util.Date getDataRilascio() {
         return dataRilascio;
     }
 
-    public void setDataRilascio(Date dataRilascio) {
+    public void setDataRilascio(java.util.Date dataRilascio) {
         this.dataRilascio = dataRilascio;
     }
 

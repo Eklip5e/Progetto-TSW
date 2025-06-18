@@ -8,17 +8,26 @@
 }
 
 .game-card {
+    position: relative;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    height: 220px;
 }
 
 .card-add-game {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 5px dashed;
+
+    height: 220px;
+
     border-radius: 8px;
+    outline: 5px dashed #fff;
+    outline-offset: -5px;
+
     cursor: pointer;
     user-select: none;
     transition: transform 0.2s ease;
@@ -33,10 +42,6 @@
     font-size: 50px;
 }
 
-.game-card a {
-    position: relative;
-}
-
 .game-card img {
     border-radius: 8px;
     width: 100%;
@@ -48,9 +53,6 @@
 }
 
 a .discount-tag {
-    position: absolute;
-    bottom: -5px;
-    left: -5px;
     background: var(--fire-gradient);
     padding: 4px 8px;
     border-radius: 8px;
@@ -64,11 +66,26 @@ a .discount-tag {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: nowrap; /* Impedisce agli elementi di andare a capo */
 }
 
 .game-card-content h2 {
     font-weight: normal;
     font-size: 15px;
+    white-space: nowrap; /* Impedisce al testo del titolo di andare a capo */
+    overflow: hidden; /* Nasconde il testo che supera il contenitore */
+    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione (...) al testo troncato */
+    flex-grow: 1; /* Permette al titolo di occupare lo spazio disponibile */
+    min-width: 0; /* Importante per il corretto funzionamento di overflow: hidden con flexbox */
+    margin-right: 10px; /* Aggiunge un po' di spazio tra il titolo e il blocco del prezzo */
+}
+
+
+.game-card-content .price-row {
+    display: flex; /* Anche questo diventa un flex container per allineare sconto e prezzo */
+    align-items: center;
+
+    white-space: nowrap;/* Allinea verticalmente al centro sconto e prezzo */
 }
 
 .game-card-content .price {

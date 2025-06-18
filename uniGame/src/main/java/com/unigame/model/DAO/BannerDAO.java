@@ -1,17 +1,30 @@
 package com.unigame.model.DAO;
 
 import com.unigame.model.Banner;
+import com.unigame.model.Utente;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class BannerDAO implements MetodiDAO<Banner> {
 
     @Override
     public void doSave(Banner banner) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "INSERT INTO Banner (idBanner, idVideogioco) VALUES(?, ?)",
+                    Statement.RETURN_GENERATED_KEYS);
 
+            ps.setInt(1, 1);
+            ps.setInt(2, banner.getIdVideogioco());
+
+            int rows = ps.executeUpdate();
+            if (rows != 1) {
+                throw new RuntimeException("Errore durante l'inserimento del banner.");
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

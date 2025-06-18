@@ -11,24 +11,26 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public void doSave(Videogioco videogioco) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO VIDEOGIOCO (titolo, piattaforma, ReleaseDate, Descrizione, appIdSteam, Prezzo, Sconto, Produttore) VALUES(?,?,?,?,?,?,?,?)",
+                    "INSERT INTO Videogioco (titolo, piattaforma, dataRilascio, descrizione, produttore, appIdSteam, prezzo, sconto) VALUES(?,?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, videogioco.getTitolo());
             ps.setString(2, videogioco.getPiattaforma());
-            ps.setDate(3, new Date(videogioco.getDataRilascio().getTime()));
+            ps.setDate(3, new java.sql.Date(videogioco.getDataRilascio().getTime()));
             ps.setString(4, videogioco.getDescrizione());
-            ps.setInt(5, videogioco.getAppIdSteam());
-            ps.setDouble(6, videogioco.getPrezzo());
-            ps.setInt(7, videogioco.getSconto());
-            ps.setString(8, videogioco.getProduttore());
+            ps.setString(5, videogioco.getProduttore());
+            ps.setInt(6, videogioco.getAppIdSteam());
+            ps.setDouble(7, videogioco.getPrezzo());
+            ps.setInt(8, videogioco.getSconto());
 
-            if (ps.executeUpdate() != 1) {
-                throw new RuntimeException("INSERT error.");
+            int rows = ps.executeUpdate();
+            if (rows != 1) {
+                throw new RuntimeException("Errore durante l'inserimento del videogioco.");
             }
 
-            ResultSet rs = ps.getGeneratedKeys();
-            if (rs.next()) {
-                videogioco.setIdVideogioco(rs.getInt(1));
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    videogioco.setIdVideogioco(rs.getInt(1));
+                }
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -54,7 +56,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public void doUpdate(Videogioco videogioco, int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE VIDEOGIOCO SET titolo = ?, piattaforma = ?, ReleaseDate = ?, descrizione = ?, prezzo = ?, sconto = ?, Produttore = ?, appIdSteam = ? WHERE idVideogioco = ?");
+                    "UPDATE VIDEOGIOCO SET titolo = ?, piattaforma = ?, dataRilascio = ?, descrizione = ?, prezzo = ?, sconto = ?, Produttore = ?, appIdSteam = ? WHERE idVideogioco = ?");
             ps.setString(1, videogioco.getTitolo());
             ps.setString(2, videogioco.getPiattaforma());
             ps.setDate(3, new Date(videogioco.getDataRilascio().getTime()));
@@ -87,7 +89,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
                 videogioco.setIdVideogioco(rs.getInt("idVideogioco"));
                 videogioco.setTitolo(rs.getString("titolo"));
                 videogioco.setPiattaforma(rs.getString("piattaforma"));
-                videogioco.setDataRilascio(rs.getDate("ReleaseDate"));
+                videogioco.setDataRilascio(rs.getDate("dataRilascio"));
                 videogioco.setDescrizione(rs.getString("descrizione"));
                 videogioco.setProduttore(rs.getString("produttore"));
                 videogioco.setAppIdSteam(rs.getInt("appIdSteam"));
@@ -112,7 +114,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
                 gioco.setIdVideogioco(rs.getInt("idVideogioco"));
                 gioco.setTitolo(rs.getString("titolo"));
                 gioco.setPiattaforma(rs.getString("piattaforma"));
-                gioco.setDataRilascio(rs.getDate("ReleaseDate"));
+                gioco.setDataRilascio(rs.getDate("dataRilascio"));
                 gioco.setDescrizione(rs.getString("descrizione"));
                 gioco.setProduttore(rs.getString("produttore"));
                 gioco.setAppIdSteam(rs.getInt("appIdSteam"));

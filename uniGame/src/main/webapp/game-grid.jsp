@@ -8,21 +8,29 @@
     </head>
     <body>
         <div class="game-grid">
+            <%
+                if (utente != null && utente.isAdmin()) {
+            %>
             <div class="game-card card-add-game" onclick="apriModale()">
                 <span class="plus">+</span>
             </div>
+            <%
+                }
+            %>
 
             <%
                 for (Videogioco videogioco : videogiochi) {
             %>
                     <div class="game-card">
-                        <a href="game-page.jsp?idVideogioco=<%=videogioco.getIdVideogioco()%>">
+                        <a href="game-page.jsp?idVideogioco=<%= videogioco.getIdVideogioco() %>">
                             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>">
-                            <span class="discount-tag">-<%= videogioco.getSconto() %>%</span>
                         </a>
                         <div class="game-card-content">
-                            <h2><%= videogioco.getTitolo() %></h2>
-                            <span class="price"><%=videogioco.getPrezzo()%> €</span>
+                            <h2><%= videogioco.getTitolo() %> (<%= videogioco.getPiattaforma() %>)</h2>
+                            <div class="price-row">
+                                <span class="discount-tag">-<%= videogioco.getSconto() %>%</span>
+                                <span class="price"><%=videogioco.getPrezzo()%> €</span>
+                            </div>
                         </div>
                     </div>
             <%
