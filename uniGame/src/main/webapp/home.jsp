@@ -6,6 +6,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
+    request.setAttribute("paginaCorrente", "home.jsp");
+
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
     request.setAttribute("videogiocoDAO", videogiocoDAO);
 

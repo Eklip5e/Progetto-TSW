@@ -18,6 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
+<main>
 
 <%
     String aggiunto = request.getParameter("aggiunto");
@@ -33,13 +34,25 @@
 <%@ include file="navbar.jsp" %>
 
 <!-- Game Banner Section -->
-<section class="game-banner" style="background-image: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogioco.getAppIdSteam() %>/library_hero.jpg')"></section>
+<section class="game-banner" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 40%, transparent 90%), url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogioco.getAppIdSteam() %>/library_hero.jpg') no-repeat center center / cover;"></section>
 
 <div class="content">
     <div class="panel-container">
-        <div class="game-cover">
-            <a href="game-page.jsp?idVideogioco=<%=videogioco.getIdGame()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
+        <div class="left-column">
+            <div class="game-cover">
+                <a href="game-page.jsp?idVideogioco=<%=videogioco.getIdVideogioco()%>">
+                    <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>">
+                </a>
+            </div>
+
+            <div class="details">
+                <div class="product-text">
+                    <h2>Riguardo al prodotto</h2>
+                    <p><%= videogioco.getDescrizione() %></p>
+                </div>
+            </div>
         </div>
+        <div class="right-column">
         <div class="game-info">
             <h2><%= videogioco.getTitolo() %></h2>
             <div class="stock">
@@ -61,32 +74,16 @@
                 </div>
             </div>
             <div class="actions">
-                <div class="wish-list">
-                    <i class="fa-regular fa-heart"></i>
-                </div>
-                <a href="AggiungiAlCarrello?idVideogioco=<%=videogioco.getIdGame()%>" class="add-to-cart">Aggiungi al carrello</a>
+                <a href="AggiungiAlCarrello?idVideogioco=<%=videogioco.getIdVideogioco()%>" class="add-to-cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    Aggiungi al carrello
+                </a>
             </div>
+        </div>
         </div>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const wishListIcon = document.querySelector('.wish-list i');
-
-        wishListIcon.addEventListener('click', () => {
-            if (wishListIcon.classList.contains('fa-regular')) {
-                // Passa a preferito
-                wishListIcon.classList.remove('fa-regular');
-                wishListIcon.classList.add('fa-solid');
-            } else {
-                // Togli da preferiti
-                wishListIcon.classList.remove('fa-solid');
-                wishListIcon.classList.add('fa-regular');
-            }
-        });
-    });
-</script>
+</main>
 
 <%@ include file="footer.jsp" %>
 

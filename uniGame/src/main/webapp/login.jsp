@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%
+    request.setAttribute("paginaCorrente", "login.jsp");
+%>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -20,28 +24,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
+<main>
     <%@ include file="navbar.jsp" %>
 
     <section class="login">
-        <h1>Accedi</h1>
-        <form action="login" method="post">
+        <div class="login-container">
+            <h1>Accedi</h1>
+            <form action="login" method="post">
 
-            <!-- Email -->
-            <input placeholder="La tua email:" type="text" name="email" id="email" required>
+                <!-- Email -->
+                <input placeholder="La tua email:" type="text" name="email" id="email" required>
 
-            <!-- Password -->
-            <input placeholder="La tua password:" type="password" name="password" id="password" required>
+                <!-- Password -->
+                <input placeholder="La tua password:" type="password" name="password" id="password" required>
 
-            <% if (request.getAttribute("error") != null) { %>
-                <p style="color:red;"><%= request.getAttribute("error") %></p>
-            <% } %>
+                <% if (request.getAttribute("error") != null) { %>
+                    <p style="color:red;"><%= request.getAttribute("error") %></p>
+                <% } %>
 
-            <input type="submit" id="login-button" value="Login">
-        </form>
+                <input type="submit" id="login-button" value="Login">
+            </form>
 
-        <a href="register.jsp" class="signup-redirect">Non hai un account?</a>
+            <a href="register.jsp" class="signup-redirect">Non hai un account?</a>
+        </div>
     </section>
+</main>
 
     <%@ include file="footer.jsp" %>
 </body>
