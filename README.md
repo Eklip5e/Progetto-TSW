@@ -4,10 +4,10 @@
 Questo progetto è stato realizzato nell'ambito del corso universitario **"Tecnologie e Software per il Web"** presso l'**Università degli Studi di Salerno**. 
 Il lavoro nasce come applicazione pratica delle nozioni teoriche e degli esercizi proposti durante le lezioni, con l'obiettivo di consolidare le competenze acquisite nello sviluppo di applicazioni web dinamiche e strutturate.
 ### Docenti:
-- Gennaro Costagliola
-- Mattia De Rosa
+- [Gennaro Costagliola](https://docenti.unisa.it/001602/home)
+- [Mattia De Rosa](https://docenti.unisa.it/024901/home)
 ### Studenti:
-- Aniello Del Prete - *Mat.* 0515119517
+- [Aniello Del Prete](https://github.com/Eklip5e) - *Mat.* 0515119517
 - Gennaro Albano - *Mat.* 0512119547
 
 # Sommario
@@ -135,7 +135,7 @@ https://github.com/user-attachments/assets/d721572b-db32-433b-b3b2-9ba8b17d949d
 Abbiamo pensato ad una palette di colori che ricordasse una tonalità sicura e veloce
 ![image](https://github.com/user-attachments/assets/6cb1f5ba-3c93-40db-b8e8-5f43dbad680a)
 
-#f3eef9           #2f1749       #522b87      #9b71ce      #c8b1e4
+#f3eef9 #2f1749 #522b87 #9b71ce #c8b1e4
 
 # 7. La Base dei Dati
 
