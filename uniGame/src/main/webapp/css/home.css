@@ -1,9 +1,10 @@
 .banner {
-    display: flex;
-    align-items: center;
-    height: 500px;
     position: relative;
 
+    display: flex;
+    align-items: center;
+
+    height: 500px;
 }
 
 .banner:hover .action {
@@ -24,7 +25,6 @@
 }
 
 .action i {
-    font-weight: bold;
     font-size: 75px;
 
     cursor: pointer;
@@ -33,48 +33,60 @@
 }
 
 .action i:hover {
-    transform: scale(1.05);
+    transform: scale(1.03);
 }
 
 .banner-content {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     padding-left: 10%;
 }
 
 .banner-content h1 {
+    font-weight: 600;
     font-size: 40px;
-    font-weight: normal;
 }
 
-.price-row {
+.banner-content .price-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .discount-tag {
-    background: var(--fire-gradient);
     padding: 4px 8px;
+
     border-radius: 8px;
-    font-size: 15px;
-    font-weight: normal;
+
+    font-weight: 400;
+    font-size: 20px;
+
+    background: var(--fire-gradient);
+
 }
 
 .price {
-    font-size: 30px;
-    font-weight: normal;
+    font-weight: 500;
+    font-size: 35px;
 }
 
 .banner-not-found {
+    position: relative;
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     height: 500px;
-    position: relative;
 
     background-color: rgba(0, 0, 0, 0.7);
+}
+
+.banner-not-found h1 {
+    font-weight: 600;
+    font-size: 40px;
 }
 
 .banner-not-found:hover .action {

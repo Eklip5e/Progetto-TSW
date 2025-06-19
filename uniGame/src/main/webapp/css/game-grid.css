@@ -3,7 +3,9 @@
     grid-template-columns: repeat(auto-fit, 380px);
     justify-content: center;
     gap: 30px;
+
     max-width: 1400px;
+
     margin: 50px auto;
 }
 
@@ -22,14 +24,13 @@
     justify-content: center;
     align-items: center;
 
-    height: 220px;
-
-    border-radius: 8px;
     outline: 5px dashed #fff;
     outline-offset: -5px;
+    border-radius: 8px;
 
     cursor: pointer;
     user-select: none;
+
     transition: transform 0.2s ease;
 }
 
@@ -38,13 +39,15 @@
 }
 
 .card-add-game .plus {
-    font-weight: bold;
-    font-size: 50px;
+    font-weight: 600;
+    font-size: 75px;
 }
 
 .game-card img {
-    border-radius: 8px;
     width: 100%;
+
+    border-radius: 8px;
+
     transition: transform 0.2s ease;
 }
 
@@ -52,43 +55,47 @@
     transform: scale(1.03);
 }
 
-a .discount-tag {
-    background: var(--fire-gradient);
-    padding: 4px 8px;
-    border-radius: 8px;
-    color: #fff;
-    font-weight: normal;
-    font-size: 15px;
-}
-
 .game-card-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: nowrap; /* Impedisce agli elementi di andare a capo */
+
+    flex-wrap: nowrap;
 }
 
 .game-card-content h2 {
-    font-weight: normal;
+    font-weight: 400;
     font-size: 15px;
-    white-space: nowrap; /* Impedisce al testo del titolo di andare a capo */
-    overflow: hidden; /* Nasconde il testo che supera il contenitore */
-    text-overflow: ellipsis; /* Aggiunge i puntini di sospensione (...) al testo troncato */
-    flex-grow: 1; /* Permette al titolo di occupare lo spazio disponibile */
-    min-width: 0; /* Importante per il corretto funzionamento di overflow: hidden con flexbox */
-    margin-right: 10px; /* Aggiunge un po' di spazio tra il titolo e il blocco del prezzo */
+    white-space: nowrap;           /* Impedisce il ritorno a capo */
+    overflow: hidden;              /* Nasconde il testo che esce dal contenitore */
+    text-overflow: ellipsis;       /* Mostra "..." alla fine del testo tagliato */
+    flex-grow: 1;                  /* Fa sì che il titolo occupi tutto lo spazio disponibile */
+    min-width: 0;                  /* Essenziale con flexbox per far funzionare overflow:hidden */
+    margin-right: 15px;           /* Spazio tra il titolo e il prezzo */
 }
-
 
 .game-card-content .price-row {
-    display: flex; /* Anche questo diventa un flex container per allineare sconto e prezzo */
+    display: flex;
     align-items: center;
+    gap: 10px;
 
-    white-space: nowrap;/* Allinea verticalmente al centro sconto e prezzo */
+    white-space: nowrap;
 }
 
-.game-card-content .price {
-    font-weight: normal;
-    font-size: 20px;
+.game-card-content .price-row .discount-tag {
+    padding: 4px 8px;
+
+    border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #fff;
+    background: var(--fire-gradient);
+}
+
+.game-card-content .price-row .price {
+    font-weight: 400;
+    font-size: 25px;
 }
