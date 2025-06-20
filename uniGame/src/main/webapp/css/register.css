@@ -1,37 +1,21 @@
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-
-    padding: 35px 5%;
-
-    color: #fff;
-    text-decoration: none;
-}
-
-.logo img {
-    width: 30px;
-    height: 30px;
-}
-
-.logo h1 {
-    font-weight: 600;
-    font-size: 15px;
-}
-
 .register {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 20px;
-    max-width: 400px;
-    height: 100%;
-    margin: auto;
-    padding: 20px;
-    border-radius: 8px;
+    align-items: center;
 
+    height: 100vh;
+}
+
+.register-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     background-color: var(--color-medium-dark);
     font-size: 15px;
+    width: 400px;
+    padding: 20px;
+    border-radius: 8px;
 }
 
 form {
@@ -138,10 +122,4 @@ form input:focus {
 .login-redirect:hover {
     color: var(--color-link-hover);
     text-decoration: none;
-}
-
-.error-message {
-    margin-top: 1rem;
-    color: red;
-    text-align: center;
 }

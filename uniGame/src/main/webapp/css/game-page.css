@@ -1,42 +1,61 @@
+.game-banner {
+    height: 500px;
+}
+
 .content {
     position: relative;
-    top: -70px;
+    top: -150px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+    margin: 0 auto;
 }
 
 .panel-container {
     display: flex;
+    flex-direction: row;
     justify-content: center;
     gap: 50px;
+    width: 100%;
 }
 
 .game-cover img{
     width: 600px;
     height: 300px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
 }
 
 .game-info {
-    background-color: #24252A;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
+    background: linear-gradient(to bottom, #323232, #272727);
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    width: 600px;
-    height: 300px;
+    gap: 20px;
+    min-width: 400px;
+    max-width: 400px;
     padding: 20px;
 }
 
 .game-info select {
-    background-color: #24252A;
-    border: 1px solid #555;
+    background-color: hsla(0, 0%, 6%, 0.4);
+    border: 1px solid var(--color-medium-light);
+    border-radius: 8px;
     width: 100%;
-    border-radius: 10px;
     color: white;
-    padding: 10px 10px;
-    font-size: 20px;
+    padding: 15px;
+    font-size: 15px;
+
+    appearance: none;
+}
+
+.stock {
+    background-color: hsla(0, 0%, 6%, 0.4);
+
+    border-radius: 20px;
+    padding: 15px;
 }
 
 .stock i {
@@ -50,7 +69,7 @@
 }
 
 .discount {
-    background-color: #9B72CF;
+    background: var(--fire-gradient);
     border-radius: 8px;
     padding: 5px 10px;
 }
@@ -60,7 +79,7 @@
     font-weight: 400;
 }
 
-.actions, .wish-list {
+.actions {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -68,23 +87,62 @@
     width: 100%;
 }
 
-.wish-list {
-    background-color: #9B72CF;
-    width: 10%;
-    padding: 10px;
-    border-radius: 10px;
-}
-
 .add-to-cart {
-    background-color: #9B72CF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background: var(--fire-gradient);
     border: none;
-    padding: 10px;
-    color: white;
+    border-radius: 8px;
+    padding: 15px;
+    color: #fff;
+    text-decoration: none;
+
     width: 100%;
-    border-radius: 10px;
+
+    font-size: 15px;
 }
 
 .add-to-cart:hover {
-    background-color: #7a54b8;
-    cursor: pointer;
+    background: var(--fire-gradient-hover);
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.product-text {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    max-width: 1200px;
+}
+
+.left-column .product-text {
+    max-width: 600px;
+}
+
+.right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    max-width: 350px;
+}
+
+.specifics {
+    display: flex;
+    flex-direction: column;
+}
+
+.specifics ul{
+    list-style: none;
 }

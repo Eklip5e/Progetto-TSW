@@ -28,10 +28,10 @@
         <form action="login" method="post">
 
             <!-- Email -->
-            <input placeholder="Username" type="text" name="username" id="username" required>
+            <input placeholder="La tua email:" type="text" name="email" id="email" required>
 
             <!-- Password -->
-            <input placeholder="Password" type="password" name="password" id="password" required>
+            <input placeholder="La tua password:" type="password" name="password" id="password" required>
 
             <% if (request.getAttribute("error") != null) { %>
                 <p style="color:red;"><%= request.getAttribute("error") %></p>

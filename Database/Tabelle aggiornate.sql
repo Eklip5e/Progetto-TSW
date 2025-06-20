@@ -1,6 +1,7 @@
 create schema unigame;
 use unigame;
 
+-- Completa
 CREATE TABLE Utente (
 	idUtente INT AUTO_INCREMENT PRIMARY KEY,
     admin BOOLEAN NOT NULL DEFAULT FALSE,
@@ -11,6 +12,7 @@ CREATE TABLE Utente (
     dataDiNascita DATE NOT NULL
 );
 
+-- Completa
 CREATE TABLE Videogioco (
 idVideogioco INT AUTO_INCREMENT PRIMARY KEY,
 titolo VARCHAR(70) NOT NULL,
@@ -23,6 +25,7 @@ prezzo DECIMAL (5, 2) NOT NULL,
 sconto INT
 );
 
+-- Completa
 CREATE TABLE Banner (
 	idBanner INT PRIMARY KEY,
     idVideogioco INT NOT NULL,
