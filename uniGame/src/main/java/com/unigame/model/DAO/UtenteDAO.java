@@ -10,12 +10,12 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doSave(Utente utente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO Utente (admin, email, username, password, nome, cognome, dataDiNascita) VALUES(?, ?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO Utente (admin, username, email, password, nome, cognome, dataDiNascita) VALUES(?, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             ps.setBoolean(1, utente.isAdmin() != null ? utente.isAdmin() : false);
-            ps.setString(2, utente.getEmail());
-            ps.setString(3, utente.getUsername());
+            ps.setString(2, utente.getUsername());
+            ps.setString(3, utente.getEmail());
             ps.setString(4, utente.getPassword());
             ps.setString(5, utente.getNome());
             ps.setString(6, utente.getCognome());

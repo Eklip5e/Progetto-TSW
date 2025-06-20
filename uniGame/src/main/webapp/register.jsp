@@ -25,24 +25,17 @@
     </a>
 
     <section class="register">
+        <div class="register-container">
         <h1>Registrati</h1>
         <form action="register" method="post">
+            <!-- Username -->
+            <input type="text" id="username" name="username" required placeholder="Il tuo username:">
+
             <!-- Email -->
             <input type="email" id="email" name="email" required placeholder="La tua email:">
 
             <!-- Password -->
-            <div class="password-group">
-                <input placeholder="La tua password:" id="password" name="password" type="password" required onfocus="togglePasswordHint(true)" onblur="togglePasswordHint(false)">
-
-                <div id="passwordHint" class="password-hint">
-                    <strong>Requisiti Password:</strong>
-                    <ul>
-                        <li id="length-requirement">❌ 8-25 caratteri</li>
-                        <li id="uppercase-requirement">❌ Almeno una maiuscola</li>
-                        <li id="symbol-requirement">❌ Almeno un simbolo (: @ ? ! + = - _)</li>
-                    </ul>
-                </div>   
-            </div> 
+            <input placeholder="La tua password:" id="password" name="password" type="password" required onfocus="togglePasswordHint(true)" onblur="togglePasswordHint(false)">
 
             <!-- Nome -->
             <input type="text" id="nome" name="nome" required placeholder="Nome:">
@@ -63,6 +56,7 @@
 
         <!-- Redirect al Login -->
         <a href="login.jsp" class="login-redirect">Hai già un account?</a>
+        </div>
     </section>
 
     <script src="js/register.js"></script>

@@ -39,74 +39,11 @@ form input:focus {
     outline-offset: -2px;
 }
 
-.password-wrapper {
-    position: relative;
-    z-index: 1;
-}
-
-.password-wrapper input:focus {
-    z-index: 0;
-    position: relative;
-}
-
-.password-wrapper input {
-    width: 100%;
-    padding-right: 60px; /* spazio per l’icona */
-    box-sizing: border-box;
-}
-
-.toggle-password {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10; /* 🔥 questo lo fa stare sopra */
-}
-
-
-.toggle-password svg {
-    pointer-events: none;
-}
-
-.eye.closed {
-    display: none;
-}
-
-.eye.open {
-    display: inline;
-}
-
-.toggle-password .hidden {
-    display: none;
-}
-
-
-.password-hint {
-    display: none;
-    flex-direction: column;
-    padding: 15px;
-    border: 1px solid var(--color-medium-light);
-    border-radius: 8px;
-    background-color: hsla(0, 0%, 6%, 0.4);
-    color: var(--color-medium-light);
-}
-
-.password-hint ul {
-    list-style: none;
-}
-
 #register-button {
     background: var(--fire-gradient);
     border: none;
+
+    cursor: pointer;
 }
 
 #register-button:hover {
