@@ -2,11 +2,10 @@
     <link rel="stylesheet" href="css/modal.css">
 </head>
 
-<div id="modal-add-game" class="modal-add-game">
+<div class="modal-add-game">
     <div class="modal-content">
-        <div class="close-modal">
-            <span onclick="chiudiModale()">x</span>
-        </div>
+        <span id="close-modal" onclick="chiudiModale()">x</span>
+
         <h2>Nuovo Videogioco</h2>
         <form action="AggiungiVideogiocoServlet">
             <input name="titolo" type="text" placeholder="Titolo" required>
@@ -37,12 +36,10 @@
 
 <script>
     function apriModale() {
-        document.getElementById("modal-add-game").style.display = "flex";
-        document.body.style.overflow = "hidden";
+        document.getElementsByClassName("modal-add-game")[0].style.display = "flex";
     }
 
     function chiudiModale() {
-        document.getElementById("modal-add-game").style.display = "none";
-        document.body.style.overflow = "auto";
+        document.getElementsByClassName("modal-add-game")[0].style.display = "none";
     }
 </script>

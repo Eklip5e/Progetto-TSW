@@ -52,7 +52,7 @@
                             if (utente != null && utente.isAdmin()) {
                         %>
                                 <div class="action">
-                                    <i class="fa-solid fa-pen-nib" onclick=apriModaleUpdateBanner()></i>
+                                    <i class="fa-solid fa-pen-nib" onclick=apriModaleAddBanner()></i>
                                 </div>
                         <%
                             }
