@@ -1,5 +1,13 @@
-<%@ page import="com.unigame.model.Utente" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page import="com.unigame.model.Utente" %>
+<%@ page import="com.unigame.model.DAO.VideogiocoDAO" %>
+
+<%@ include file="/WEB-INF/init.jsp" %>
+
+<%
+  request.setAttribute("paginaCorrente", "search-page.jsp");
+%>
 
 <html>
   <head>
@@ -12,54 +20,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   </head>
   <body>
-    <main>
-      <div class="search-bar">
-        <div class="search-bar-content">
-          <a href="home.jsp" class="logo">
-            <img src="img/logo.png" alt="logo">
-          </a>
+  <main>
+    <%-- nav-bar --%>
+    <%@ include file="navbar.jsp" %>
 
-          <input type="text" placeholder="Cerca">
-
-          <div class="header-icons">
-            <a href="MostraCarrello"><i class="fa-solid fa-cart-shopping"></i></a>
-            <%
-              Utente utenteLoggato = (Utente) session.getAttribute("utente");
-              if (utenteLoggato != null) {
-            %>
-            <a href="profilo.jsp"><i class="fa-solid fa-user"></i></a>
-            <% } else { %>
-            <a href="register.jsp"><i class="fa-solid fa-user"></i></a>
-            <% } %>
-          </div>
-        </div>
+      <div id="videogiochi" class="videogiochi">
+        <%@ include file="game-grid.jsp" %>
       </div>
+  </main>
 
-        <div class="advanced-search">
-          <div class="advanced-search-content">
-          <select name="piattaforma">
-            <option>PC</option>
-            <option>PlayStation</option>
-            <option>Xbox</option>
-            <option>Nintendo</option>
-          </select>
+  <%@ include file="footer.jsp" %>
 
-          <select name="genere">
-            <option>Genere</option>
-          </select>
+  <script>
+    const form = document.querySelector(".search-form");
 
-          <div class="price">
-            <span>Da</span>
-            <input type="text">
-            <span>a</span>
-            <input type="text">
-            <span>€</span>
-          </div>
-        </div>
-      </div>
+    // Funzione per fare la ricerca fetch e aggiornare i giochi
+    function cercaVideogiochi() {
+      const formData = new FormData(form);
+      const params = new URLSearchParams(formData);
 
-    </main>
+      fetch("cercaVideogiochi?" + params.toString(), {
+        headers: { "X-Requested-With": "XMLHttpRequest" }
+      })
+              .then(response => response.text())
+              .then(html => {
+                document.getElementById("videogiochi").innerHTML = html;
+              })
+              .catch(err => console.error("Errore AJAX:", err));
+    }
 
-    <%@ include file="footer.jsp" %>
+    // Aggiungo listener a input e select per triggerare la ricerca live
+    form.querySelectorAll("input, select").forEach(element => {
+      element.addEventListener("input", cercaVideogiochi);
+      element.addEventListener("change", cercaVideogiochi);
+    });
+
+    // Eventuale inizializzazione con risultati iniziali
+    cercaVideogiochi();
+  </script>
   </body>
-</html>

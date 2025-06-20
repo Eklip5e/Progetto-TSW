@@ -157,7 +157,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     public List<Videogioco> doRetrieveByFiltro(String titolo, String piattaforma, String genere, Double prezzoMin, Double prezzoMax) throws SQLException {
         List<Videogioco> videogiochi = new ArrayList<>();
 
-        StringBuilder query = new StringBuilder("SELECT * FROM Videogioco WHERE");
+        StringBuilder query = new StringBuilder("SELECT * FROM Videogioco WHERE 1 = 1");
 
         // Costruzione dinamica della query in base ai filtri ricevuti
         if (titolo != null && !titolo.isEmpty()) {
@@ -202,7 +202,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
                     videogioco.setIdVideogioco(rs.getInt("idVideogioco"));
                     videogioco.setTitolo(rs.getString("titolo"));
                     videogioco.setPiattaforma(rs.getString("piattaforma"));
-                    videogioco.setDataRilascio(rs.getDate("ReleaseDate"));
+                    videogioco.setDataRilascio(rs.getDate("dataRilascio"));
                     videogioco.setDescrizione(rs.getString("descrizione"));
                     videogioco.setProduttore(rs.getString("produttore"));
                     videogioco.setAppIdSteam(rs.getInt("appIdSteam"));
