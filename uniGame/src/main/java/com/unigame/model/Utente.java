@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Utente {
     private int idUtente;
+    private String username;
     private Boolean admin;
     private String email;
     private String password;
@@ -21,6 +22,14 @@ public class Utente {
 
     public void setIdUtente(int idUtente) {
         this.idUtente = idUtente;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Boolean isAdmin() {

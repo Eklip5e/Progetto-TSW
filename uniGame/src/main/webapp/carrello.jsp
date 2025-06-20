@@ -42,7 +42,7 @@
                     <div class="azioni">
                         <h3><%= videogioco.getTitolo() %></h3>
                         <div class="pulsanti">
-                            <a href="RimuoviDalCarrello?idVideogioco=<%= videogioco.getIdGame() %>" method="post"><i class="fa-solid fa-trash"></i></a>
+                            <a href="RimuoviDalCarrello?idVideogioco=<%= videogioco.getIdVideogioco() %>" method="post"><i class="fa-solid fa-trash"></i></a>
                             <a href="#">Lista dei desideri</a>
                         </div>
                     </div>

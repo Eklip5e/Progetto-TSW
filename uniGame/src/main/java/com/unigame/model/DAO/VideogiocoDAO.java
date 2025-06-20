@@ -132,12 +132,12 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
         List<Videogioco> giochi = new ArrayList<>();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM VIDEOGIOCO WHERE piattaforma = ? ORDER BY idGame DESC");
+                    "SELECT * FROM VIDEOGIOCO WHERE piattaforma = ? ORDER BY idVideogioco DESC");
             ps.setString(1, piattaforma);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Videogioco gioco = new Videogioco();
-                gioco.setIdVideogioco(rs.getInt("idGame"));
+                gioco.setIdVideogioco(rs.getInt("idVideogioco"));
                 gioco.setTitolo(rs.getString("titolo"));
                 gioco.setPiattaforma(rs.getString("piattaforma"));
                 gioco.setDataRilascio(rs.getDate("ReleaseDate"));

@@ -10,15 +10,16 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doSave(Utente utente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO Utente (admin, email, password, nome, cognome, dataDiNascita) VALUES(?, ?, ?, ?, ?, ?)",
+                    "INSERT INTO Utente (admin, email, username, password, nome, cognome, dataDiNascita) VALUES(?, ?, ?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS);
 
             ps.setBoolean(1, utente.isAdmin() != null ? utente.isAdmin() : false);
             ps.setString(2, utente.getEmail());
-            ps.setString(3, utente.getPassword());
-            ps.setString(4, utente.getNome());
-            ps.setString(5, utente.getCognome());
-            ps.setDate(6, new java.sql.Date(utente.getDataDiNascita().getTime()));
+            ps.setString(3, utente.getUsername());
+            ps.setString(4, utente.getPassword());
+            ps.setString(5, utente.getNome());
+            ps.setString(6, utente.getCognome());
+            ps.setDate(7, new java.sql.Date(utente.getDataDiNascita().getTime()));
 
             int rows = ps.executeUpdate();
             if (rows != 1) {
@@ -55,14 +56,15 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doUpdate(Utente utente, int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE Utente SET admin = ?, email = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
+                    "UPDATE Utente SET admin = ?, email = ?, username = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
             );
             ps.setBoolean(1, utente.isAdmin());
             ps.setString(2, utente.getEmail());
-            ps.setString(3, utente.getPassword());
-            ps.setString(4, utente.getNome());
-            ps.setString(5, utente.getCognome());
-            ps.setDate(6, new java.sql.Date(utente.getDataDiNascita().getTime()));
+            ps.setString(3, utente.getUsername());
+            ps.setString(4, utente.getPassword());
+            ps.setString(5, utente.getNome());
+            ps.setString(6, utente.getCognome());
+            ps.setDate(7, new java.sql.Date(utente.getDataDiNascita().getTime()));
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -77,7 +79,7 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public Utente doRetrieveById(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT idUtente, admin, email, password, nome, cognome, dataDiNascita FROM UTENTE WHERE idUtente = ?"
+                    "SELECT idUtente, admin, email, username, password, nome, cognome, dataDiNascita FROM UTENTE WHERE idUtente = ?"
             );
             ps.setInt(1, idUtente);
             ResultSet rs = ps.executeQuery();
@@ -88,6 +90,7 @@ public class UtenteDAO implements MetodiDAO<Utente> {
                 utente.setIdUtente(rs.getInt(1));
                 utente.setAdmin(rs.getBoolean("admin"));
                 utente.setEmail(rs.getString("email"));
+                utente.setUsername(rs.getString("username"));
                 utente.setPassword(rs.getString("password"));
                 utente.setNome(rs.getString("nome"));
                 utente.setCognome(rs.getString("cognome"));
@@ -101,12 +104,12 @@ public class UtenteDAO implements MetodiDAO<Utente> {
         }
     }
 
-    public Utente doRetrieveByEmail(String email) {
+    public Utente doRetrieveByUsername(String username) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT idUtente, admin, email, password, nome, cognome, dataDiNascita FROM Utente WHERE email = ?"
+                    "SELECT idUtente, admin, email, username, password, nome, cognome, dataDiNascita FROM Utente WHERE username = ?"
             );
-            ps.setString(1, email);
+            ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
 
             Utente utente = new Utente();
@@ -114,6 +117,7 @@ public class UtenteDAO implements MetodiDAO<Utente> {
                 utente.setIdUtente(rs.getInt("idUtente"));
                 utente.setAdmin(rs.getBoolean("admin"));
                 utente.setEmail(rs.getString("email"));
+                utente.setUsername(rs.getString("username"));
                 utente.setPassword(rs.getString("password"));
                 utente.setNome(rs.getString("nome"));
                 utente.setCognome(rs.getString("cognome"));

@@ -1,0 +1,248 @@
+Index: uniGame/src/main/webapp/register.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html; charset=UTF-8\" pageEncoding=\"UTF-8\" %>\r\n<!DOCTYPE html>\r\n<html lang=\"it\">\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\r\n    <title>UniGame - Registrazione</title>\r\n\r\n    <!-- CSS -->\r\n    <link rel=\"stylesheet\" href=\"css/style.css\">\r\n    <link rel=\"stylesheet\" href=\"css/register.css\">\r\n\r\n    <!-- Font Awesome -->\r\n    <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css\">\r\n\r\n    <!-- Google Fonts -->\r\n    <link rel=\"preconnect\" href=\"https://fonts.googleapis.com\">\r\n    <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin>\r\n    <link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap\" rel=\"stylesheet\">\r\n</head>\r\n<body>\r\n    <a href=\"home.jsp\" class=\"logo\">\r\n        <img src=\"img/logo.png\" alt=\"logo\">\r\n        <h1>Unigame</h1>\r\n    </a>\r\n\r\n    <section class=\"register\">\r\n        <h1>Registrati</h1>\r\n        <form action=\"register\" method=\"post\">\r\n            <!-- Email -->\r\n            <input type=\"email\" id=\"email\" name=\"email\" required placeholder=\"La tua email:\">\r\n\r\n            <!-- Password -->\r\n            <div class=\"password-group\">\r\n                <input placeholder=\"La tua password:\" id=\"password\" name=\"password\" type=\"password\" required onfocus=\"togglePasswordHint(true)\" onblur=\"togglePasswordHint(false)\">\r\n\r\n                <div id=\"passwordHint\" class=\"password-hint\">\r\n                    <strong>Requisiti Password:</strong>\r\n                    <ul>\r\n                        <li id=\"length-requirement\">❌ 8-25 caratteri</li>\r\n                        <li id=\"uppercase-requirement\">❌ Almeno una maiuscola</li>\r\n                        <li id=\"symbol-requirement\">❌ Almeno un simbolo (: @ ? ! + = - _)</li>\r\n                    </ul>\r\n                </div>   \r\n            </div> \r\n\r\n            <!-- Nome -->\r\n            <input type=\"text\" id=\"nome\" name=\"nome\" required placeholder=\"Nome:\">\r\n\r\n            <!-- Cognome -->\r\n            <input type=\"text\" id=\"cognome\" name=\"cognome\" required placeholder=\"Cognome:\">\r\n\r\n            <!-- Data di Nascita -->\r\n            <input placeholder=\"Data di nascita (dd/mm/yyyy)\" id=\"dataDiNascita\" name=\"dataDiNascita\" type=\"text\" pattern=\"\\d\\d\\/\\d\\d/\\d\\d\\d\\d\" required=\"\">\r\n\r\n            <% if (request.getAttribute(\"error\") != null) { %>\r\n                <p style=\"color:red;\"><%= request.getAttribute(\"error\") %></p>\r\n            <% } %>\r\n\r\n            <!-- Submit -->\r\n            <input type=\"submit\" id=\"register-button\" value=\"Registrati\">\r\n        </form>\r\n\r\n        <!-- Redirect al Login -->\r\n        <a href=\"login.jsp\" class=\"login-redirect\">Hai già un account?</a>\r\n    </section>\r\n\r\n    <script src=\"js/register.js\"></script>\r\n\r\n    <%@ include file=\"footer.jsp\" %>\r\n</body>\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/uniGame/src/main/webapp/register.jsp b/uniGame/src/main/webapp/register.jsp
+--- a/uniGame/src/main/webapp/register.jsp	(revision d842b910e261656ef446ddcc034ed0e8a3e32663)
++++ b/uniGame/src/main/webapp/register.jsp	(date 1750346571483)
+@@ -9,64 +9,96 @@
+     <!-- CSS -->
+     <link rel="stylesheet" href="css/style.css">
+     <link rel="stylesheet" href="css/register.css">
++    <link rel="stylesheet" href="css/navbar.css">
+ 
+     <!-- Font Awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+ 
+     <!-- Google Fonts -->
+-    <link rel="preconnect" href="https://fonts.googleapis.com">
+-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+ </head>
+ <body>
+-    <a href="home.jsp" class="logo">
+-        <img src="img/logo.png" alt="logo">
+-        <h1>Unigame</h1>
+-    </a>
++<a href="home.jsp" class="logo">
++    <img src="img/logo.png" alt="logo">
++    <h1>Unigame</h1>
++</a>
+ 
+-    <section class="register">
+-        <h1>Registrati</h1>
+-        <form action="register" method="post">
+-            <!-- Email -->
+-            <input type="email" id="email" name="email" required placeholder="La tua email:">
++<section class="register">
++    <h1>Registrati</h1>
++    <form action="register" method="post">
++        <!-- Email -->
++        <input type="email" id="email" name="email" required placeholder="La tua email:">
+ 
+-            <!-- Password -->
+-            <div class="password-group">
+-                <input placeholder="La tua password:" id="password" name="password" type="password" required onfocus="togglePasswordHint(true)" onblur="togglePasswordHint(false)">
++        <!-- Password -->
++        <div class="password-group">
++            <div class="password-wrapper">
++                <input placeholder="La tua password:"
++                       id="password"
++                       name="password"
++                       type="password"
++                       required
++                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[:!?@()*&$\"/\\]).{8,}"
++                onfocus="document.getElementById('message').style.display='flex'"
++                onblur="document.getElementById('message').style.display='none'"
++                onkeyup="validatePassword(); checkPasswordMatch();"
++                >
++                <button type="button" class="toggle-password" onclick="togglePassword('password', this)">👁️</button>
++            </div>
+ 
+-                <div id="passwordHint" class="password-hint">
+-                    <strong>Requisiti Password:</strong>
+-                    <ul>
+-                        <li id="length-requirement">❌ 8-25 caratteri</li>
+-                        <li id="uppercase-requirement">❌ Almeno una maiuscola</li>
+-                        <li id="symbol-requirement">❌ Almeno un simbolo (: @ ? ! + = - _)</li>
+-                    </ul>
+-                </div>   
+-            </div> 
++            <div id="message" class="password-hint">
++                <ul>
++                    <li id="letter" class="invalid">❌ Una <b>lettera minuscola</b></li>
++                    <li id="capital" class="invalid">❌ Una <b>lettera maiuscola</b></li>
++                    <li id="number" class="invalid">❌ Un <b>numero</b></li>
++                    <li id="special" class="invalid">❌ Un <b>carattere speciale</b> (: ! ? @ ( ) * & $ " / \)</li>
++                    <li id="length" class="invalid">❌ Minimo <b>8 caratteri</b></li>
++                </ul>
++            </div>
++        </div>
++
++        <!-- Conferma Password -->
++        <div class="password-group">
++            <div class="password-wrapper">
++                <input type="password"
++                       id="confermaPassword"
++                       name="confermaPassword"
++                       required
++                       placeholder="Conferma la tua password:"
++                       onkeyup="checkPasswordMatch();"
++                >
++                <button type="button" class="toggle-password" onclick="togglePassword('confermaPassword', this)">👁️</button>
++            </div>
++            <p id="match-message" class="match-message"></p>
++        </div>
+ 
+-            <!-- Nome -->
+-            <input type="text" id="nome" name="nome" required placeholder="Nome:">
++        <!-- Nome -->
++        <input type="text" id="nome" name="nome" required placeholder="Nome:">
+ 
+-            <!-- Cognome -->
+-            <input type="text" id="cognome" name="cognome" required placeholder="Cognome:">
++        <!-- Cognome -->
++        <input type="text" id="cognome" name="cognome" required placeholder="Cognome:">
+ 
+-            <!-- Data di Nascita -->
+-            <input placeholder="Data di nascita (dd/mm/yyyy)" id="dataDiNascita" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
++        <!-- Data di Nascita -->
++        <input placeholder="Data di nascita (dd/mm/yyyy)"
++               id="dataDiNascita"
++               name="dataDiNascita"
++               type="text"
++               pattern="\d\d/\d\d/\d\d\d\d"
++               required>
+ 
+-            <% if (request.getAttribute("error") != null) { %>
+-                <p style="color:red;"><%= request.getAttribute("error") %></p>
+-            <% } %>
++        <% if (request.getAttribute("error") != null) { %>
++        <p class="error-message"><%= request.getAttribute("error") %></p>
++        <% } %>
+ 
+-            <!-- Submit -->
+-            <input type="submit" id="register-button" value="Registrati">
+-        </form>
++        <!-- Submit -->
++        <input type="submit" id="register-button" value="Registrati">
++    </form>
+ 
+-        <!-- Redirect al Login -->
+-        <a href="login.jsp" class="login-redirect">Hai già un account?</a>
+-    </section>
++    <!-- Redirect al Login -->
++    <a href="login.jsp" class="login-redirect">Hai già un account?</a>
++</section>
+ 
+-    <script src="js/register.js"></script>
++<script src="js/register.js"></script>
+ 
+-    <%@ include file="footer.jsp" %>
++<%@ include file="footer.jsp" %>
+ </body>
+-</html>
+\ No newline at end of file
++</html>
+Index: uniGame/src/main/webapp/js/CheckPassword.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/uniGame/src/main/webapp/js/CheckPassword.js b/uniGame/src/main/webapp/js/register.js
+rename from uniGame/src/main/webapp/js/CheckPassword.js
+rename to uniGame/src/main/webapp/js/register.js
+--- a/uniGame/src/main/webapp/js/CheckPassword.js	(revision d842b910e261656ef446ddcc034ed0e8a3e32663)
++++ b/uniGame/src/main/webapp/js/register.js	(date 1750346455985)
+@@ -1,50 +1,46 @@
+-// Funzione per validare la password e aggiornare i requisiti
+-function checkPasswordStrength() {
+-    const passwordInput = document.getElementById('password');
+-    const password = passwordInput.value;
++function validatePassword() {
++    const value = document.getElementById("password").value;
+ 
+-    // Requisiti della password
+-    const minLength = 8;
+-    const maxLength = 25;
+-    const hasUppercase = /[A-Z]/.test(password);
+-    const hasSymbol = /[:@?!+=\-_.,]/.test(password);
++    const lowerCase = /[a-z]/;
++    const upperCase = /[A-Z]/;
++    const number = /[0-9]/;
++    const specialChar = /[:!?@()*&$"\/\\]/;
+ 
+-    // Controllo dei requisiti
+-    const isLengthValid = password.length >= minLength && password.length <= maxLength;
+-    const isValid = isLengthValid && hasUppercase && hasSymbol;
++    updateRequirement("letter", lowerCase.test(value));
++    updateRequirement("capital", upperCase.test(value));
++    updateRequirement("number", number.test(value));
++    updateRequirement("special", specialChar.test(value));
++    updateRequirement("length", value.length >= 8);
++}
+ 
+-    // Aggiorna lo stile del campo password
+-    if (isValid) {
+-        passwordInput.classList.remove('invalid');
+-        passwordInput.classList.add('valid');
+-    } else {
+-        passwordInput.classList.remove('valid');
+-        passwordInput.classList.add('invalid');
+-    }
++function updateRequirement(id, isValid) {
++    const el = document.getElementById(id);
++    el.className = isValid ? "valid" : "invalid";
++    el.innerHTML = (isValid ? "✅" : "❌") + el.innerHTML.slice(1);
++}
+ 
+-    // Aggiorna i requisiti nell'elenco puntato
+-    updateRequirement("length-requirement", isLengthValid);
+-    updateRequirement("uppercase-requirement", hasUppercase);
+-    updateRequirement("symbol-requirement", hasSymbol);
++function togglePassword(id, btn) {
++    const input = document.getElementById(id);
++    const isVisible = input.type === "text";
++    input.type = isVisible ? "password" : "text";
++    btn.textContent = isVisible ? "👁️" : "🙈";
++}
+ 
+-    return isValid;
+-}
++function checkPasswordMatch() {
++    const pass = document.getElementById("password").value;
++    const confirm = document.getElementById("confermaPassword").value;
++    const msg = document.getElementById("match-message");
++
++    if (confirm === "") {
++        msg.textContent = "";
++        return;
++    }
+ 
+-// Funzione per aggiornare un singolo requisito
+-function updateRequirement(requirementId, isSatisfied) {
+-    const requirementElement = document.getElementById(requirementId);
+-    if (isSatisfied) {
+-        requirementElement.innerHTML = "✅ " + requirementElement.textContent.replace(/❌|✅/, "");
++    if (pass === confirm) {
++        msg.textContent = "✅ Le password coincidono";
++        msg.style.color = "green";
+     } else {
+-        requirementElement.innerHTML = "❌ " + requirementElement.textContent.replace(/❌|✅/, "");
++        msg.textContent = "❌ Le password non coincidono";
++        msg.style.color = "red";
+     }
+ }
+-
+-// Funzione di validazione prima dell'invio del form
+-function validatePassword() {
+-    const isValid = checkPasswordStrength();
+-    if (!isValid) {
+-        alert("La password non soddisfa i requisiti minimi. Controlla il prompt a sinistra.");
+-    }
+-    return isValid;
+-}
+\ No newline at end of file

@@ -29,12 +29,13 @@ public class RegisterServlet extends HttpServlet {
             throws IOException, ServletException {
 
         String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String dataDiNascitaStr =  request.getParameter("dataDiNascita");
 
-        if (!isValidRegister(email, password, nome, cognome, dataDiNascitaStr)) {
+        if (!isValidRegister(email, username, password, nome, cognome, dataDiNascitaStr)) {
             request.setAttribute(ATTR_ERROR, "Tutti i campi sono obbligatori");
             request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
             return;
@@ -53,6 +54,7 @@ public class RegisterServlet extends HttpServlet {
         Utente utente = new Utente();
         utente.setAdmin(false);
         utente.setEmail(email);
+        utente.setUsername(username);
         utente.setPassword(password);
         utente.setNome(nome);
         utente.setCognome(cognome);
@@ -72,8 +74,9 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    private boolean isValidRegister(String email, String password, String nome, String cognome, String dataDiNascita) {
+    private boolean isValidRegister(String email, String username, String password, String nome, String cognome, String dataDiNascita) {
         return email != null && !email.isEmpty()
+                && username != null && !username.isEmpty()
                 && password != null && !password.isEmpty()
                 && nome != null && !nome.isEmpty()
                 && cognome != null && !cognome.isEmpty()

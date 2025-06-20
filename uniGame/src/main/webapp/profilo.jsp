@@ -28,11 +28,12 @@
 
 <div class="profile-container">
     <div class="profile-header">
-        <h1>Ciao, <%= utente.getNome() %>!</h1>
+        <h1>Ciao, <%= utente.getUsername() %>!</h1>
     </div>
 
     <div class="profile-info">
-        <span><strong>Username:</strong> <%= utente.getEmail() %></span>
+        <span><strong>Username:</strong> <%= utente.getUsername() %></span>
+        <span><strong>Email:</strong> <%= utente.getEmail() %></span>
         <span><strong>Nome:</strong> <%= utente.getNome() %></span>
         <span><strong>Cognome:</strong> <%= utente.getCognome() %></span>
     </div>

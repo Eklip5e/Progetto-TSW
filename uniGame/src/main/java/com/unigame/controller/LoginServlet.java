@@ -22,10 +22,10 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String email = request.getParameter("email");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
 
-        if (!isValidLogin(email, password)) {
+        if (!isValidLogin(username, password)) {
             request.setAttribute(ATTR_ERROR, "Email e password sono obbligatori.");
             request.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
             return;
@@ -33,7 +33,7 @@ public class LoginServlet extends HttpServlet {
 
         UtenteDAO utenteDAO = new UtenteDAO();
         try {
-            Utente utente = utenteDAO.doRetrieveByEmail(email);
+            Utente utente = utenteDAO.doRetrieveByUsername(username);
 
             if (utente != null && utente.checkPassword(password)) {
                 HttpSession session = request.getSession();
@@ -50,8 +50,8 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private boolean isValidLogin(String email, String password) {
-        return email != null && !email.isEmpty()
+    private boolean isValidLogin(String username, String password) {
+        return username != null && !username.isEmpty()
                 && password != null && !password.isEmpty();
     }
 }

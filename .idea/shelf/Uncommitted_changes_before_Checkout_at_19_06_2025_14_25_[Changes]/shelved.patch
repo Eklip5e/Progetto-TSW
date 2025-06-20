@@ -1,0 +1,261 @@
+Index: External Scripts/syncdb.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import os\r\nimport subprocess\r\nfrom datetime import datetime\r\nfrom pathlib import Path\r\n\r\nLOG_FILE = \"logs/syncdb.log\"\r\n\r\nDB_USER = \"root\"\r\nDB_PASS = \"studentiTSW\"\r\nDB_NAME = \"unigame\"\r\nDUMP_PATH = Path(\"..\") / \"Database\" / \"dumps\" / \"dump.sql\"\r\nLAST_DUMP_BY_FILE = Path(\"..\") / \"Database\" / \"dumps\" / \"last_dump_by.txt\"\r\n\r\ndef log(msg, level=\"INFO\"):\r\n    timestamp = datetime.now().strftime(\"[%Y-%m-%d %H:%M:%S]\")\r\n    prefix = {\r\n        \"INFO\": \"\",\r\n        \"SUCCESS\": \" - [SUCCESS]\",\r\n        \"FAIL\": \" - [FAIL]\",\r\n        \"WARNING\": \" - [WARNING]\"\r\n    }[level]\r\n    line = f\"{timestamp}{prefix} {msg}\"\r\n\r\n    color = {\r\n        \"INFO\": \"\\033[0m\",\r\n        \"SUCCESS\": \"\\033[92m\",\r\n        \"FAIL\": \"\\033[91m\",\r\n        \"WARNING\": \"\\033[93m\"\r\n    }[level]\r\n\r\n    print(color + line + \"\\033[0m\")\r\n\r\n    Path(\"logs\").mkdir(parents=True, exist_ok=True)\r\n    with open(LOG_FILE, \"a\", encoding=\"utf-8\") as f:\r\n        f.write(line + \"\\n\")\r\n\r\ndef command_exists(command):\r\n    try:\r\n        subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, check=True)\r\n        return True\r\n    except subprocess.CalledProcessError:\r\n        return True\r\n    except FileNotFoundError:\r\n        return False\r\n\r\ndef try_add_mysql_to_path():\r\n    program_dirs = [\"C:\\\\Program Files\", \"C:\\\\Programmi\"]\r\n    found = False\r\n\r\n    for base_dir in program_dirs:\r\n        mysql_root = Path(base_dir) / \"MySQL\"\r\n        if not mysql_root.exists():\r\n            continue\r\n\r\n        for child in mysql_root.iterdir():\r\n            if child.is_dir() and child.name.lower().startswith(\"mysql server\"):\r\n                bin_path = child / \"bin\"\r\n                if bin_path.exists():\r\n                    os.environ[\"PATH\"] += os.pathsep + str(bin_path)\r\n                    log(f\"Aggiunto '{bin_path}' al PATH\", level=\"INFO\")\r\n                    found = True\r\n                    break\r\n        if found:\r\n            break\r\n\r\n    return found\r\n\r\ndef verify_and_prepare_mysql_path():\r\n    log(\"Controllo presenza dei comandi 'mysql' e 'mysqldump'...\", level=\"INFO\")\r\n\r\n    if command_exists(\"mysql --version\") and command_exists(\"mysqldump --version\"):\r\n        log(\"Il path globale per mysql e mysqldump è presente\", level=\"SUCCESS\")\r\n        return True\r\n\r\n    log(\"Il path non esiste, avvio il processo di fetch\", level=\"FAIL\")\r\n\r\n    if try_add_mysql_to_path():\r\n        if command_exists(\"mysql --version\") and command_exists(\"mysqldump --version\"):\r\n            log(\"Il path è integro e funzionante\", level=\"SUCCESS\")\r\n            return True\r\n        else:\r\n            log(\"Nonostante la configurazione del PATH, gli eseguibili mysql e mysqldump non sono presenti, riavviare lo script.\", level=\"FAIL\")\r\n            log(\"Se il problema persiste riconfigurare manualmente il path, riavviare il pc e riavviare lo script con MySQL Workbench avviato.\", level=\"WARNING\")\r\n            return False\r\n    else:\r\n        log(\"Nessuna installazione MySQL trovata in Program Files o Programmi\", level=\"FAIL\")\r\n        log(\"Se il problema persiste riconfigurare manualmente il path, riavviare il pc e riavviare lo script con MySQL Workbench avviato.\", level=\"WARNING\")\r\n        return False\r\n\r\ndef check_mysql_connection():\r\n    log(f\"Tento connessione al DB come '{DB_USER}'...\", level=\"INFO\")\r\n    try:\r\n        subprocess.run(\r\n            f'mysql -u {DB_USER} -p{DB_PASS} -e \"SELECT 1;\"',\r\n            shell=True,\r\n            stdout=subprocess.PIPE,\r\n            stderr=subprocess.PIPE,\r\n            check=True,\r\n        )\r\n        log(\"Connessione riuscita.\", level=\"SUCCESS\")\r\n        return True\r\n    except subprocess.CalledProcessError:\r\n        log(\"Connessione fallita, controlla username/password e server MySQL.\", level=\"FAIL\")\r\n        return False\r\n\r\ndef read_last_dump_by():\r\n    if not LAST_DUMP_BY_FILE.exists():\r\n        return None\r\n    with open(LAST_DUMP_BY_FILE, \"r\", encoding=\"utf-8\") as f:\r\n        return f.read().strip()\r\n\r\ndef write_last_dump_by(hostname):\r\n    with open(LAST_DUMP_BY_FILE, \"w\", encoding=\"utf-8\") as f:\r\n        f.write(hostname)\r\n\r\ndef create_dump():\r\n    log(\"Creo dump del database...\", level=\"INFO\")\r\n    try:\r\n        subprocess.run(\r\n            f'mysqldump -u {DB_USER} -p{DB_PASS} {DB_NAME} > \"{DUMP_PATH}\"',\r\n            shell=True,\r\n            check=True,\r\n        )\r\n        log(\"Dump creato correttamente.\", level=\"SUCCESS\")\r\n    except subprocess.CalledProcessError:\r\n        log(\"Errore durante la creazione del dump.\", level=\"FAIL\")\r\n        exit(1)\r\n\r\ndef import_dump():\r\n    log(f\"Importo il dump di un altro PC...\", level=\"INFO\")\r\n    try:\r\n        subprocess.run(\r\n            f'mysql -u {DB_USER} -p{DB_PASS} {DB_NAME} < \"{DUMP_PATH}\"',\r\n            shell=True,\r\n            check=True,\r\n        )\r\n        log(\"Importazione completata.\", level=\"SUCCESS\")\r\n    except subprocess.CalledProcessError:\r\n        log(\"Errore durante l'importazione del dump.\", level=\"FAIL\")\r\n        exit(1)\r\n\r\ndef main():\r\n    if not verify_and_prepare_mysql_path():\r\n        exit(1)\r\n\r\n    if not check_mysql_connection():\r\n        exit(1)\r\n\r\n    current_host = subprocess.check_output(\"hostname\", shell=True).decode().strip()\r\n\r\n    last_dump_by = read_last_dump_by()\r\n\r\n    if last_dump_by == current_host:\r\n        log(\"Il dump è già stato creato da questa macchina. Nessuna importazione necessaria.\", level=\"INFO\")\r\n        create_dump()\r\n        write_last_dump_by(current_host)\r\n    else:\r\n        import_dump()\r\n        create_dump()\r\n        write_last_dump_by(current_host)\r\n\r\n    log(\"Script completato.\", level=\"SUCCESS\")\r\n\r\nif __name__ == \"__main__\":\r\n    main()\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/External Scripts/syncdb.py b/External Scripts/syncdb.py
+--- a/External Scripts/syncdb.py	(revision d842b910e261656ef446ddcc034ed0e8a3e32663)
++++ b/External Scripts/syncdb.py	(date 1750259786950)
+@@ -1,165 +1,123 @@
+ import os
+ import subprocess
+-from datetime import datetime
+-from pathlib import Path
++import socket
++import datetime
++import mysql.connector
+ 
+-LOG_FILE = "logs/syncdb.log"
++DUMP_FILE = os.path.abspath("../Database/dumps/dump.sql")
++LAST_DUMP_BY = os.path.abspath("../Database/dumps/last_dump_by.txt")
++LOG_FILE = os.path.abspath("syncdb.log")
+ 
+ DB_USER = "root"
+ DB_PASS = "studentiTSW"
+ DB_NAME = "unigame"
+-DUMP_PATH = Path("..") / "Database" / "dumps" / "dump.sql"
+-LAST_DUMP_BY_FILE = Path("..") / "Database" / "dumps" / "last_dump_by.txt"
+-
+-def log(msg, level="INFO"):
+-    timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+-    prefix = {
+-        "INFO": "",
+-        "SUCCESS": " - [SUCCESS]",
+-        "FAIL": " - [FAIL]",
+-        "WARNING": " - [WARNING]"
+-    }[level]
+-    line = f"{timestamp}{prefix} {msg}"
+ 
+-    color = {
+-        "INFO": "\033[0m",
+-        "SUCCESS": "\033[92m",
+-        "FAIL": "\033[91m",
+-        "WARNING": "\033[93m"
+-    }[level]
+-
+-    print(color + line + "\033[0m")
+-
+-    Path("logs").mkdir(parents=True, exist_ok=True)
++def log(message, level="INFO"):
++    now = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
++    entry = f"{now} - [{level}] {message}"
++    print(entry)
+     with open(LOG_FILE, "a", encoding="utf-8") as f:
+-        f.write(line + "\n")
++        f.write(entry + "\n")
+ 
+-def command_exists(command):
++def is_command_available(cmd):
+     try:
+-        subprocess.run(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True, check=True)
+-        return True
+-    except subprocess.CalledProcessError:
++        subprocess.run([cmd, "--version"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=True)
+         return True
+-    except FileNotFoundError:
++    except:
+         return False
+ 
+-def try_add_mysql_to_path():
+-    program_dirs = ["C:\\Program Files", "C:\\Programmi"]
+-    found = False
+-
+-    for base_dir in program_dirs:
+-        mysql_root = Path(base_dir) / "MySQL"
+-        if not mysql_root.exists():
+-            continue
+-
+-        for child in mysql_root.iterdir():
+-            if child.is_dir() and child.name.lower().startswith("mysql server"):
+-                bin_path = child / "bin"
+-                if bin_path.exists():
+-                    os.environ["PATH"] += os.pathsep + str(bin_path)
+-                    log(f"Aggiunto '{bin_path}' al PATH", level="INFO")
+-                    found = True
+-                    break
+-        if found:
+-            break
+-
+-    return found
++def fetch_mysql_path():
++    potential_dirs = [
++        "C:/Program Files/MySQL/",
++        "C:/Programmi/MySQL/"  # per Windows in italiano
++    ]
++    for base in potential_dirs:
++        if os.path.exists(base):
++            for sub in os.listdir(base):
++                if "Server" in sub:
++                    bin_path = os.path.join(base, sub, "bin")
++                    if os.path.exists(bin_path):
++                        return bin_path
++    return None
+ 
+-def verify_and_prepare_mysql_path():
+-    log("Controllo presenza dei comandi 'mysql' e 'mysqldump'...", level="INFO")
+-
+-    if command_exists("mysql --version") and command_exists("mysqldump --version"):
+-        log("Il path globale per mysql e mysqldump è presente", level="SUCCESS")
++def ensure_mysql_path():
++    if is_command_available("mysql") and is_command_available("mysqldump"):
++        log("Il path globale per mysql e mysqldump è presente", "SUCCESS")
+         return True
+-
+-    log("Il path non esiste, avvio il processo di fetch", level="FAIL")
+-
+-    if try_add_mysql_to_path():
+-        if command_exists("mysql --version") and command_exists("mysqldump --version"):
+-            log("Il path è integro e funzionante", level="SUCCESS")
++    log("Il path non esiste, avvio il processo di fetch", "FAIL")
++    bin_path = fetch_mysql_path()
++    if bin_path:
++        os.environ["PATH"] += os.pathsep + bin_path
++        if is_command_available("mysql") and is_command_available("mysqldump"):
++            log("Il path è integro e funzionante", "SUCCESS")
+             return True
+         else:
+-            log("Nonostante la configurazione del PATH, gli eseguibili mysql e mysqldump non sono presenti, riavviare lo script.", level="FAIL")
+-            log("Se il problema persiste riconfigurare manualmente il path, riavviare il pc e riavviare lo script con MySQL Workbench avviato.", level="WARNING")
++            log("Nonostante la configurazione del PATH, gli eseguibili mysql e mysqldump non sono presenti", "FAIL")
++            log("Se il problema persiste riconfigurare manualmente il path, riavviare il pc e riavviare lo script con MySQL Workbench avviato.", "WARNING")
+             return False
+     else:
+-        log("Nessuna installazione MySQL trovata in Program Files o Programmi", level="FAIL")
+-        log("Se il problema persiste riconfigurare manualmente il path, riavviare il pc e riavviare lo script con MySQL Workbench avviato.", level="WARNING")
++        log("Impossibile trovare MySQL nei percorsi noti", "FAIL")
+         return False
+ 
+-def check_mysql_connection():
+-    log(f"Tento connessione al DB come '{DB_USER}'...", level="INFO")
++def check_connection(user, password):
+     try:
+-        subprocess.run(
+-            f'mysql -u {DB_USER} -p{DB_PASS} -e "SELECT 1;"',
+-            shell=True,
+-            stdout=subprocess.PIPE,
+-            stderr=subprocess.PIPE,
+-            check=True,
+-        )
+-        log("Connessione riuscita.", level="SUCCESS")
++        mysql.connector.connect(user=user, password=password, database=DB_NAME)
++        log("Connessione riuscita.", "SUCCESS")
+         return True
+-    except subprocess.CalledProcessError:
+-        log("Connessione fallita, controlla username/password e server MySQL.", level="FAIL")
++    except:
++        log("Connessione fallita, controlla username/password e server MySQL.", "FAIL")
+         return False
+ 
+-def read_last_dump_by():
+-    if not LAST_DUMP_BY_FILE.exists():
+-        return None
+-    with open(LAST_DUMP_BY_FILE, "r", encoding="utf-8") as f:
+-        return f.read().strip()
+-
+-def write_last_dump_by(hostname):
+-    with open(LAST_DUMP_BY_FILE, "w", encoding="utf-8") as f:
+-        f.write(hostname)
+-
+-def create_dump():
+-    log("Creo dump del database...", level="INFO")
+-    try:
+-        subprocess.run(
+-            f'mysqldump -u {DB_USER} -p{DB_PASS} {DB_NAME} > "{DUMP_PATH}"',
+-            shell=True,
+-            check=True,
+-        )
+-        log("Dump creato correttamente.", level="SUCCESS")
+-    except subprocess.CalledProcessError:
+-        log("Errore durante la creazione del dump.", level="FAIL")
+-        exit(1)
++def get_current_host():
++    return socket.gethostname()
+ 
+ def import_dump():
+-    log(f"Importo il dump di un altro PC...", level="INFO")
++    if not os.path.exists(DUMP_FILE):
++        log("Il file dump.sql non esiste, impossibile importare.", "FAIL")
++        return
++    try:
++        subprocess.run(["mysql", "-u", DB_USER, f"-p{DB_PASS}", DB_NAME], stdin=open(DUMP_FILE, "rb"), check=True)
++        log("Dump importato correttamente.", "SUCCESS")
++    except:
++        log("Errore durante l'importazione del dump.", "FAIL")
++
++def create_dump():
+     try:
+-        subprocess.run(
+-            f'mysql -u {DB_USER} -p{DB_PASS} {DB_NAME} < "{DUMP_PATH}"',
+-            shell=True,
+-            check=True,
+-        )
+-        log("Importazione completata.", level="SUCCESS")
+-    except subprocess.CalledProcessError:
+-        log("Errore durante l'importazione del dump.", level="FAIL")
+-        exit(1)
++        subprocess.run(["mysqldump", "-u", DB_USER, f"-p{DB_PASS}", DB_NAME], stdout=open(DUMP_FILE, "wb"), check=True)
++        with open(LAST_DUMP_BY, "w") as f:
++            f.write(get_current_host())
++        log("Dump creato correttamente.", "SUCCESS")
++    except:
++        log("Errore durante la creazione del dump.", "FAIL")
+ 
+ def main():
+-    if not verify_and_prepare_mysql_path():
+-        exit(1)
++    log("Controllo presenza dei comandi 'mysql' e 'mysqldump'...")
++    if not ensure_mysql_path():
++        return
+ 
+-    if not check_mysql_connection():
+-        exit(1)
++    log(f"Tento connessione al DB come '{DB_USER}'...")
++    if not check_connection(DB_USER, DB_PASS):
++        log("Credenziali errate o database non raggiungibile.", "WARNING")
++        DB_USER = input("Inserisci username: ")
++        DB_PASS = input("Inserisci password: ")
++        if not check_connection(DB_USER, DB_PASS):
++            return
+ 
+-    current_host = subprocess.check_output("hostname", shell=True).decode().strip()
++    current_host = get_current_host()
++    last_dump_by = ""
++    if os.path.exists(LAST_DUMP_BY):
++        with open(LAST_DUMP_BY, "r") as f:
++            last_dump_by = f.read().strip()
+ 
+-    last_dump_by = read_last_dump_by()
+-
+-    if last_dump_by == current_host:
+-        log("Il dump è già stato creato da questa macchina. Nessuna importazione necessaria.", level="INFO")
+-        create_dump()
+-        write_last_dump_by(current_host)
++    if current_host != last_dump_by:
++        log("Importo dump da un altro computer...")
++        import_dump()
+     else:
+-        import_dump()
+-        create_dump()
+-        write_last_dump_by(current_host)
+-
+-    log("Script completato.", level="SUCCESS")
++        log("Il dump è già stato creato da questa macchina. Nessuna importazione necessaria.")
++
++    log("Creo dump del database...")
++    create_dump()
++    log("Script completato.", "SUCCESS")
+ 
+ if __name__ == "__main__":
+     main()
