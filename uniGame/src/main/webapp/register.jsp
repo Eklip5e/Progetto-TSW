@@ -28,7 +28,10 @@
         <h1>Registrati</h1>
         <form action="register" method="post">
             <!-- Email -->
-            <input type="email" id="email" name="email" required placeholder="La tua email:">
+            <input type="email" id="email" name="email" required placeholder="Email:">
+
+            <!-- Username -->
+            <input type="text" id="username" name="username" required placeholder="Username">
 
             <!-- Password -->
             <div class="password-group">
@@ -45,10 +48,10 @@
             </div> 
 
             <!-- Nome -->
-            <input type="text" id="nome" name="nome" required placeholder="Nome:">
+            <input type="text" id="nome" name="nome" required placeholder="Nome">
 
             <!-- Cognome -->
-            <input type="text" id="cognome" name="cognome" required placeholder="Cognome:">
+            <input type="text" id="cognome" name="cognome" required placeholder="Cognome">
 
             <!-- Data di Nascita -->
             <input placeholder="Data di nascita (dd/mm/yyyy)" id="dataDiNascita" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">

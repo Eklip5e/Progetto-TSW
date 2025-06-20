@@ -28,7 +28,7 @@
         <form action="login" method="post">
 
             <!-- Email -->
-            <input placeholder="La tua email:" type="text" name="email" id="email" required>
+            <input placeholder="Username" type="text" name="username" id="username" required>
 
             <!-- Password -->
             <input placeholder="La tua password:" type="password" name="password" id="password" required>

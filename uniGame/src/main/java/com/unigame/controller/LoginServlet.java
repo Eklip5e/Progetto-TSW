@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         if (!isValidLogin(username, password)) {
-            request.setAttribute(ATTR_ERROR, "Email e password sono obbligatori.");
+            request.setAttribute(ATTR_ERROR, "Username e password sono obbligatori.");
             request.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
             return;
         }
