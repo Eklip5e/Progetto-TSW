@@ -1,4 +1,9 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<%
+    request.setAttribute("paginaCorrente", "register.jsp");
+%>
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -19,10 +24,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <a href="home.jsp" class="logo">
-        <img src="img/logo.png" alt="logo">
-        <h1>Unigame</h1>
-    </a>
+    <%-- nav-bar --%>
+    <%@ include file="navbar.jsp" %>
 
     <section class="register">
         <div class="register-container">
