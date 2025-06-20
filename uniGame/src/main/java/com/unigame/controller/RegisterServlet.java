@@ -28,14 +28,14 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException, ServletException {
 
-        String email = request.getParameter("email");
         String username = request.getParameter("username");
+        String email = request.getParameter("email");
         String password = request.getParameter("password");
         String nome = request.getParameter("nome");
         String cognome = request.getParameter("cognome");
         String dataDiNascitaStr =  request.getParameter("dataDiNascita");
 
-        if (!isValidRegister(email, username, password, nome, cognome, dataDiNascitaStr)) {
+        if (!isValidRegister(username, email, password, nome, cognome, dataDiNascitaStr)) {
             request.setAttribute(ATTR_ERROR, "Tutti i campi sono obbligatori");
             request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
             return;
@@ -53,8 +53,8 @@ public class RegisterServlet extends HttpServlet {
         // Crea un nuovo utente
         Utente utente = new Utente();
         utente.setAdmin(false);
-        utente.setEmail(email);
         utente.setUsername(username);
+        utente.setEmail(email);
         utente.setPassword(password);
         utente.setNome(nome);
         utente.setCognome(cognome);

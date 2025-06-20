@@ -32,22 +32,22 @@
         <h1>Registrati</h1>
         <form action="register" method="post">
             <!-- Username -->
-            <input type="text" id="username" name="username" required placeholder="Il tuo username:">
+            <input type="text" name="username" required placeholder="Il tuo username:">
 
             <!-- Email -->
-            <input type="email" id="email" name="email" required placeholder="La tua email:">
+            <input type="email" name="email" required placeholder="La tua email:">
 
             <!-- Password -->
-            <input placeholder="La tua password:" id="password" name="password" type="password" required onfocus="togglePasswordHint(true)" onblur="togglePasswordHint(false)">
+            <input placeholder="La tua password:" name="password" type="password" required>
 
             <!-- Nome -->
-            <input type="text" id="nome" name="nome" required placeholder="Nome:">
+            <input type="text" name="nome" required placeholder="Nome:">
 
             <!-- Cognome -->
-            <input type="text" id="cognome" name="cognome" required placeholder="Cognome:">
+            <input type="text" name="cognome" required placeholder="Cognome:">
 
             <!-- Data di Nascita -->
-            <input placeholder="Data di nascita (dd/mm/yyyy)" id="dataDiNascita" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
+            <input placeholder="Data di nascita (dd/mm/yyyy)" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
 
             <% if (request.getAttribute("error") != null) { %>
                 <p style="color:red;"><%= request.getAttribute("error") %></p>
