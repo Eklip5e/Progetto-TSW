@@ -1,11 +1,9 @@
-﻿<%@ page import="com.unigame.model.DAO.VideogiocoDAO" %>
-<%@ page import="com.unigame.model.Videogioco" %>
-<%@ page import="com.unigame.model.DAO.BannerDAO" %>
-<%@ page import="com.unigame.model.Banner" %>
+﻿<%@ page import="model.DAO.VideogiocoDAO" %>
+<%@ page import="model.Videogioco" %>
+<%@ page import="model.DAO.BannerDAO" %>
+<%@ page import="model.Banner" %>
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-
-<%@ include file="/WEB-INF/init.jsp" %>
 
 <%
     request.setAttribute("paginaCorrente", "home.jsp");
@@ -48,13 +46,13 @@
             <%
                 if (videogiocoBanner != null) {
             %>
-                    <div class="banner" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 40%, transparent 90%), url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg') no-repeat center center / cover;">
+                    <div class="banner" style="background: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg')">
 
                         <%
                             if (userSession != null && userSession.isAdmin()) {
                         %>
                                 <div class="action">
-                                    <i class="fa-solid fa-pen-nib" onclick=apriModaleUpdateBanner()></i>
+                                    <i class="fa-solid fa-pen-nib" onclick="apriModaleUpdateBanner()"></i>
                                 </div>
                         <%
                             }
@@ -78,7 +76,7 @@
                             if (userSession != null && userSession.isAdmin()) {
                         %>
                                 <div class="action">
-                                    <i class="fa-solid fa-plus" onclick=apriModaleAddBanner()></i>
+                                    <i class="fa-solid fa-plus" onclick="apriModaleAddBanner()"></i>
                                 </div>
                         <%
                             }

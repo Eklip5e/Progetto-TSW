@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    /* Toni viola - sostituiscono le tonalità arancioni originali */
+    --color: #9B72CF;
+    --color-link-hover: #B98FE3;
+
+    --fire-gradient: linear-gradient(10deg, #a97ef2, #6e37cd);
+    --fire-gradient-hover: linear-gradient(10deg, #cda4f7, #7e4dde);
+
+    /* Toni neutri (da non modificare) */
+    --color-very-light: #b7b7b7;
+    --color-light: #a8a8a8;
+    --color-medium-light: #6d6d6d;
+    --color-medium: #3d3d3d;
+    --color-medium-dark: #323232;
+    --color-dark: #272727;
+    --color-very-dark: #1d1d1d;
+    --color-ultra-dark: #101010;
+}
+
+body {
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: normal;
+    font-style: normal;
+
+    color: white;
+    background: var(--color-dark);
+}
+
+main {
+    min-height: 100vh;
+}

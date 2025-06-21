@@ -1,15 +1,15 @@
-package com.unigame.model.DAO;
+package model.DAO;
 
-import com.unigame.model.Videogioco;
+import model.Videogioco;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideogiocoDAO implements MetodiDAO<Videogioco> {
+public class VideogiocoDAO implements model.DAO.MetodiDAO<Videogioco> {
 
     @Override
     public void doSave(Videogioco videogioco) {
-        try (Connection con = ConPool.getConnection()) {
+        try (Connection con = model.DAO.ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "INSERT INTO Videogioco (titolo, piattaforma, dataRilascio, descrizione, produttore, appIdSteam, prezzo, sconto) VALUES(?,?,?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);

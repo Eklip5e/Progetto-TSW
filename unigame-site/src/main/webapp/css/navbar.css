@@ -12,6 +12,7 @@
 .navbar-content {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 20px 5%;
     color: #fff;
     font-size: 15px;

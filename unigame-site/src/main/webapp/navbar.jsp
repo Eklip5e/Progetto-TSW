@@ -1,4 +1,4 @@
-﻿<%@ page import="com.unigame.model.Utente" %>
+﻿<%@ page import="model.Utente" %>
 
 <%
     Utente userSession = (Utente) session.getAttribute("utente");
