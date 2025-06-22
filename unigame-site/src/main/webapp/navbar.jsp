@@ -16,7 +16,7 @@
 <%
     String navbar = null;
 
-    if (!paginaCorrente.equals("search-page.jsp")) {
+    if (paginaCorrente.equals("home.jsp")) {
         navbar = "navbar";
     } else {
         navbar = "navbar-static";
@@ -32,15 +32,14 @@
             if (!paginaCorrente.equals("register.jsp") && !paginaCorrente.equals("login.jsp")) {
                 if(!paginaCorrente.equals("search-page.jsp")) {
         %>
-                    <div class="nav_links">
-                        <a href="search-page.jsp">Ricerca avanzata</a>
-                        <ul>
-                            <li id="platform"><a href="CategoriaServlet?categoria=pc"><i class="fa-solid fa-laptop"></i>PC</a></li>
-                            <li id="platform"><a href="CategoriaServlet?categoria=playstation"><i class="fa-brands fa-playstation"></i>PlayStation</a></li>
-                            <li id="platform"><a href="CategoriaServlet?categoria=xbox"><i class="fa-brands fa-xbox"></i>Xbox</a></li>
-                            <li id="platform"><a href="CategoriaServlet?categoria=nintendo"><i class="fa-solid fa-star"></i>Nintendo</a></li>
-                        </ul>
-                    </div>
+                    <ul class="nav_links">
+                        <li id="platform"><a href="CategoriaServlet?categoria=pc"><i class="fa-solid fa-laptop"></i>PC</a></li>
+                        <li id="platform"><a href="CategoriaServlet?categoria=playstation"><i class="fa-brands fa-playstation"></i>PlayStation</a></li>
+                        <li id="platform"><a href="CategoriaServlet?categoria=xbox"><i class="fa-brands fa-xbox"></i>Xbox</a></li>
+                        <li id="platform"><a href="CategoriaServlet?categoria=nintendo"><i class="fa-solid fa-star"></i>Nintendo</a></li>
+
+                        <li><a href="search-page.jsp"><i class="fa-solid fa-magnifying-glass"></i></a></li>
+                    </ul>
         <%
                 } else {
         %>

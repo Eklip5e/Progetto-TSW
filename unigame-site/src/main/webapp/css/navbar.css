@@ -12,16 +12,20 @@
 .navbar-content {
     display: flex;
     justify-content: space-between;
-
+    align-items: center;
     padding: 20px 5%;
-
-    font-size: 15px;
-
     color: #fff;
+    font-size: 15px;
 }
 
 .logo {
+    display: flex;
+    gap: 7px;
+
     width: 100px;
+
+    color: #fff;
+    text-decoration: none;
 }
 
 .logo img {
@@ -29,46 +33,32 @@
     height: 30px;
 }
 
-.nav_links {
+.logo h1 {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 10px;
+
+    font-weight: 600;
+    font-size: 15px;
 }
 
-.nav_links a {
-    color: #fff;
-    text-decoration: none;
-
-    transition: color 0.3s ease;
-}
-
-.nav_links a:hover {
-    color: var(--color-link-hover);
-}
-
-.nav_links ul{
+.nav_links {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-
-    padding: 15px;
-
     border-radius: 20px;
+    padding: 15px;
+    list-style: none;
 
     background: var(--color-dark);
-    list-style: none;
 }
 
 .nav_links li a {
     display: flex;
     align-items: center;
-    gap: 5px;
-
+    gap: 7px;
     color: #fff;
     text-decoration: none;
-
     transition: color 0.3s ease;
 }
 
@@ -78,17 +68,14 @@
 
 .header-icons {
     display: flex;
-    justify-content: right;
     gap: 20px;
 
     width: 100px;
 }
 
 .header-icons a i {
-    font-size: 30px;
-
     color: #fff;
-
+    font-size: 25px;
     transition: color 0.3s ease;
 }
 

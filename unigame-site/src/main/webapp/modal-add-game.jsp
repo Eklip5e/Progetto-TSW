@@ -11,8 +11,6 @@
             <input name="titolo" type="text" placeholder="Titolo" required>
 
             <select name="piattaforma" required>
-                <option value="">-- Seleziona una piattaforma --</option>
-
                 <option value="pc">PC</option>
                 <option value="playstation">PlayStation</option>
                 <option value="xbox">Xbox</option>
@@ -37,11 +35,11 @@
 </div>
 
 <script>
-    function apriModaleAddGame() {
+    function apriModale() {
         document.getElementsByClassName("modal-add-game")[0].style.display = "flex";
     }
 
-    function chiudiModaleAddGame() {
+    function chiudiModale() {
         document.getElementsByClassName("modal-add-game")[0].style.display = "none";
     }
 </script>
