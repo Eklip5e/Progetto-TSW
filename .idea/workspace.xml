@@ -9,6 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/wallpaper.jpg" afterDir="false" />
@@ -28,6 +29,9 @@
       <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" afterDir="false" />
     </list>
+=======
+    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
+>>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,7 +50,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Third" />
+        <entry key="$PROJECT_DIR$" value="Gennaro" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -88,7 +92,11 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.Tomcat 11.0.6.executor": "Run",
+<<<<<<< Updated upstream
     "git-widget-placeholder": "Merging main",
+=======
+    "git-widget-placeholder": "Nello",
+>>>>>>> Stashed changes
     "last_opened_file_path": "D:/Github/Progetto-TSW/src/main/webapp/img/user",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
