@@ -10,6 +10,8 @@
   </component>
   <component name="ChangeListManager">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/wallpaper.jpg" afterDir="false" />
@@ -29,6 +31,12 @@
       <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" afterDir="false" />
     </list>
+=======
+    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
+>>>>>>> Stashed changes
+=======
+    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
+>>>>>>> Stashed changes
 =======
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
 >>>>>>> Stashed changes
@@ -93,9 +101,19 @@
     "RunOnceActivity.git.unshallow": "true",
     "Tomcat Server.Tomcat 11.0.6.executor": "Run",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "git-widget-placeholder": "Merging main",
 =======
     "git-widget-placeholder": "Nello",
+>>>>>>> Stashed changes
+=======
+    "git-widget-placeholder": "c81cd29e",
+    "ignore.virus.scanning.warn.message": "true",
+>>>>>>> Stashed changes
+=======
+    "git-widget-placeholder": "c81cd29e",
+    "ignore.virus.scanning.warn.message": "true",
 >>>>>>> Stashed changes
     "last_opened_file_path": "D:/Github/Progetto-TSW/src/main/webapp/img/user",
     "node.js.detected.package.eslint": "true",
@@ -133,15 +151,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.6">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -164,6 +173,45 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Doctests">
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
     <configuration name="syncdb" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="unigame" />
       <option name="ENV_FILES" value="" />
@@ -184,17 +232,6 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
       <method v="2" />
     </configuration>
     <configuration name="Tomcat 11.0.6" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.6" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -284,27 +321,7 @@
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
     <list>
-      <item itemvalue="Python.syncdb" />
       <item itemvalue="Tomcat Server.Tomcat 11.0.6" />
     </list>
   </component>
@@ -345,6 +362,7 @@
       <workItem from="1750343866459" duration="3853000" />
       <workItem from="1750415990930" duration="3123000" />
       <workItem from="1750419186565" duration="876000" />
+      <workItem from="1750629922832" duration="28000" />
     </task>
     <servers />
   </component>
