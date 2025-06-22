@@ -1,7 +1,12 @@
 .navbar {
     position: absolute;
-    width: 100%;
     z-index: 1;
+
+    width: 100%;
+}
+
+.navbar-static {
+    width: 100%;
 }
 
 .navbar-content {
@@ -36,7 +41,6 @@
 }
 
 .nav_links {
-    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;

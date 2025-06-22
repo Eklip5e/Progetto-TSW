@@ -1,14 +1,13 @@
 <%@ page import="com.unigame.model.Videogioco" %>
+
 <head>
   <link rel="stylesheet" href="css/modal.css">
 </head>
 
-<div id="modal-add-banner" class="modal-add-banner">
+<div class="modal-add-banner">
   <div class="modal-content">
-    <div class="close-modal">
-      <span onclick="chiudiModaleAddBanner()">x</span>
-    </div>
-    <h2>Nuovo Videogioco</h2>
+    <span id="close-modal" onclick="chiudiModaleAddBanner()">x</span>
+    <h2>Aggiungi banner</h2>
     <form action="aggiungiBanner">
       <select name="videogioco">
         <option value="">-- Seleziona un videogioco --</option>
@@ -20,19 +19,17 @@
           }
         %>
       </select>
-      <input type="submit" value="Modifica">
+      <input type="submit" value="Aggiungi">
     </form>
   </div>
 </div>
 
 <script>
   function apriModaleAddBanner() {
-    document.getElementById("modal-add-banner").style.display = "flex";
-    document.body.style.overflow = "hidden";
+    document.getElementsByClassName("modal-add-banner")[0].style.display = "flex";
   }
 
   function chiudiModaleAddBanner() {
-    document.getElementById("modal-add-banner").style.display = "none";
-    document.body.style.overflow = "auto";
+    document.getElementsByClassName("modal-add-banner")[0].style.display = "none";
   }
 </script>

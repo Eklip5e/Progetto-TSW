@@ -24,12 +24,10 @@
     font-size: 15px;
 }
 
-.modal-content .close-modal {
+.modal-content #close-modal {
     display: flex;
     justify-content: right;
-}
 
-.modal-content .close-modal span {
     font-weight: bold;
     font-size: 20px;
 

@@ -1,17 +1,22 @@
 ﻿<%@ page import="com.unigame.model.Videogioco" %>
+<%@ page import="com.unigame.model.Utente" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%
-    List<Videogioco> videogiochi = videogiocoDAO.doRetrieveAll();
+    List<Videogioco> videogiochi = (List<Videogioco>) request.getAttribute("videogiochi");
+
+    if (videogiochi == null) {
+        videogiochi = new ArrayList<>();
+    }
+
+    Utente utente = (Utente) session.getAttribute("utente");
 %>
 
-<html>
-    <head>
-        <%-- css --%>
-        <link rel="stylesheet" href="css/game-grid.css">
-    </head>
-
-    <body>
+<head>
+    <%-- css --%>
+    <link rel="stylesheet" href="css/game-grid.css">
+</head>
         <div class="game-grid">
             <%
                 if (utente != null && utente.isAdmin()) {
@@ -43,5 +48,3 @@
                 }
             %>
         </div>
-    </body>
-</html>

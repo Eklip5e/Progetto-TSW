@@ -5,20 +5,22 @@
 
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
+<%@ include file="/WEB-INF/init.jsp" %>
+
 <%
     request.setAttribute("paginaCorrente", "home.jsp");
 
+    VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+
     BannerDAO bannerDAO = new BannerDAO();
     Banner banner = bannerDAO.doRetrieveById(1);
-
-    VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 
     Videogioco videogiocoBanner = null;
     if (banner != null) {
         videogiocoBanner = videogiocoDAO.doRetrieveById(banner.getIdVideogioco());
     }
 
-    Utente utente = (Utente) session.getAttribute("utente");
+    request.setAttribute("videogiochi", videogiocoDAO.doRetrieveAll());
 %>
 
 <!DOCTYPE html>
@@ -39,9 +41,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
+    <%@ include file="navbar.jsp" %>
         <main>
             <%-- nav-bar --%>
-            <%@ include file="navbar.jsp" %>
 
             <%
                 if (videogiocoBanner != null) {
@@ -49,7 +51,7 @@
                     <div class="banner" style="background: linear-gradient(to right, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7) 40%, transparent 90%), url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg') no-repeat center center / cover;">
 
                         <%
-                            if (utente != null && utente.isAdmin()) {
+                            if (userSession != null && userSession.isAdmin()) {
                         %>
                                 <div class="action">
                                     <i class="fa-solid fa-pen-nib" onclick=apriModaleUpdateBanner()></i>
@@ -73,7 +75,7 @@
                         <h1>Banner non disponibile</h1>
 
                         <%
-                            if (utente != null && utente.isAdmin()) {
+                            if (userSession != null && userSession.isAdmin()) {
                         %>
                                 <div class="action">
                                     <i class="fa-solid fa-plus" onclick=apriModaleAddBanner()></i>

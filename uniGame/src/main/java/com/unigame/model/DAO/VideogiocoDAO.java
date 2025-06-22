@@ -153,4 +153,69 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
         }
         return giochi;
     }
+
+    public List<Videogioco> doRetrieveByFiltro(String titolo, String piattaforma, String genere, Double prezzoMin, Double prezzoMax) throws SQLException {
+        List<Videogioco> videogiochi = new ArrayList<>();
+
+        StringBuilder query = new StringBuilder("SELECT * FROM Videogioco WHERE 1 = 1");
+
+        if (titolo != null && !titolo.isEmpty()) {
+            query.append(" AND titolo LIKE ?");
+        }
+        if (piattaforma  != null && !piattaforma.isEmpty()) {
+            query.append(" AND piattaforma = ?");
+        }
+        if (genere != null && !genere.isEmpty()) {
+            query.append(" AND genere = ?");
+        }
+        if (prezzoMin != null) {
+            query.append(" AND prezzo >= ?");
+        }
+        if (prezzoMax != null) {
+            query.append(" AND prezzo <= ?");
+        }
+
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(query.toString())) {
+
+            int i = 1;
+            if (titolo != null && !titolo.isEmpty()) {
+                ps.setString(i++, "%" + titolo + "%");
+            }
+            if (piattaforma != null && !piattaforma.isEmpty()) {
+                ps.setString(i++, piattaforma);
+            }
+            if (genere != null && !genere.isEmpty()) {
+                ps.setString(i++, genere);
+            }
+            if (prezzoMin != null) {
+                ps.setDouble(i++, prezzoMin);
+            }
+            if (prezzoMax != null) {
+                ps.setDouble(i++, prezzoMax);
+            }
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Videogioco videogioco = new Videogioco();
+
+                    videogioco.setIdVideogioco(rs.getInt("idVideogioco"));
+                    videogioco.setTitolo(rs.getString("titolo"));
+                    videogioco.setPiattaforma(rs.getString("piattaforma"));
+                    videogioco.setDataRilascio(rs.getDate("dataRilascio"));
+                    videogioco.setDescrizione(rs.getString("descrizione"));
+                    videogioco.setProduttore(rs.getString("produttore"));
+                    videogioco.setAppIdSteam(rs.getInt("appIdSteam"));
+                    videogioco.setPrezzo(rs.getDouble("prezzo"));
+                    videogioco.setSconto(rs.getInt("sconto"));
+
+                    videogiochi.add(videogioco);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore durante il recupero dei videogiochi filtrati", e);
+        }
+
+        return videogiochi;
+    }
 }

@@ -3,19 +3,17 @@
     <link rel="stylesheet" href="css/modal.css">
 </head>
 
-<div id="modal-update-banner" class="modal-update-banner">
+<div class="modal-update-banner">
     <div class="modal-content">
-        <div class="close-modal">
-            <span onclick="chiudiModaleUpdateBanner()">x</span>
-        </div>
-        <h2>Nuovo Videogioco</h2>
+        <span id="close-modal" onclick="chiudiModaleUpdateBanner()">x</span>
+        <h2>Modifica banner</h2>
         <form action="updateBanner">
             <select name="videogioco">
                 <option value="">-- Seleziona un gioco --</option>
                 <%
                     for (Videogioco videogioco : videogiochi) {
                 %>
-                <option value="<%= videogioco.getIdVideogioco() %>"><%= videogioco.getTitolo() %></option>
+                        <option value="<%= videogioco.getIdVideogioco() %>"><%= videogioco.getTitolo() %></option>
                 <%
                     }
                 %>
@@ -27,12 +25,10 @@
 
 <script>
     function apriModaleUpdateBanner() {
-        document.getElementById("modal-update-banner").style.display = "flex";
-        document.body.style.overflow = "hidden";
+        document.getElementById("modal-update-banner")[0].style.display = "flex";
     }
 
     function chiudiModaleUpdateBanner() {
-        document.getElementById("modal-update-banner").style.display = "none";
-        document.body.style.overflow = "auto";
+        document.getElementById("modal-update-banner")[0].style.display = "none";
     }
 </script>

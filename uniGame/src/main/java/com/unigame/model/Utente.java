@@ -8,8 +8,8 @@ import java.util.Date;
 
 public class Utente {
     private int idUtente;
-    private String username;
     private Boolean admin;
+    private String username;
     private String email;
     private String password;
     private String nome;
@@ -20,8 +20,14 @@ public class Utente {
         return idUtente;
     }
 
-    public void setIdUtente(int idUtente) {
-        this.idUtente = idUtente;
+    public void setIdUtente(int idUtente) { this.idUtente = idUtente; }
+
+    public Boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
     public String getUsername() {
@@ -30,14 +36,6 @@ public class Utente {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Boolean admin) {
-        this.admin = admin;
     }
 
     public String getEmail() {
