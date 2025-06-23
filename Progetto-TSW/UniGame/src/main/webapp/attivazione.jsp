@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-  request.setAttribute("paginaCorrente", "pagamento.jsp");
+  request.setAttribute("paginaCorrente", "attivazione.jsp");
 
   VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
   List<Videogioco> carrello = new ArrayList<>();
@@ -48,20 +48,50 @@
 <html>
   <head>
     <title>Title</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/attivazione.css">
   </head>
   <body>
     <main>
+      <div id="loader">
+        <div class="spinner"></div>
+      </div>
+
+      <%@ include file="navbar.jsp" %>
+      <div class="activation-page">
       <%
         if (!carrello.isEmpty()) {
           for (Videogioco videogioco : carrello) {
       %>
-            <div class="purchased-games">
-              <h2><%= videogioco.getTitolo() %></h2>
-            </div>
+        <div class="activation-content">
+              <div class="purchased-games">
+                <h2><%= videogioco.getTitolo() %></h2>
+                <span class="activation-key"></span>
+              </div>
+        </div>
       <%
           }
         }
       %>
+      </div>
+      <script>
+        const keyElements = document.querySelectorAll(".activation-key");
+
+        keyElements.forEach(el => {
+          const key = Array(4).fill(0).map(() =>
+                  Math.random().toString(36).substring(2, 6).toUpperCase()
+          ).join('-');
+
+          el.innerText = key;
+        });
+      </script>
+
+      <script>
+        setTimeout(() => {
+          document.getElementById("loader").style.display = "none"
+        }, 3000);
+      </script>
     </main>
   </body>
 </html>

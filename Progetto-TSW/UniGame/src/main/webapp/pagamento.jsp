@@ -114,7 +114,7 @@
                             <span id="summary-total">Totale</span>
                             <span><%= String.format("%.2f", prezzoTotale) %> €</span>
                         </div>
-                        <button>Acquista</button>
+                        <button onclick="window.location.href='MostraCarrello?paginaCorrente=attivazione.jsp'">Acquista</button>
                     </div>
                 </div>
             </div>

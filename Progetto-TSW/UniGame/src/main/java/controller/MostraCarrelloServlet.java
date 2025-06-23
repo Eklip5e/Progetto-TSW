@@ -42,6 +42,8 @@ public class MostraCarrelloServlet extends HttpServlet {
             request.getRequestDispatcher("/carrello.jsp").forward(request, response);
         } else if (paginaCorrente.equals("pagamento.jsp")) {
             request.getRequestDispatcher("/pagamento.jsp").forward(request, response);
+        } else if (paginaCorrente.equals("attivazione.jsp")) {
+            request.getRequestDispatcher("/attivazione.jsp").forward(request, response);
         }
     }
 

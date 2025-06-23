@@ -33,7 +33,7 @@
         </a>
         <%
             if (!paginaCorrente.equals("register.jsp") && !paginaCorrente.equals("login.jsp")) {
-                if(!paginaCorrente.equals("search-page.jsp") && !paginaCorrente.equals("carrello.jsp") && !paginaCorrente.equals("pagamento.jsp")) {
+                if(!paginaCorrente.equals("search-page.jsp") && !paginaCorrente.equals("carrello.jsp") && !paginaCorrente.equals("pagamento.jsp") && !paginaCorrente.equals("attivazione.jsp")) {
         %>
                     <div class="nav_links">
                         <a href="search-page.jsp">Ricerca avanzata</a>
