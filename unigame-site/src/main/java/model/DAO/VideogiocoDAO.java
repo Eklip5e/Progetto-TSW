@@ -59,7 +59,7 @@ public class VideogiocoDAO implements model.DAO.MetodiDAO<Videogioco> {
                     "UPDATE VIDEOGIOCO SET titolo = ?, piattaforma = ?, dataRilascio = ?, descrizione = ?, prezzo = ?, sconto = ?, Produttore = ?, appIdSteam = ? WHERE idVideogioco = ?");
             ps.setString(1, videogioco.getTitolo());
             ps.setString(2, videogioco.getPiattaforma());
-            ps.setDate(3, new Date(videogioco.getDataRilascio().getTime()));
+            ps.setDate(3, new java.sql.Date(videogioco.getDataRilascio().getTime()));
             ps.setString(4, videogioco.getDescrizione());
             ps.setDouble(5, videogioco.getPrezzo());
             ps.setInt(6, videogioco.getSconto());
@@ -152,6 +152,47 @@ public class VideogiocoDAO implements model.DAO.MetodiDAO<Videogioco> {
             throw new RuntimeException(e);
         }
         return giochi;
+    }
+
+    public void doSaveOrUpdate(Videogioco videogioco) {
+        try (Connection con = ConPool.getConnection()) {
+            // Verifica se esiste
+            String checkSQL = "SELECT idVideogioco, quantità FROM Videogioco WHERE titolo = ? AND piattaforma = ?";
+            PreparedStatement checkStmt = con.prepareStatement(checkSQL);
+            checkStmt.setString(1, videogioco.getTitolo());
+            checkStmt.setString(2, videogioco.getPiattaforma());
+
+            ResultSet rs = checkStmt.executeQuery();
+
+            if (rs.next()) {
+                // Già esistente → aggiorna quantità
+                int id = rs.getInt("idVideogioco");
+                int quantitàAttuale = rs.getInt("quantità");
+                int nuovaQuantità = quantitàAttuale + videogioco.getQuantità(); // somma quantità
+
+                String updateSQL = "UPDATE Videogioco SET quantità = ? WHERE idVideogioco = ?";
+                PreparedStatement updateStmt = con.prepareStatement(updateSQL);
+                updateStmt.setInt(1, nuovaQuantità);
+                updateStmt.setInt(2, id);
+                updateStmt.executeUpdate();
+            } else {
+                // Nuovo gioco → inserisci
+                String insertSQL = "INSERT INTO Videogioco (titolo, piattaforma, dataRilascio, descrizione, produttore, appIdSteam, quantità, prezzo, sconto) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement insertStmt = con.prepareStatement(insertSQL);
+                insertStmt.setString(1, videogioco.getTitolo());
+                insertStmt.setString(2, videogioco.getPiattaforma());
+                insertStmt.setDate(3, new java.sql.Date(videogioco.getDataRilascio().getTime()));
+                insertStmt.setString(4, videogioco.getDescrizione());
+                insertStmt.setString(5, videogioco.getProduttore());
+                insertStmt.setInt(6, videogioco.getAppIdSteam());
+                insertStmt.setInt(7, videogioco.getQuantità());
+                insertStmt.setDouble(8, videogioco.getPrezzo());
+                insertStmt.setInt(9, videogioco.getSconto());
+                insertStmt.executeUpdate();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore nel salvataggio o aggiornamento del videogioco", e);
+        }
     }
 
     public List<Videogioco> doRetrieveByFiltro(String titolo, String piattaforma, String genere, Double prezzoMin, Double prezzoMax) throws SQLException {

@@ -4,13 +4,15 @@
 
 <div class="modal-add-game">
     <div class="modal-content">
-        <span id="close-modal" onclick="chiudiModale()">x</span>
+        <span id="close-modal" onclick="chiudiModaleAddGame()">x</span>
 
         <h2>Nuovo Videogioco</h2>
         <form action="AggiungiVideogiocoServlet">
             <input name="titolo" type="text" placeholder="Titolo" required>
 
             <select name="piattaforma" required>
+                <option value="">-- Seleziona una piattaforma --</option>
+
                 <option value="pc">PC</option>
                 <option value="playstation">PlayStation</option>
                 <option value="xbox">Xbox</option>
@@ -35,11 +37,13 @@
 </div>
 
 <script>
-    function apriModale() {
+    function apriModaleAddGame() {
         document.getElementsByClassName("modal-add-game")[0].style.display = "flex";
     }
 
-    function chiudiModale() {
+    function chiudiModaleAddGame() {
         document.getElementsByClassName("modal-add-game")[0].style.display = "none";
     }
 </script>
+
+<script src="js/formatDateInput.js"></script>

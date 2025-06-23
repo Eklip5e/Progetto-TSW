@@ -8,6 +8,7 @@ public class Videogioco {
     private String descrizione;
     private String produttore;
     private int appIdSteam;
+    private int quantità;
     private double prezzo;
     private int sconto;
 
@@ -65,6 +66,14 @@ public class Videogioco {
 
     public void setAppIdSteam(int appIdSteam) {
         this.appIdSteam = appIdSteam;
+    }
+
+    public int getQuantità() {
+        return quantità;
+    }
+
+    public void setQuantità(int quantità) {
+        this.quantità = quantità;
     }
 
     public double getPrezzo() {

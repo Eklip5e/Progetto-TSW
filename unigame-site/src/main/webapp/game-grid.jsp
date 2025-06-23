@@ -21,7 +21,7 @@
             <%
                 if (utente != null && utente.isAdmin()) {
             %>
-                    <div class="game-card card-add-game" onclick="apriModale()">
+                    <div class="game-card card-add-game" onclick="apriModaleAddGame()">
                         <span class="plus">+</span>
                     </div>
             <%

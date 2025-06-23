@@ -23,23 +23,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
+<main>
 
 <%@ include file="navbar.jsp" %>
 
-<div class="profile-container">
-    <div class="profile-header">
-        <h1>Ciao, <%= utente.getUsername() %>!</h1>
+<div class="user-profile">
+    <div class="user-profile-header">
+        <span>Bentornato, <%= utente.getUsername() %>!</span>
+        <button onclick="apriModaleUpdateProfile()">Modifica profilo</button>
     </div>
-
-    <div class="profile-info">
-        <span><strong>Username:</strong> <%= utente.getUsername() %></span>
-        <span><strong>Email:</strong> <%= utente.getEmail() %></span>
-        <span><strong>Nome:</strong> <%= utente.getNome() %></span>
-        <span><strong>Cognome:</strong> <%= utente.getCognome() %></span>
+    <div class="user-profile-content">
+        <a class="user-orders">
+            <i class="fa-solid fa-truck-fast"></i>
+            <span>I miei ordini</span>
+        </a>
+        <a class="user-favorites">
+            <i class="fa-solid fa-heart"></i>
+            <span>Preferiti</span>
+        </a>
+        <a class="user-reviews">
+            <i class="fa-solid fa-star"></i>
+            <span>Recensioni</span>
+        </a>
     </div>
-
-    <a class="edit-button" href="#">Modifica Profilo</a>
 </div>
+
+    <%@ include file="modals/modal-update-profile.jsp" %>
+
+</main>
 
 <%@ include file="footer.jsp" %>
 

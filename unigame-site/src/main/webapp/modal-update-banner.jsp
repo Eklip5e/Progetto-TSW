@@ -9,7 +9,7 @@
         <h2>Modifica banner</h2>
         <form action="updateBanner">
             <select name="videogioco">
-                <option value="">-- Seleziona un gioco --</option>
+                <option value="">-- Seleziona un videogioco --</option>
                 <%
                     for (Videogioco videogioco : videogiochi) {
                 %>
@@ -18,7 +18,7 @@
                     }
                 %>
             </select>
-            <input type="submit" value="Modifica">
+            <input type="submit" id="update-banner-button" value="Modifica">
         </form>
     </div>
 </div>

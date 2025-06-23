@@ -9,9 +9,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/wallpaper.jpg" afterDir="false" />
@@ -31,15 +28,9 @@
       <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" afterDir="false" />
     </list>
-=======
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
->>>>>>> Stashed changes
-=======
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
->>>>>>> Stashed changes
-=======
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

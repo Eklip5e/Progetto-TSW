@@ -1,4 +1,4 @@
-.modal-add-game, .modal-update-banner, .modal-add-banner {
+.modal-add-game, .modal-update-banner, .modal-add-banner, .modal-update-profile {
     display: none;
     justify-content: center;
     align-items: center;
@@ -59,12 +59,12 @@ form select {
     appearance: none;
 }
 
-#add-button {
+#add-button, #update-banner-button, #update-profile-button {
     background: var(--fire-gradient);
     border: none;
 }
 
-#add-button:hover {
+#add-button:hover, #update-banner-button:hover, #update-profile-button:hover {
     background: var(--fire-gradient-hover);
     outline: none;
 }

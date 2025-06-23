@@ -65,5 +65,7 @@
     <script src="js/register.js"></script>
 
     <%@ include file="footer.jsp" %>
+
+    <script src="js/formatDateInput.js"></script>
 </body>
 </html>
