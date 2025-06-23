@@ -10,27 +10,108 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/wallpaper.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Tabelle aggiornate.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Tabelle aggiornate.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-grid.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-grid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/game-grid.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/game-grid.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/game-page.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/game-page.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/TSW.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/TSW.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/dataSources.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.idea/webContexts.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/AggiungiAlCarrelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/AggiungiBannerServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/CategoriaServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/CercaVideogiocoServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/CheckEmailServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/LoginServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/MostraCarrelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/ProfiloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/RegisterServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/RegisterServletbkp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/RimuoviVideogiocoDalCarrelloServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/RimuoviVideogiocoServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/UpdateBannerServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/UserServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/controller/admin/AggiungiVideogiocoServlet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Banner.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Carrello.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Chiave.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Contiene.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/BannerDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/CarrelloDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/ChiaveDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/ConPool.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/ContieneDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/DatiFatturazioneDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/FatturaDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/GenereDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/ImgDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/MetodiDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/RigaCarrelloDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/UtenteDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DAO/VideogiocoDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/DatiFatturazione.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Fattura.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Genere.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Img.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/RigaCarrello.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Utente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/java/com/unigame/model/Videogioco.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/WEB-INF/init.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/WEB-INF/web.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/carrello.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/categorie/nintendo.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/categorie/pc.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/categorie/playstation.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/categorie/xbox.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/carrello.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/footer.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-grid.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-page.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/modal.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/navbar.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/profilo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/register.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/search-page.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/footer.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/game-grid.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/game-page.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/home.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/banners/theLastOfUs-banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/copertine/game8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/game-banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/unigameLogo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/wallpaper.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/js/logo.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/js/modale.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/js/register.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/js/scripts.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/modal-add-banner.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/modal-add-game.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/modal-update-banner.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/profilo.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/search-page.jsp" beforeDir="false" />
     </list>
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,12 +141,12 @@
     &quot;assignee&quot;: &quot;Eklip5e&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Eklip5e/Progetto-TSW.git&quot;,
-    &quot;accountId&quot;: &quot;97b5d9ed-c00e-433e-ad78-65929e60b984&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Eklip5e/Progetto-TSW.git",
+    "accountId": "1883e36d-aeb6-4f84-b32e-695d4d03180b"
   }
-}</component>
+}]]></component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -82,47 +163,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.uniGame [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.uniGame [org.apache.maven.plugins:maven-war-plugin:3.3.1:exploded].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.syncdb.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.6.executor": "Run",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    "git-widget-placeholder": "Merging main",
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven.uniGame [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.uniGame [org.apache.maven.plugins:maven-war-plugin:3.3.1:exploded].executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Python.syncdb.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.6.executor&quot;: &quot;Run&quot;,
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; Updated upstream
+    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
 =======
-    "git-widget-placeholder": "Nello",
->>>>>>> Stashed changes
+    &quot;git-widget-placeholder&quot;: &quot;Nello&quot;,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes
 =======
-    "git-widget-placeholder": "c81cd29e",
-    "ignore.virus.scanning.warn.message": "true",
->>>>>>> Stashed changes
+    &quot;git-widget-placeholder&quot;: &quot;c81cd29e&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes
 =======
-    "git-widget-placeholder": "c81cd29e",
-    "ignore.virus.scanning.warn.message": "true",
->>>>>>> Stashed changes
-    "last_opened_file_path": "D:/Github/Progetto-TSW/src/main/webapp/img/user",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+    &quot;git-widget-placeholder&quot;: &quot;c81cd29e&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Stashed changes
+    &quot;last_opened_file_path&quot;: &quot;D:/Github/Progetto-TSW/src/main/webapp/img/user&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="Push.Settings">
     <force-push-targets>
       <force-push-target remote-path="origin" branch="Third" />
@@ -141,7 +222,7 @@
       <recent name="D:\Github\Progetto-TSW\src\main\webapp\img" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.6">
+  <component name="RunManager">
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -203,37 +284,9 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
-    <configuration name="syncdb" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="unigame" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/External Scripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/External Scripts/syncdb.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <configuration name="Tomcat 11.0.6" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.6" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="uniGame:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/uniGame_war_exploded" />
-          </settings>
-        </artifact>
-      </deployment>
+      <deployment />
       <server-settings>
         <option name="BASE_DIRECTORY_NAME" value="4fb8a569-0b5c-4658-b5dd-8c52389140f5" />
       </server-settings>
@@ -244,6 +297,9 @@
       <predefined_log_file id="Tomcat Localhost Access" />
       <RunnerSettings RunnerId="AppServerDebuggerRunner">
         <option name="DEBUG_PORT" value="59014" />
+      </RunnerSettings>
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="50713" />
       </RunnerSettings>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="AppServerDebuggerRunner">
         <option name="USE_ENV_VARIABLES" value="true" />
@@ -261,6 +317,21 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
           <option name="USE_DEFAULT" value="true" />
@@ -312,9 +383,6 @@
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Tomcat Server.Tomcat 11.0.6" />
-    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -354,6 +422,7 @@
       <workItem from="1750415990930" duration="3123000" />
       <workItem from="1750419186565" duration="876000" />
       <workItem from="1750629922832" duration="28000" />
+      <workItem from="1750670192606" duration="145000" />
     </task>
     <servers />
   </component>
