@@ -16,7 +16,7 @@
 <%
     String navbar = null;
 
-    if (paginaCorrente.equals("home.jsp")) {
+    if (!paginaCorrente.equals("search-page.jsp")) {
         navbar = "navbar";
     } else {
         navbar = "navbar-static";
@@ -30,7 +30,7 @@
         </a>
         <%
             if (!paginaCorrente.equals("register.jsp") && !paginaCorrente.equals("login.jsp")) {
-                if(!paginaCorrente.equals("search-page.jsp")) {
+                if(!paginaCorrente.equals("search-page.jsp") && !paginaCorrente.equals("carrello.jsp")) {
         %>
                     <div class="nav_links">
                         <a href="search-page.jsp">Ricerca avanzata</a>
@@ -42,7 +42,8 @@
                         </ul>
                     </div>
         <%
-                } else {
+            }
+            if (paginaCorrente.equals("search-page.jsp")) {
         %>
                     <div class="search-bar">
                         <form action="cercaVideogiochi" class="search-form">
@@ -76,7 +77,65 @@
                         </form>
                     </div>
         <%
-                }
+            }
+            if (paginaCorrente.equals("carrello.jsp")) {
+        %>
+                <div class="purchase-progress">
+                    <span class="step active">
+                        <span id="number">1</span>
+                        <span id="text">Carrello</span>
+                        <span id="spacer"></span>
+                    </span>
+                    <span class="step">
+                        <span id="number">2</span>
+                        <span id="text">Pagamento</span>
+                        <span id="spacer"></span>
+                    </span>
+                    <span class="step">
+                        <span id="number">3</span>
+                        <span id="text">Attivazione</span>
+                    </span>
+                </div>
+        <%
+            } else if (paginaCorrente.equals("pagamento.jsp")) {
+        %>
+                <div class="purchase-progress">
+                    <span class="step">
+                        <span id="number">1</span>
+                        <span id="text">Carrello</span>
+                        <span id="spacer"></span>
+                    </span>
+                    <span class="step active">
+                        <span id="number">2</span>
+                        <span id="text">Pagamento</span>
+                        <span id="spacer"></span>
+                    </span>
+                    <span class="step">
+                        <span id="number">3</span>
+                        <span id="text">Attivazione</span>
+                    </span>
+                </div>
+        <%
+            } else if (paginaCorrente.equals("attivazione.jsp")) {
+        %>
+                <div class="purchase-progress">
+                    <span class="step">
+                        <span id="number">1</span>
+                        <span id="text">Carrello</span>
+                        <span id="spacer"></span>
+                    </span>
+                    <span class="step">
+                        <span id="number">2</span>
+                        <span id="text">Pagamento</span>
+                        <span id="spacer"></span>
+                    </span>
+                    <span class="step active">
+                        <span id="number">3</span>
+                        <span id="text">Attivazione</span>
+                    </span>
+                </div>
+        <%
+            }
         %>
 
         <div class="header-icons">

@@ -1,138 +1,179 @@
-﻿/* Layout generale */
-.contenitore-carrello {
+﻿.cart-page {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 50px;
-    margin-top: 5%;
+    align-items: center;
+    gap: 20px;
+
+    width: 100%;
+    height: 100vh;
 }
 
-/* Blocco carrello */
-.carrello {
-    background-color: #24252A;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
+.cart {
     display: flex;
     flex-direction: column;
-    gap: 25px;
-    margin-top: 20px;
-    padding: 20px;
+    justify-content: center;
+}
+
+.cart h2 {
+    margin-bottom: 20px;
+}
+
+.cart-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     width: 600px;
-}
 
-/* Riga singola nel carrello */
-.riga-carrello {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: space-between;
-}
-
-/* Copertina immagine */
-.copertina img {
-    border-radius: 10px;
-}
-
-/* Informazioni e pulsanti */
-.info-gioco {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
-    justify-content: space-around;
-}
-
-.info-gioco h3 {
-    font-size: 15px;
-    font-weight: 400;
-}
-
-.azioni {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
-
-.azioni a {
-    color: white;
-    font-size: 12px;
-    font-weight: 400;
-    text-decoration: none;
-}
-
-/* Prezzo */
-.prezzo-gioco {
-    align-items: center;
-    display: flex;
-}
-
-/* Riepilogo */
-.sezione-riepilogo {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.info-riepilogo {
-    background-color: #24252A;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    justify-content: space-between;
     padding: 20px;
-    width: 400px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
 }
 
-.info-riepilogo .pulsanti {
+.cart-content .products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+}
+
+.empty-cart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.cart-content .empty-cart i {
+    color: var(--color);
+
+    font-size: 50px;
+}
+
+.cart-content .empty-cart span {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.empty-cart p {
+    text-align: center;
+
+    color: var(--color-light);
+}
+
+.empty-cart button {
+    padding: 15px;
+
+    border: 1px solid var(--color-medium-light);
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background-color: hsla(0, 0%, 6%, 0.4);
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.empty-cart button:hover {
+    outline: 2px solid var(--color);
+    outline-offset: -2px;
+}
+
+.cart-summary {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-summary h2 {
+    margin-bottom: 20px;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+
+    width: 300px;
+
+    padding: 20px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
+}
+
+.summary-content .price-row {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    justify-content: center;
-}
 
-.info-riepilogo .pulsanti button {
-    background-color: #9B72CF;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 17px;
-    padding: 15px;
     width: 100%;
 }
 
-.info-riepilogo .pulsanti a {
-    color: white;
-    text-decoration: none;
+.summary-row {
+    display: flex;
+    justify-content: space-between;
 }
 
-.info-riepilogo ul {
-    align-items: center;
+.summary-content .actions {
     display: flex;
     flex-direction: column;
-}
+    align-items: center;
+    gap: 5px;
 
-.info-riepilogo ul li {
-    list-style: none;
-}
-
-.riepilogo-lista {
-    display: flex;
-    gap: 25px;
-    list-style: none; /* toglie i pallini */
-    margin: 0;
-    padding: 0;
-}
-
-.riepilogo-riga {
-    display: flex;
-    font-size: 20px;
-    justify-content: space-between;
     width: 100%;
 }
 
-.riepilogo-riga:last-child {
-    font-size: 25px;   /* più grande l’ultimo */
-    font-weight: bold; /* grassetto */
+.summary-content #button {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background: var(--fire-gradient);
+    color: #fff;
+
+    cursor: pointer;
+}
+
+.summary-content #button:hover {
+    background: var(--fire-gradient-hover);
+}
+
+.summary-content #choice {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    color: var(--color-light);
+}
+
+.summary-content #choice::before {
+    background-color: hsla(0,0%,100%,.2);
+    content: "";
+    height: 1px;
+    position: relative;
+    top: 9px;
+    width: 100%;
+}
+
+.summary-content #choice::after {
+    background-color: hsla(0,0%,100%,.2);
+    content: "";
+    height: 1px;
+    position: relative;
+    top: 9px;
+    width: 100%;
 }

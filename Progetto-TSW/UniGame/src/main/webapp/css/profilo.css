@@ -3,9 +3,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 75px;
 
-    margin: 50px auto;
+    height: 100vh;
 }
 
 .user-profile-header {
@@ -33,6 +33,8 @@
 
     color: #fff;
     background: var(--fire-gradient);
+
+    cursor: pointer;
 }
 
 .user-profile button:hover {

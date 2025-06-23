@@ -39,10 +39,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
-    <%@ include file="navbar.jsp" %>
-        <main>
-            <%-- nav-bar --%>
 
+        <main>
+            <%@ include file="navbar.jsp" %>
             <%
                 if (videogiocoBanner != null) {
             %>
@@ -88,7 +87,7 @@
 
             <%@ include file="game-grid.jsp" %>
 
-            <%-- modali --%>
+            <%-- modals --%>
             <%@ include file="modal-add-banner.jsp" %>
 
             <%@ include file="modal-update-banner.jsp" %>

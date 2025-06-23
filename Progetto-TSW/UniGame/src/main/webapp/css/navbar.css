@@ -76,10 +76,56 @@
     color: var(--color-link-hover);
 }
 
+.purchase-progress {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.purchase-progress .step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--color-medium-light);
+}
+
+.purchase-progress .step #number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid var(--color-medium-light);
+    border-radius: 20px;
+
+    width: 25px;
+    height: 25px;
+
+    font-size: 15px;
+}
+
+.purchase-progress .step #text {
+    font-size: 15px;
+}
+
+.purchase-progress .step #spacer {
+    width: 50px;
+    height: 1px;
+
+    background-color: hsla(0,0%,100%,.3);
+}
+
+.purchase-progress .active {
+    color: #fff;
+}
+
+.purchase-progress .active #number {
+    border: 1px solid #fff;
+}
+
 .header-icons {
     display: flex;
-    justify-content: right;
-    gap: 20px;
+    justify-content: space-between;
 
     width: 100px;
 }
