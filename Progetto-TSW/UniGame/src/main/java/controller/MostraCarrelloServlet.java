@@ -20,24 +20,29 @@ public class MostraCarrelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
+        Utente userSession = (Utente) session.getAttribute("utente");
 
-        if (utente != null) {
-            // Utente loggato → prendi dal DB
-            int idUtente = utente.getIdUtente();
+        if (userSession != null) {
+            int idUtente = userSession.getIdUtente();
             RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
-            List<RigaCarrello> righeCarrello = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
-            request.setAttribute("righeCarrello", righeCarrello);
+            List<RigaCarrello> userCart = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
+            request.setAttribute("userCart", userCart);
         } else {
-            // Utente ospite → prendi dalla sessione
-            List<Integer> carrelloGuest = (ArrayList<Integer>) session.getAttribute("carrelloGuest");
-            if (carrelloGuest == null) {
-                carrelloGuest = new ArrayList<>();
+            List<Integer> guestCart = (ArrayList<Integer>) session.getAttribute("guestCart");
+            if (guestCart == null) {
+                guestCart = new ArrayList<>();
             }
-            request.setAttribute("carrelloGuest", carrelloGuest);
+
+            request.setAttribute("guestCart", guestCart);
         }
 
-        request.getRequestDispatcher("/carrello.jsp").forward(request, response);
+        String paginaCorrente = request.getParameter("paginaCorrente");
+
+        if (paginaCorrente.equals("carrello.jsp")) {
+            request.getRequestDispatcher("/carrello.jsp").forward(request, response);
+        } else if (paginaCorrente.equals("pagamento.jsp")) {
+            request.getRequestDispatcher("/pagamento.jsp").forward(request, response);
+        }
     }
 
     @Override

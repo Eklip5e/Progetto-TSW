@@ -55,14 +55,14 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
 
         } else {
             // Utente ospite -> salva in sessione
-            List<Integer> carrelloGuest = (ArrayList<Integer>) session.getAttribute("carrelloGuest");
-            if (carrelloGuest == null) {
-                carrelloGuest = new ArrayList<>();
+            List<Integer> guestCart = (ArrayList<Integer>) session.getAttribute("guestCart");
+            if (guestCart == null) {
+                guestCart = new ArrayList<>();
             }
-            if (!carrelloGuest.contains(idVideogioco)) {
-                carrelloGuest.add(idVideogioco);
+            if (!guestCart.contains(idVideogioco)) {
+                guestCart.add(idVideogioco);
             }
-            session.setAttribute("carrelloGuest", carrelloGuest);
+            session.setAttribute("guestCart", guestCart);
         }
 
         response.sendRedirect("game-page.jsp?idVideogioco=" + idVideogioco + "&aggiunto=true");

@@ -1,17 +1,21 @@
 ﻿.cart-page {
     display: flex;
-    flex-direction: row;
     justify-content: center;
-    gap: 20px;
 
     width: 100%;
     height: 100vh;
 }
 
+.cart-page-content {
+    display: flex;
+    gap: 50px;
+
+    padding-top: 100px;
+}
+
 .cart {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .cart h2 {
@@ -24,11 +28,7 @@
 
     width: 600px;
 
-    padding: 20px;
-
     border-radius: 8px;
-
-    background-color: var(--color-medium-dark);
 }
 
 .cart-content .products {
@@ -36,20 +36,84 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 20px;
 }
 
-.product-line {
+.cart-item {
     display: flex;
     flex-direction: row;
     gap: 10px;
 
+    padding: 15px;
+
+    border-radius: 8px;
+
+    width: 100%;
+
+    background-color: var(--color-medium-dark);
+}
+
+.cart-item #cover {
+    border-radius: 8px;
+}
+
+.item-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     width: 100%;
 }
 
-.game-info {
+.price-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    gap: 20px;
+}
+
+.price-container hr {
+    width: 100%;
+    height: 1px;
+
+    border: none;
+
+    background-color: hsla(0,0%,100%,.2);
+}
+
+.numbers {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.numbers #price {
+    font-size: 20px;
+}
+
+.numbers .quantity-select {
+    padding: 10px;
+    border: 1px solid var(--color-medium-light);
+    border-radius: 8px;
+    background-color: hsla(0, 0%, 6%, 0.4);
+    color: #fff;
+    font-size: 15px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.price-container .actions a {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.price-container .actions a:hover {
+    color: var(--color-link-hover);
 }
 
 .empty-cart {
@@ -59,7 +123,13 @@
     align-items: center;
     gap: 30px;
 
+    padding: 20px;
+
     height: 250px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
 }
 
 .cart-content .empty-cart i {
@@ -101,7 +171,6 @@
 .cart-summary {
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .cart-summary h2 {

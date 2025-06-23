@@ -8,31 +8,33 @@
     request.setAttribute("paginaCorrente", "carrello.jsp");
 
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-    List<Videogioco> giochiCarrello = new ArrayList<>();
+    List<Videogioco> carrello = new ArrayList<>();
     double prezzoTotale = 0;
 
     Utente utente = (Utente) session.getAttribute("utente");
 
+    List<RigaCarrello> userCart = null;
+
     if(utente != null) {
-        List<RigaCarrello> carrello = (List<RigaCarrello>) request.getAttribute("righeCarrello");
-        if (carrello != null) {
-            for (RigaCarrello riga : carrello) {
+        userCart = (List<RigaCarrello>) request.getAttribute("userCart");
+        if (userCart != null) {
+            for (RigaCarrello riga : userCart) {
                 Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
                 if (videogioco != null) {
+                    carrello.add(videogioco);
                     for (int i = 0; i < riga.getQuantità(); i++) {
-                        giochiCarrello.add(videogioco);
                         prezzoTotale += videogioco.getPrezzo();
                     }
                 }
             }
         }
     } else {
-        List<Integer> carrelloGuest = (List<Integer>) session.getAttribute("carrelloGuest");
-        if (carrelloGuest != null) {
-            for (Integer idVideogioco : carrelloGuest) {
+        List<Integer> guestCart = (List<Integer>) session.getAttribute("guestCart");
+        if (guestCart != null) {
+            for (Integer idVideogioco : guestCart) {
                 Videogioco videogioco = videogiocoDAO.doRetrieveById(idVideogioco);
                 if (videogioco != null) {
-                    giochiCarrello.add(videogioco);
+                    carrello.add(videogioco);
                     prezzoTotale += videogioco.getPrezzo();
                 }
             }
@@ -56,33 +58,37 @@
         <%@ include file="navbar.jsp" %>
 
         <div class="cart-page">
+            <div class="cart-page-content">
             <div class="cart">
                 <h2>Carrello</h2>
                 <div class="cart-content">
                     <div class="products">
                         <%
-                            if (!giochiCarrello.isEmpty()) {
-                                for (Videogioco videogioco : giochiCarrello) {
+                            if (!carrello.isEmpty()) {
+                                for (Videogioco videogioco : carrello) {
                         %>
-                                    <div class="product-line">
+                                    <div class="cart-item">
                                         <img id="cover" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>" width="200">
-                                        <div class="game-info">
+                                        <div class="item-container">
                                             <h3><%= videogioco.getTitolo() %></h3>
-                                            <div class="purchase-options">
-                                                <div class="price-quantity">
-                                                    <span class="price"><%= videogioco.getPrezzo() %> €</span>
-                                                    <select class="quantity-select">
+                                            <div class="price-container">
+                                                <div class="numbers">
+                                                    <span id="price"><%= videogioco.getPrezzo() %> €</span>
+                                                    <select class="quantity-select" data-id="<%= videogioco.getIdVideogioco() %>">
                                                         <%
                                                             for (int i = 1; i <= 10; i++) {
+                                                                String selected = (utente != null && userCart != null)
+                                                                        ? userCart.stream().filter(r -> r.getIdVideogioco() == videogioco.getIdVideogioco()).findFirst().get().getQuantità() == i ? "selected" : ""
+                                                                        : "";
                                                         %>
-                                                        <option><%= i %></option>
+                                                        <option value="<%= i %>" <%= selected %>><%= i %></option>
                                                         <%
                                                             }
                                                         %>
                                                     </select>
                                                 </div>
-
-                                                <div class="cart-actions">
+                                                <hr>
+                                                <div class="actions">
                                                     <a href="RimuoviDalCarrello?idVideogioco=<%= videogioco.getIdVideogioco() %>" method="post">
                                                         <i class="fa-solid fa-trash"></i>
                                                     </a>
@@ -119,29 +125,56 @@
                     <div class="price-row">
                         <div class="summary-row">
                             <span>Prezzo ufficiale</span>
-                            <span>0 €</span>
+                            <span><%= String.format("%.2f", prezzoTotale) %> €</span>
                         </div>
                         <div class="summary-row">
                             <span>Sconto</span>
-                            <span>0 €</span>
+                            <span><%= String.format("%.2f", scontoTotale) %> €</span>
                         </div>
                         <div class="summary-row total">
                             <span>Somma parziale</span>
-                            <span>0 €</span>
+                            <span><%= String.format("%.2f", totaleFinale) %> €</span>
                         </div>
                     </div>
 
                     <div class="actions">
-                        <button id="button" onclick="window.location.href='pagamento.jsp'">Vai al pagamento</button>
+                        <button id="button" onclick="window.location.href='MostraCarrello?paginaCorrente=pagamento.jsp'">Vai al pagamento</button>
                         <span id="choice">o</span>
                         <a id="back" href="home.jsp">Continua lo shopping</a>
                     </div>
                 </div>
             </div>
+            </div>
         </div>
     </main>
 
 <%@ include file="footer.jsp" %>
+
+    <script>
+        document.querySelectorAll('.quantity-select').forEach(select => {
+            select.addEventListener('change', function () {
+                const idVideogioco = this.getAttribute('data-id');
+                const quantita = this.value;
+
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "AggiornaQuantitaCarrello", true);
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            location.reload(); // ricarica la pagina se tutto ok
+                        } else {
+                            alert("Errore durante l'aggiornamento della quantità.");
+                            console.error("Errore AJAX:", xhr.responseText);
+                        }
+                    }
+                };
+
+                xhr.send("idVideogioco=" + encodeURIComponent(idVideogioco) + "&quantita=" + encodeURIComponent(quantita));
+            });
+        });
+    </script>
 
 </body>
 </html>

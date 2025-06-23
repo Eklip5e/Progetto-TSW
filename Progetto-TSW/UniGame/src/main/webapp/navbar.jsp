@@ -19,7 +19,7 @@
 <%
     String navbar = null;
 
-    if (!paginaCorrente.equals("search-page.jsp")) {
+    if (paginaCorrente.equals("home.jsp")) {
         navbar = "navbar";
     } else {
         navbar = "navbar-static";
@@ -142,7 +142,7 @@
         %>
 
         <div class="header-icons">
-            <a href="MostraCarrello"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="MostraCarrello?paginaCorrente=carrello.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
             <%
                 Utente utenteLoggato = (Utente) session.getAttribute("utente");
                 if (utenteLoggato != null) {
