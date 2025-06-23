@@ -21,31 +21,47 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String idVideogiocoStr = request.getParameter("idVideogioco");
-        HttpSession session = request.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
 
         if (idVideogiocoStr == null || idVideogiocoStr.isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Id videogioco mancante");
             return;
         }
 
-        int idVideogioco = Integer.parseInt(idVideogiocoStr);
+        int idVideogioco;
+        try {
+            idVideogioco = Integer.parseInt(idVideogiocoStr);
+        } catch (NumberFormatException e) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Id videogioco non valido");
+            return;
+        }
 
-        if (utente != null) {
-            // Utente loggato -> salva su DB
-            RigaCarrello riga = new RigaCarrello();
-            riga.setIdUtente(utente.getIdUtente());
-            riga.setIdVideogioco(idVideogioco);
+        HttpSession session = request.getSession();
+        Utente userSession = (Utente) session.getAttribute("utente");
 
-            RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
-            rigaCarrelloDAO.doSave(riga);
+        RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
+
+        if (userSession != null) {
+            int idUtente = userSession.getIdUtente();
+
+            if(rigaCarrelloDAO.exists(idUtente, idVideogioco)) {
+                rigaCarrelloDAO.incrementaQuantita(idUtente, idVideogioco);
+            } else {
+                RigaCarrello rigaCarrello = new RigaCarrello();
+                rigaCarrello.setQuantità(1);
+                rigaCarrello.setIdUtente(idUtente);
+                rigaCarrello.setIdVideogioco(idVideogioco);
+                rigaCarrelloDAO.doSave(rigaCarrello);
+            }
+
         } else {
             // Utente ospite -> salva in sessione
             List<Integer> carrelloGuest = (ArrayList<Integer>) session.getAttribute("carrelloGuest");
             if (carrelloGuest == null) {
                 carrelloGuest = new ArrayList<>();
             }
-            carrelloGuest.add(idVideogioco);
+            if (!carrelloGuest.contains(idVideogioco)) {
+                carrelloGuest.add(idVideogioco);
+            }
             session.setAttribute("carrelloGuest", carrelloGuest);
         }
 

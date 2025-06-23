@@ -2,41 +2,41 @@
     height: 500px;
 }
 
-.content {
+.game-page-content {
     position: relative;
-    top: -150px;
+    top: -107.5px;
 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 50px;
-    margin: 0 auto;
-}
-
-.panel-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 50px;
-    width: 100%;
 }
 
-.game-cover img{
-    width: 600px;
-    height: 300px;
+#game-cover img {
     border-radius: 8px;
 }
 
 .game-info {
-    background: linear-gradient(to bottom, #323232, #272727);
-    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    min-width: 400px;
-    max-width: 400px;
+    gap: 25px;
+
+    width: 400px;
+
     padding: 20px;
+
+    border-radius: 8px;
+
+    background: linear-gradient(to bottom, #323232, #272727);
+}
+
+.game-info .platform {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    width: 100%;
 }
 
 .game-info select {
@@ -52,6 +52,10 @@
 }
 
 .stock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
     background-color: hsla(0, 0%, 6%, 0.4);
 
     border-radius: 20px;
@@ -59,23 +63,28 @@
 }
 
 .stock i {
+    padding: 5px;
+
+    border: 1px solid green;
+    border-radius: 100px;
+
     color: green;
 }
 
 .amount {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 10px;
 }
 
 .discount {
-    background: var(--fire-gradient);
-    border-radius: 8px;
-    padding: 5px 10px;
+    font-size: 25px;
+
+    color: var(--color);
 }
 
 .total {
-    font-size: 30px;
+    font-size: 45px;
     font-weight: 400;
 }
 
@@ -111,6 +120,7 @@
 .details {
     display: flex;
     flex-direction: row;
+    justify-content: center;
     gap: 50px;
 }
 
@@ -118,31 +128,35 @@
     display: flex;
     flex-direction: column;
     gap: 30px;
+
+    width: 460px;
 }
 
-.left-column {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    max-width: 1200px;
-}
+.product-text p {
+    font-size: 15px;
+    line-height: 25px;
+    text-align: justify;
 
-.left-column .product-text {
-    max-width: 600px;
-}
-
-.right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-    max-width: 350px;
+    color: var(--color-light);
 }
 
 .specifics {
     display: flex;
     flex-direction: column;
+    gap: 30px;
+
+    width: 440px;
 }
 
-.specifics ul{
-    list-style: none;
+.specifics .list{
+    line-height: 25px;
+}
+
+.list-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-item #label {
+    color: var(--color-light);
 }

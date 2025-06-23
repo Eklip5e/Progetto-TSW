@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
     gap: 20px;
 
     width: 100%;
@@ -22,8 +21,6 @@
 .cart-content {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 
     width: 600px;
 
@@ -41,12 +38,28 @@
     align-items: center;
 }
 
+.product-line {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+    width: 100%;
+}
+
+.game-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .empty-cart {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 30px;
+
+    height: 250px;
 }
 
 .cart-content .empty-cart i {
@@ -88,6 +101,7 @@
 .cart-summary {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .cart-summary h2 {
@@ -102,6 +116,7 @@
     gap: 30px;
 
     width: 300px;
+    height: 250px;
 
     padding: 20px;
 
@@ -127,7 +142,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 
     width: 100%;
 }
@@ -155,20 +170,14 @@
 .summary-content #choice {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
+
+    width: 100%;
 
     color: var(--color-light);
 }
 
-.summary-content #choice::before {
-    background-color: hsla(0,0%,100%,.2);
-    content: "";
-    height: 1px;
-    position: relative;
-    top: 9px;
-    width: 100%;
-}
-
+.summary-content #choice::before,
 .summary-content #choice::after {
     background-color: hsla(0,0%,100%,.2);
     content: "";
@@ -176,4 +185,14 @@
     position: relative;
     top: 9px;
     width: 100%;
+}
+
+.summary-content .actions #back {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.summary-content .actions #back:hover {
+    color: var(--color-link-hover);
 }

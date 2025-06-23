@@ -8,12 +8,17 @@ import java.util.List;
 public class RigaCarrelloDAO {
 
     public void doSave(RigaCarrello riga) {
-        String sql = "INSERT INTO RigaCarrello (idUtente, idVideogioco) VALUES (?, ?)";
+        String sql = "INSERT INTO RigaCarrello (quantità, idUtente, idVideogioco) VALUES (?, ?, ?)";
+
         try (Connection con = ConPool.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, riga.getIdUtente());
-            ps.setInt(2, riga.getIdVideogioco());
+
+            ps.setInt(1, riga.getQuantità());
+            ps.setInt(2, riga.getIdUtente());
+            ps.setInt(3, riga.getIdVideogioco());
+
             ps.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -50,13 +55,32 @@ public class RigaCarrelloDAO {
         }
     }
 
-    public void incrementaQuantita(int idUtente, int idVideogioco) {
-        String sql = "UPDATE RigaCarrello SET quantita = quantita + 1 WHERE idUtente = ? AND idVideogioco = ?";
-        try (Connection con = ConPool.getConnection();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+    public boolean exists(int idUtente, int idVideogioco) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT 1 FROM rigaCarrello WHERE idUtente = ? AND idVideogioco = ?"
+            );
+
             ps.setInt(1, idUtente);
             ps.setInt(2, idVideogioco);
+            ResultSet rs = ps.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public void incrementaQuantita(int idUtente, int idVideogioco) {
+        String sql = "UPDATE RigaCarrello SET quantità = quantità + 1 WHERE idUtente = ? AND idVideogioco = ?";
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idUtente);
+            ps.setInt(2, idVideogioco);
+
             ps.executeUpdate();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

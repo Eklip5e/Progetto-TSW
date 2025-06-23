@@ -11,6 +11,9 @@
 
 <head>
     <link rel="stylesheet" href="css/navbar.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <%
@@ -30,7 +33,7 @@
         </a>
         <%
             if (!paginaCorrente.equals("register.jsp") && !paginaCorrente.equals("login.jsp")) {
-                if(!paginaCorrente.equals("search-page.jsp") && !paginaCorrente.equals("carrello.jsp")) {
+                if(!paginaCorrente.equals("search-page.jsp") && !paginaCorrente.equals("carrello.jsp") && !paginaCorrente.equals("pagamento.jsp")) {
         %>
                     <div class="nav_links">
                         <a href="search-page.jsp">Ricerca avanzata</a>

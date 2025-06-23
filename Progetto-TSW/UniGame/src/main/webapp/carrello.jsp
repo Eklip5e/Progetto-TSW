@@ -2,13 +2,42 @@
 <%@ page import="model.DAO.VideogiocoDAO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.Videogioco" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%
     request.setAttribute("paginaCorrente", "carrello.jsp");
 
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-    List<RigaCarrello> righeCarrello = (List<RigaCarrello>) request.getAttribute("righeCarrello");
+    List<Videogioco> giochiCarrello = new ArrayList<>();
     double prezzoTotale = 0;
+
+    Utente utente = (Utente) session.getAttribute("utente");
+
+    if(utente != null) {
+        List<RigaCarrello> carrello = (List<RigaCarrello>) request.getAttribute("righeCarrello");
+        if (carrello != null) {
+            for (RigaCarrello riga : carrello) {
+                Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
+                if (videogioco != null) {
+                    for (int i = 0; i < riga.getQuantità(); i++) {
+                        giochiCarrello.add(videogioco);
+                        prezzoTotale += videogioco.getPrezzo();
+                    }
+                }
+            }
+        }
+    } else {
+        List<Integer> carrelloGuest = (List<Integer>) session.getAttribute("carrelloGuest");
+        if (carrelloGuest != null) {
+            for (Integer idVideogioco : carrelloGuest) {
+                Videogioco videogioco = videogiocoDAO.doRetrieveById(idVideogioco);
+                if (videogioco != null) {
+                    giochiCarrello.add(videogioco);
+                    prezzoTotale += videogioco.getPrezzo();
+                }
+            }
+        }
+    }
 %>
 
 <!DOCTYPE html>
@@ -32,25 +61,37 @@
                 <div class="cart-content">
                     <div class="products">
                         <%
-                            if (righeCarrello != null) {
-                                for (RigaCarrello riga : righeCarrello) {
-                                    Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
-                                    if (videogioco != null) {
-                                        prezzoTotale += videogioco.getPrezzo();
+                            if (!giochiCarrello.isEmpty()) {
+                                for (Videogioco videogioco : giochiCarrello) {
                         %>
-                        <div class="product-line">
-                            <div class="game-info">com
-                                <img id="cover" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>" width="200">
-                                <h3><%= videogioco.getTitolo() %></h3>
-                                <div class="actions">
-                                    <a href="RimuoviDalCarrello?idVideogioco=<%= videogioco.getIdVideogioco() %>" method="post"><i class="fa-solid fa-trash"></i></a>
-                                    <a href="#">Lista dei desideri</a>
-                                </div>
-                                <span id="price"><%= videogioco.getPrezzo() %> €</span>
-                            </div>
-                        </div>
+                                    <div class="product-line">
+                                        <img id="cover" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>" width="200">
+                                        <div class="game-info">
+                                            <h3><%= videogioco.getTitolo() %></h3>
+                                            <div class="purchase-options">
+                                                <div class="price-quantity">
+                                                    <span class="price"><%= videogioco.getPrezzo() %> €</span>
+                                                    <select class="quantity-select">
+                                                        <%
+                                                            for (int i = 1; i <= 10; i++) {
+                                                        %>
+                                                        <option><%= i %></option>
+                                                        <%
+                                                            }
+                                                        %>
+                                                    </select>
+                                                </div>
+
+                                                <div class="cart-actions">
+                                                    <a href="RimuoviDalCarrello?idVideogioco=<%= videogioco.getIdVideogioco() %>" method="post">
+                                                        <i class="fa-solid fa-trash"></i>
+                                                    </a>
+                                                    <a href="#">Lista dei desideri</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                         <%
-                                    }
                                 }
                             } else {
                         %>
@@ -58,7 +99,7 @@
                                     <i class="fa-solid fa-cart-shopping"></i>
                                     <span>Il tuo carrello è vuoto</span>
                                     <p>Non hai ancora aggiunto nessun articolo nel carrello. Sfoglia il sito per trovare offerte fantastiche! <p>
-                                    <button>Scopri i giochi</button>
+                                    <button onclick="window.location.href='home.jsp'">Scopri i giochi</button>
                                 </div>
                         <%
                             }
@@ -91,9 +132,9 @@
                     </div>
 
                     <div class="actions">
-                        <button id="button">Vai al pagamento</button>
+                        <button id="button" onclick="window.location.href='pagamento.jsp'">Vai al pagamento</button>
                         <span id="choice">o</span>
-                        <a id="back">Continua lo shopping</a>
+                        <a id="back" href="home.jsp">Continua lo shopping</a>
                     </div>
                 </div>
             </div>
