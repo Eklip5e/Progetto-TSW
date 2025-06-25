@@ -32,10 +32,10 @@
         <h1>Registrati</h1>
         <form action="register" method="post">
             <!-- Username -->
-            <input type="text" name="username" required placeholder="Il tuo username:">
+            <input type="text" id="username" name="username" required placeholder="Il tuo username:">
 
             <!-- Email -->
-            <input type="email" name="email" required placeholder="La tua email:">
+            <input type="email" id="email" name="email" required placeholder="La tua email:">
 
             <!-- Password -->
             <input placeholder="La tua password:" name="password" type="password" required>
@@ -49,12 +49,10 @@
             <!-- Data di Nascita -->
             <input placeholder="Data di nascita (dd/mm/yyyy)" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
 
-            <% if (request.getAttribute("error") != null) { %>
-                <p style="color:red;"><%= request.getAttribute("error") %></p>
-            <% } %>
+            <p id="warning" style="color:red;"></p>
 
             <!-- Submit -->
-            <input type="submit" id="register-button" value="Registrati">
+            <input type="submit" id="register-button" value="Registrati" onclick="checkUser()">
         </form>
 
         <!-- Redirect al Login -->
@@ -67,5 +65,27 @@
     <%@ include file="footer.jsp" %>
 
     <script src="js/formatDateInput.js"></script>
+
+    <script>
+        function checkUser() {
+            const username = document.getElementById("username").value;
+            const email = document.getElementById("email").value;
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                const res = JSON.parse(this.responseText);
+
+                document.getElementById("warning").innerHTML = this.responseText;
+            }
+
+            xhttp.open("POST", "checkUser", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+            const params = "username=" + encodeURIComponent(username) +
+                           "&email=" + encodeURIComponent(email);
+
+            xhttp.send(params);
+        }
+    </script>
 </body>
 </html>

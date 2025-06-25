@@ -131,4 +131,38 @@ public class UtenteDAO implements MetodiDAO<Utente> {
             throw new RuntimeException(e);
         }
     }
+
+    public static boolean usernameExists(String username) {
+        boolean exists = false;
+        try (Connection con = ConPool.getConnection()) {
+             PreparedStatement ps = con.prepareStatement(
+                     "SELECT 1 FROM Utente WHERE username = ?"
+             );
+            ps.setString(1, username);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                exists = rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return exists;
+    }
+
+    public static boolean emailExists(String email) {
+        boolean exists = false;
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT 1 FROM Utente WHERE email = ?"
+            );
+            ps.setString(1, email);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                exists = rs.next();
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return exists;
+    }
 }

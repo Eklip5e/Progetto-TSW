@@ -142,7 +142,7 @@
         %>
 
         <div class="header-icons">
-            <a href="MostraCarrello?paginaCorrente=carrello.jsp"><i class="fa-solid fa-cart-shopping"></i></a>
+            <a href="MostraCarrello"><i class="fa-solid fa-cart-shopping"></i></a>
             <%
                 Utente utenteLoggato = (Utente) session.getAttribute("utente");
                 if (utenteLoggato != null) {

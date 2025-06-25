@@ -8,38 +8,19 @@
     request.setAttribute("paginaCorrente", "carrello.jsp");
 
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-    List<Videogioco> carrello = new ArrayList<>();
+    List<RigaCarrello> righeCarrello;
     double prezzoTotale = 0;
 
     Utente utente = (Utente) session.getAttribute("utente");
 
-    List<RigaCarrello> userCart = null;
-
     if(utente != null) {
-        userCart = (List<RigaCarrello>) request.getAttribute("userCart");
-        if (userCart != null) {
-            for (RigaCarrello riga : userCart) {
-                Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
-                if (videogioco != null) {
-                    carrello.add(videogioco);
-                    for (int i = 0; i < riga.getQuantità(); i++) {
-                        prezzoTotale += videogioco.getPrezzo();
-                    }
-                }
-            }
-        }
+        righeCarrello = (List<RigaCarrello>) request.getAttribute("userCart");
     } else {
-        List<Integer> guestCart = (List<Integer>) session.getAttribute("guestCart");
-        if (guestCart != null) {
-            for (Integer idVideogioco : guestCart) {
-                Videogioco videogioco = videogiocoDAO.doRetrieveById(idVideogioco);
-                if (videogioco != null) {
-                    carrello.add(videogioco);
-                    prezzoTotale += videogioco.getPrezzo();
-                }
-            }
-        }
+        righeCarrello = (List<RigaCarrello>) request.getAttribute("guestCart");
     }
+
+    if (righeCarrello == null)
+        righeCarrello = new ArrayList<>();
 %>
 
 <!DOCTYPE html>
@@ -64,8 +45,9 @@
                 <div class="cart-content">
                     <div class="products">
                         <%
-                            if (!carrello.isEmpty()) {
-                                for (Videogioco videogioco : carrello) {
+                            if (!righeCarrello.isEmpty()) {
+                                for (RigaCarrello riga : righeCarrello) {
+                                    Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
                         %>
                                     <div class="cart-item">
                                         <img id="cover" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>" width="200">
@@ -77,11 +59,9 @@
                                                     <select class="quantity-select" data-id="<%= videogioco.getIdVideogioco() %>">
                                                         <%
                                                             for (int i = 1; i <= 10; i++) {
-                                                                String selected = (utente != null && userCart != null)
-                                                                        ? userCart.stream().filter(r -> r.getIdVideogioco() == videogioco.getIdVideogioco()).findFirst().get().getQuantità() == i ? "selected" : ""
-                                                                        : "";
+                                                                String selected = (i == riga.getQuantità()) ? "selected" : "";
                                                         %>
-                                                        <option value="<%= i %>" <%= selected %>><%= i %></option>
+                                                                <option value="<%= i %>" <%= selected %>><%= i %></option>
                                                         <%
                                                             }
                                                         %>
@@ -138,7 +118,9 @@
                     </div>
 
                     <div class="actions">
-                        <button id="button" onclick="window.location.href='MostraCarrello?paginaCorrente=pagamento.jsp'">Vai al pagamento</button>
+                        <form action="pagamento" method="post">
+                            <button id="button">Vai al pagamento</button>
+                        </form>
                         <span id="choice">o</span>
                         <a id="back" href="home.jsp">Continua lo shopping</a>
                     </div>

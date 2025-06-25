@@ -26,25 +26,17 @@ public class MostraCarrelloServlet extends HttpServlet {
             int idUtente = userSession.getIdUtente();
             RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
             List<RigaCarrello> userCart = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
+
+            session.setAttribute("userCart", userCart);
             request.setAttribute("userCart", userCart);
         } else {
-            List<Integer> guestCart = (ArrayList<Integer>) session.getAttribute("guestCart");
-            if (guestCart == null) {
-                guestCart = new ArrayList<>();
-            }
+            List<RigaCarrello> guestCart = (ArrayList<RigaCarrello>) session.getAttribute("guestCart");
 
+            session.setAttribute("guestCart", guestCart);
             request.setAttribute("guestCart", guestCart);
         }
 
-        String paginaCorrente = request.getParameter("paginaCorrente");
-
-        if (paginaCorrente.equals("carrello.jsp")) {
-            request.getRequestDispatcher("/carrello.jsp").forward(request, response);
-        } else if (paginaCorrente.equals("pagamento.jsp")) {
-            request.getRequestDispatcher("/pagamento.jsp").forward(request, response);
-        } else if (paginaCorrente.equals("attivazione.jsp")) {
-            request.getRequestDispatcher("/attivazione.jsp").forward(request, response);
-        }
+        request.getRequestDispatcher("carrello.jsp").forward(request, response);
     }
 
     @Override

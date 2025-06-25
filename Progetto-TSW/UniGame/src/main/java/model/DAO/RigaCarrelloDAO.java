@@ -8,14 +8,15 @@ import java.util.List;
 public class RigaCarrelloDAO {
 
     public void doSave(RigaCarrello riga) {
-        String sql = "INSERT INTO RigaCarrello (quantità, idUtente, idVideogioco) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO RigaCarrello (prezzoUnitario, quantità, idUtente, idVideogioco) VALUES (?, ?, ?, ?)";
 
         try (Connection con = ConPool.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, riga.getQuantità());
-            ps.setInt(2, riga.getIdUtente());
-            ps.setInt(3, riga.getIdVideogioco());
+            ps.setDouble(1, riga.getPrezzoUnitario());  // Aggiunto prezzoUnitario
+            ps.setInt(2, riga.getQuantità());
+            ps.setInt(3, riga.getIdUtente());
+            ps.setInt(4, riga.getIdVideogioco());
 
             ps.executeUpdate();
 

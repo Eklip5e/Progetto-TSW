@@ -9,49 +9,25 @@
     height: 100vh;
 }
 
-.payment-content {
+.payment-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     gap: 50px;
 }
 
-.billing-address {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-
-    width: 100%;
+.payment-container h2 {
+    font-weight: 400;
+    font-size: 20px;
 }
 
-.billing-address form {
+.payment-container form, .payment-container .summary {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 20px;
 
-    width: 100%;
-}
-
-.billing-address form input {
     padding: 15px;
-    border: 1px solid var(--color-medium-light);
+
     border-radius: 8px;
-    background-color: hsla(0, 0%, 6%, 0.4);
-    color: #fff;
-    font-size: 15px;
-
-    width: 100%;
-}
-
-.billing-address form input:hover,
-.billing-address form input:focus {
-    outline: 2px solid var(--color);
-    outline-offset: -2px;
-}
-
-.payment-method {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
 }
 
 .credit-card-controls {
@@ -59,11 +35,7 @@
     flex-direction: column;
     gap: 20px;
 
-    padding: 15px;
-
-    border-radius: 8px;
-
-    background-color: var(--color-medium-dark);
+    width: 300px;
 }
 
 .credit-card-controls .form-group {
@@ -74,11 +46,17 @@
 
 .credit-card-controls .form-group input {
     padding: 15px;
+
+    width: 100%;
+
     border: 1px solid var(--color-medium-light);
     border-radius: 8px;
-    background-color: hsla(0, 0%, 6%, 0.4);
-    color: #fff;
+
+    font-weight: 400;
     font-size: 15px;
+
+    color: #fff;
+    background-color: hsla(0, 0%, 6%, 0.4);
 }
 
 .credit-card-controls .form-group input:hover,
@@ -89,40 +67,13 @@
 
 .credit-card-controls .form-row {
     display: flex;
-    gap: 20px;
-}
-
-.summary {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.game-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 30px;
-
-    width: 300px;
-
-    padding: 15px;
-
-    border-radius: 8px;
-
-    background-color: var(--color-medium-dark);
-}
-
-.game-container .numbers{
-    display: flex;
-    flex-direction: column;
     gap: 10px;
 }
 
-.payment .pay-button {
+.pay-button {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 20px;
 
     padding: 15px;
@@ -131,10 +82,13 @@
 
     border-radius: 8px;
 
+    font-weight: 400;
+    font-size: 15px;
+
     background-color: var(--color-medium-dark);
 }
 
-.payment .price-row {
+.pay-button .price-row {
     display: flex;
     justify-content: space-between;
 
@@ -142,17 +96,61 @@
     font-size: 17px;
 }
 
-.payment button {
+.pay-button button {
     padding: 15px;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 15px;
-    background: var(--fire-gradient);
+
     border: none;
+    border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #fff;
+    background: var(--fire-gradient);
 
     cursor: pointer;
 }
 
-.payment button:hover {
+.pay-button button:hover {
     background: var(--fire-gradient-hover);
+}
+
+
+.summary-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.payment-method {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
+}
+
+.summary-container .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    width: 300px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
+}
+
+.summary-container .row .price {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
 }

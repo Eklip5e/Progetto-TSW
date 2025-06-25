@@ -22,6 +22,8 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
 
         String idVideogiocoStr = request.getParameter("idVideogioco");
 
+        List<RigaCarrello> righeCarrello = null;
+
         if (idVideogiocoStr == null || idVideogiocoStr.isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Id videogioco mancante");
             return;
@@ -43,7 +45,7 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
         if (userSession != null) {
             int idUtente = userSession.getIdUtente();
 
-            if(rigaCarrelloDAO.exists(idUtente, idVideogioco)) {
+            if (rigaCarrelloDAO.exists(idUtente, idVideogioco)) {
                 rigaCarrelloDAO.incrementaQuantita(idUtente, idVideogioco);
             } else {
                 RigaCarrello rigaCarrello = new RigaCarrello();
@@ -54,15 +56,29 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
             }
 
         } else {
-            // Utente ospite -> salva in sessione
-            List<Integer> guestCart = (ArrayList<Integer>) session.getAttribute("guestCart");
-            if (guestCart == null) {
-                guestCart = new ArrayList<>();
+            righeCarrello = (ArrayList<RigaCarrello>) session.getAttribute("guestCart");
+            if (righeCarrello == null) {
+                righeCarrello = new ArrayList<>();
             }
-            if (!guestCart.contains(idVideogioco)) {
-                guestCart.add(idVideogioco);
+
+            boolean exist = false;
+            for (RigaCarrello riga : righeCarrello) {
+                if (riga.getIdVideogioco() == idVideogioco) {
+                    riga.setQuantità(riga.getQuantità() + 1);
+                    exist = true;
+                    break;
+                }
             }
-            session.setAttribute("guestCart", guestCart);
+
+            if (!exist) {
+                RigaCarrello rigaCarrello = new RigaCarrello();
+                rigaCarrello.setQuantità(1);
+                rigaCarrello.setIdVideogioco(idVideogioco);
+
+                righeCarrello.add(rigaCarrello);
+            }
+
+            session.setAttribute("guestCart", righeCarrello);
         }
 
         response.sendRedirect("game-page.jsp?idVideogioco=" + idVideogioco + "&aggiunto=true");

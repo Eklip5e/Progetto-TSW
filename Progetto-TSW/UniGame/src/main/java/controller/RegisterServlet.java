@@ -69,7 +69,7 @@ public class RegisterServlet extends HttpServlet {
 
             response.sendRedirect(PAGE_PROFILO);
         } catch (RuntimeException e) {
-            request.setAttribute(ATTR_ERROR, "Errore durante la registrazione: " + e.getMessage());
+            request.setAttribute("error", "Errore durante la registrazione");
             request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
         }
     }
