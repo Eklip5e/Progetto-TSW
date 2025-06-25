@@ -27,7 +27,7 @@ public class RigaCarrelloDAO {
 
     public List<RigaCarrello> doRetrieveByUtenteId(int idUtente) {
         List<RigaCarrello> righe = new ArrayList<>();
-        String sql = "SELECT idVideogioco, SUM(quantità) AS totalQuantità FROM RigaCarrello WHERE idUtente = ? GROUP BY idVideogioco";
+        String sql = "SELECT idVideogioco, prezzoUnitario, quantità FROM RigaCarrello WHERE idUtente = ?";
         try (Connection con = ConPool.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, idUtente);
@@ -36,7 +36,8 @@ public class RigaCarrelloDAO {
                 RigaCarrello riga = new RigaCarrello();
                 riga.setIdUtente(idUtente);
                 riga.setIdVideogioco(rs.getInt("idVideogioco"));
-                riga.setQuantità(rs.getInt("totalQuantità"));
+                riga.setPrezzoUnitario(rs.getDouble("prezzoUnitario"));
+                riga.setQuantità(rs.getInt("quantità"));
                 righe.add(riga);
             }
         } catch (SQLException e) {
@@ -90,13 +91,14 @@ public class RigaCarrelloDAO {
         }
     }
 
-    public void incrementaQuantita(int idUtente, int idVideogioco) {
-        String sql = "UPDATE RigaCarrello SET quantità = quantità + 1 WHERE idUtente = ? AND idVideogioco = ?";
+    public void incrementaQuantita(int idUtente, int idVideogioco, double prezzoUnitario) {
+        String sql = "UPDATE RigaCarrello SET quantità = quantità + 1, prezzoUnitario = ? WHERE idUtente = ? AND idVideogioco = ?";
         try (Connection con = ConPool.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, idUtente);
-            ps.setInt(2, idVideogioco);
+            ps.setDouble(1, prezzoUnitario);
+            ps.setInt(2, idUtente);
+            ps.setInt(3, idVideogioco);
 
             ps.executeUpdate();
 

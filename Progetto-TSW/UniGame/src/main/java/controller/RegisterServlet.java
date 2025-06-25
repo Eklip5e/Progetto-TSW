@@ -35,11 +35,7 @@ public class RegisterServlet extends HttpServlet {
         String cognome = request.getParameter("cognome");
         String dataDiNascitaStr =  request.getParameter("dataDiNascita");
 
-        if (!isValidRegister(username, email, password, nome, cognome, dataDiNascitaStr)) {
-            request.setAttribute(ATTR_ERROR, "Tutti i campi sono obbligatori");
-            request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
-            return;
-        }
+        String errore = validaCampi(username, email, password, nome, cognome, dataDiNascitaStr);
 
         java.util.Date dataDiNascita;
         try {
@@ -74,12 +70,45 @@ public class RegisterServlet extends HttpServlet {
         }
     }
 
-    private boolean isValidRegister(String email, String username, String password, String nome, String cognome, String dataDiNascita) {
-        return email != null && !email.isEmpty()
-                && username != null && !username.isEmpty()
-                && password != null && !password.isEmpty()
-                && nome != null && !nome.isEmpty()
-                && cognome != null && !cognome.isEmpty()
-                && dataDiNascita != null && !dataDiNascita.isEmpty();
+    private String validaCampi(String username, String email, String password, String nome, String cognome, String dataDiNascita) {
+        if (isNullOrEmpty(username) || isNullOrEmpty(email) || isNullOrEmpty(password)
+                || isNullOrEmpty(nome) || isNullOrEmpty(cognome) || isNullOrEmpty(dataDiNascita)) {
+            return "Tutti i campi sono obbligatori.";
+        }
+
+        if (!username.matches("^[a-zA-Z0-9_]{4,20}$")) {
+            return "Username deve essere lungo tra 4 e 20 caratteri e contenere solo lettere, numeri o underscore.";
+        }
+
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+            return "Email non valida.";
+        }
+
+        if (!password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,}$")) {
+            return "La password deve contenere almeno 8 caratteri, una maiuscola, una minuscola e un numero.";
+        }
+
+        if (!nome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ'\\s]{2,30}$")) {
+            return "Nome non valido. Usa solo lettere.";
+        }
+
+        if (!cognome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ'\\s]{2,30}$")) {
+            return "Cognome non valido. Usa solo lettere.";
+        }
+
+        try {
+            java.util.Date data = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(dataDiNascita);
+            if (data.after(new java.util.Date())) {
+                return "La data di nascita non può essere nel futuro.";
+            }
+        } catch (java.text.ParseException e) {
+            return "Formato data di nascita non valido. Usa dd/mm/yyyy.";
+        }
+
+        return null;
+    }
+
+    private boolean isNullOrEmpty(String s) {
+        return s == null || s.trim().isEmpty();
     }
 }

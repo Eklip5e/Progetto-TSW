@@ -1,6 +1,7 @@
 package controller;
 
 import model.DAO.RigaCarrelloDAO;
+import model.DAO.VideogiocoDAO;
 import model.RigaCarrello;
 import model.Utente;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Videogioco;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,19 +24,38 @@ public class MostraCarrelloServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Utente userSession = (Utente) session.getAttribute("utente");
 
+        List<RigaCarrello> righeCarrello = new ArrayList<>();
+
         if (userSession != null) {
             int idUtente = userSession.getIdUtente();
             RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
-            List<RigaCarrello> userCart = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
+            righeCarrello = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
 
-            session.setAttribute("userCart", userCart);
-            request.setAttribute("userCart", userCart);
         } else {
-            List<RigaCarrello> guestCart = (ArrayList<RigaCarrello>) session.getAttribute("guestCart");
+            righeCarrello = (ArrayList<RigaCarrello>) session.getAttribute("guestCart");
 
-            session.setAttribute("guestCart", guestCart);
-            request.setAttribute("guestCart", guestCart);
+            if (righeCarrello == null) {
+                righeCarrello = new ArrayList<>();
+            }
         }
+
+        double prezzoUfficiale = 0;
+        double scontoTotale = 0;
+        double prezzoTotale = 0;
+        VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
+        for (RigaCarrello riga : righeCarrello) {
+            Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
+            double sconto = ((double) videogioco.getSconto() / 100) * videogioco.getPrezzo();
+            prezzoUfficiale += videogioco.getPrezzo() * riga.getQuantità();
+            scontoTotale += sconto * riga.getQuantità();
+            prezzoTotale += (videogioco.getPrezzo() - sconto) * riga.getQuantità();
+        }
+
+        request.setAttribute("prezzoUfficiale", prezzoUfficiale);
+        request.setAttribute("scontoTotale", scontoTotale);
+        request.setAttribute("prezzoTotale", prezzoTotale);
+
+        session.setAttribute("righeCarrello", righeCarrello);
 
         request.getRequestDispatcher("carrello.jsp").forward(request, response);
     }

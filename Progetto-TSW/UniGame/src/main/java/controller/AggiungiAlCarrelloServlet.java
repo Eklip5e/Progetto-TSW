@@ -1,6 +1,7 @@
 package controller;
 
 import model.DAO.RigaCarrelloDAO;
+import model.DAO.VideogiocoDAO;
 import model.RigaCarrello;
 import model.Utente;
 import jakarta.servlet.ServletException;
@@ -9,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.Videogioco;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -41,17 +43,24 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
         Utente userSession = (Utente) session.getAttribute("utente");
 
         RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
+        VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 
         if (userSession != null) {
             int idUtente = userSession.getIdUtente();
 
+            Videogioco videogioco = videogiocoDAO.doRetrieveById(idVideogioco);
+            double scontoPercentuale = (double) videogioco.getSconto() / 100.0;
+            double prezzoScontato = videogioco.getPrezzo() - (scontoPercentuale * videogioco.getPrezzo());
             if (rigaCarrelloDAO.exists(idUtente, idVideogioco)) {
-                rigaCarrelloDAO.incrementaQuantita(idUtente, idVideogioco);
+                rigaCarrelloDAO.incrementaQuantita(idUtente, idVideogioco, prezzoScontato); // nuovo metodo
+
             } else {
                 RigaCarrello rigaCarrello = new RigaCarrello();
+                rigaCarrello.setPrezzoUnitario(prezzoScontato);
                 rigaCarrello.setQuantità(1);
                 rigaCarrello.setIdUtente(idUtente);
                 rigaCarrello.setIdVideogioco(idVideogioco);
+
                 rigaCarrelloDAO.doSave(rigaCarrello);
             }
 

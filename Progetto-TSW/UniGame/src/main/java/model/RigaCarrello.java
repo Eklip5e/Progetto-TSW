@@ -3,7 +3,7 @@ package model;
 public class RigaCarrello {
 
     private int idRiga;
-    private int prezzoUnitario;
+    private double prezzoUnitario;
     private int quantità;
     private int idUtente;
     private int idVideogioco;
@@ -16,11 +16,11 @@ public class RigaCarrello {
         this.idRiga = idRiga;
     }
 
-    public int getPrezzoUnitario() {
+    public double getPrezzoUnitario() {
         return prezzoUnitario;
     }
 
-    public void setPrezzoUnitario(int prezzoUnitario) {
+    public void setPrezzoUnitario(double prezzoUnitario) {
         this.prezzoUnitario = prezzoUnitario;
     }
 

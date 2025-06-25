@@ -8,19 +8,16 @@
     request.setAttribute("paginaCorrente", "carrello.jsp");
 
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-    List<RigaCarrello> righeCarrello;
-    double prezzoTotale = 0;
 
     Utente utente = (Utente) session.getAttribute("utente");
 
-    if(utente != null) {
-        righeCarrello = (List<RigaCarrello>) request.getAttribute("userCart");
-    } else {
-        righeCarrello = (List<RigaCarrello>) request.getAttribute("guestCart");
-    }
+    List<RigaCarrello> righeCarrello;
+    righeCarrello = (List<RigaCarrello>) session.getAttribute("righeCarrello");
 
     if (righeCarrello == null)
         righeCarrello = new ArrayList<>();
+
+    boolean statoCarrello;
 %>
 
 <!DOCTYPE html>
@@ -46,6 +43,7 @@
                     <div class="products">
                         <%
                             if (!righeCarrello.isEmpty()) {
+                                statoCarrello = true;
                                 for (RigaCarrello riga : righeCarrello) {
                                     Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
                         %>
@@ -80,6 +78,7 @@
                         <%
                                 }
                             } else {
+                                statoCarrello = false;
                         %>
                                 <div class="empty-cart">
                                     <i class="fa-solid fa-cart-shopping"></i>
@@ -94,32 +93,33 @@
                 </div>
             </div>
 
-            <%
-                double scontoTotale = 0;  // qui puoi calcolare sconti se hai logiche
-                double totaleFinale = prezzoTotale - scontoTotale;
-            %>
-
             <div class="cart-summary">
                 <h2>Riepilogo</h2>
                 <div class="summary-content">
                     <div class="price-row">
                         <div class="summary-row">
                             <span>Prezzo ufficiale</span>
-                            <span><%= String.format("%.2f", prezzoTotale) %> €</span>
+                            <span><%= String.format("%.2f", (Double) request.getAttribute("prezzoUfficiale")) %> €</span>
                         </div>
                         <div class="summary-row">
                             <span>Sconto</span>
-                            <span><%= String.format("%.2f", scontoTotale) %> €</span>
+                            <span><%= String.format("%.2f", (Double) request.getAttribute("scontoTotale")) %> €</span>
                         </div>
                         <div class="summary-row total">
                             <span>Somma parziale</span>
-                            <span><%= String.format("%.2f", totaleFinale) %> €</span>
+                            <span><%= String.format("%.2f", (Double) request.getAttribute("prezzoTotale")) %> €</span>
                         </div>
                     </div>
 
                     <div class="actions">
                         <form action="pagamento" method="post">
-                            <button id="button">Vai al pagamento</button>
+                            <%
+                                String statoBottone = "";
+                                if (!statoCarrello) {
+                                    statoBottone = "disabled";
+                                }
+                            %>
+                            <button id="pagamento-button" <%= statoBottone %>>Vai al pagamento</button>
                         </form>
                         <span id="choice">o</span>
                         <a id="back" href="home.jsp">Continua lo shopping</a>

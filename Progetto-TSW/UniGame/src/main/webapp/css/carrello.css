@@ -216,7 +216,11 @@
     width: 100%;
 }
 
-.summary-content #button {
+.summary-content form {
+    width: 100%;
+}
+
+.summary-content #pagamento-button {
     width: 100%;
 
     padding: 15px;
@@ -232,8 +236,31 @@
     cursor: pointer;
 }
 
-.summary-content #button:hover {
+.summary-content #pagamento-button:hover {
     background: var(--fire-gradient-hover);
+}
+
+.summary-content #pagamento-button:disabled {
+    background: grey;
+    color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.summary-content #button-disabled {
+    width: 100%;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    background: var(--fire-gradient);
+    color: #fff;
+
+    cursor: pointer;
 }
 
 .summary-content #choice {

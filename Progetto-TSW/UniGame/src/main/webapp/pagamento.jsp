@@ -11,17 +11,10 @@
 
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 
-    List<RigaCarrello> righeCarrello = (List<RigaCarrello>) session.getAttribute("userCart");
+    List<RigaCarrello> righeCarrello = (List<RigaCarrello>) session.getAttribute("righeCarrello");
 
     if (righeCarrello == null)
         righeCarrello = new ArrayList<>();
-
-    double prezzoTotale = 0;
-
-    for (RigaCarrello riga : righeCarrello) {
-        Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
-        prezzoTotale += videogioco.getPrezzo() * riga.getQuantità();
-    }
 %>
 
 <html>
@@ -74,7 +67,7 @@
                         <div class="pay-button">
                             <div class="price-row">
                                 <span id="summary-total">Totale</span>
-                                <span><%= String.format("%.2f", prezzoTotale) %> €</span>
+                                <span><%= String.format("%.2f", (Double) request.getAttribute("prezzoTotale")) %> €</span>
                             </div>
                             <button type="submit">Acquista</button>
                         </div>
@@ -92,7 +85,7 @@
                                             <span><%= videogioco.getTitolo() %></span>
                                             <div class="price">
                                                 <span><%= riga.getQuantità() %>x</span>
-                                                <span><%= videogioco.getPrezzo() %> €</span>
+                                                <span><%= String.format("%.2f", riga.getPrezzoUnitario() * riga.getQuantità()) %> €</span>
                                             </div>
                                         </div>
                             <%

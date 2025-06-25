@@ -47,12 +47,12 @@
             <input type="text" name="cognome" required placeholder="Cognome:">
 
             <!-- Data di Nascita -->
-            <input placeholder="Data di nascita (dd/mm/yyyy)" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
+            <input placeholder="Data di nascita (dd/mm/yyyy)" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required>
 
             <%
                 if (request.getAttribute("error") != null) {
             %>
-                    <p><%= request.getAttribute("error") %></p>
+                    <p style="color: var(--color-error)"><%= request.getAttribute("error") %></p>
             <%
                 }
             %>
