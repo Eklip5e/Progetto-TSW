@@ -24,26 +24,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <main>
+        <%@ include file="navbar.jsp" %>
 
-    <%@ include file="navbar.jsp" %>
+        <div class="login">
+            <div class="login-container">
+                <h1>Accedi</h1>
+                <form action="login" method="post">
 
-    <section class="login">
-        <div class="login-container">
-            <h1>Accedi</h1>
-            <form action="login" method="post">
+                    <!-- Email -->
+                    <input placeholder="Il tuo username:" type="text" name="username" required>
 
-                <!-- Email -->
-                <input placeholder="Il tuo username:" type="text" name="username" required>
+                    <!-- Password -->
+                    <input placeholder="La tua password:" type="password" name="password" required>
 
-                <!-- Password -->
-                <input placeholder="La tua password:" type="password" name="password" required>
+                    <%
+                        if (request.getAttribute("error") != null) {
+                    %>
+                            <p style="color: var(--color-error)"><%= request.getAttribute("error") %></p>
+                    <%
+                        } else
+                    %>
 
-                <input type="submit" id="login-button" value="Login">
-            </form>
+                    <input type="submit" id="login-button" value="Login">
+                </form>
 
-            <a href="register.jsp" class="signup-redirect">Non hai un account?</a>
+                <a href="register.jsp" class="signup-redirect">Non hai un account?</a>
+            </div>
         </div>
-    </section>
+    </main>
 
     <%@ include file="footer.jsp" %>
 </body>

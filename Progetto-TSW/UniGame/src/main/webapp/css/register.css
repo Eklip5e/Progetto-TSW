@@ -39,6 +39,16 @@ form input:focus {
     outline-offset: -2px;
 }
 
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+form #usernameMsg, #emailMsg {
+    display: none;
+}
+
 #register-button {
     background: var(--fire-gradient);
     border: none;
@@ -51,12 +61,12 @@ form input:focus {
     outline: none;
 }
 
-.login-redirect {
+#login-redirect {
     color: white;
     text-decoration: none;
 }
 
-.login-redirect:hover {
+#login-redirect:hover {
     color: var(--color-link-hover);
     text-decoration: none;
 }

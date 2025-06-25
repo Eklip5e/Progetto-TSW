@@ -10,6 +10,8 @@ import model.DAO.UtenteDAO;
 import model.Utente;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -18,6 +20,7 @@ public class RegisterServlet extends HttpServlet {
     private static final String ATTR_UTENTE = "utente";
     private static final String PAGE_REGISTER = "register.jsp";
     private static final String PAGE_PROFILO = "profilo.jsp";
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -36,13 +39,24 @@ public class RegisterServlet extends HttpServlet {
         String dataDiNascitaStr =  request.getParameter("dataDiNascita");
 
         String errore = validaCampi(username, email, password, nome, cognome, dataDiNascitaStr);
+        if (errore != null) {
+            request.setAttribute(ATTR_ERROR, errore);
 
-        java.util.Date dataDiNascita;
-        try {
-            dataDiNascita = new java.text.SimpleDateFormat("dd/MM/yyyy").parse(dataDiNascitaStr);
-        } catch (java.text.ParseException e) {
-            request.setAttribute("error", "Formato data non valido.");
+            request.setAttribute("username", username);
+            request.setAttribute("email", email);
+            request.setAttribute("nome", nome);
+            request.setAttribute("cognome", cognome);
+            request.setAttribute("dataDiNascita", dataDiNascitaStr);
             request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+
+        Date dataDiNascita;
+        try {
+            dataDiNascita = DATE_FORMAT.parse(dataDiNascitaStr);
+        } catch (java.text.ParseException e) {
+            request.setAttribute("error", "Formato data non valido. Usa dd/mm/yyyy.");
+            request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
             return;
         }
 
@@ -65,7 +79,8 @@ public class RegisterServlet extends HttpServlet {
 
             response.sendRedirect(PAGE_PROFILO);
         } catch (RuntimeException e) {
-            request.setAttribute("error", "Errore durante la registrazione");
+            e.printStackTrace();
+            request.setAttribute(ATTR_ERROR, "Errore durante la registrazione.");
             request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
         }
     }
@@ -76,11 +91,11 @@ public class RegisterServlet extends HttpServlet {
             return "Tutti i campi sono obbligatori.";
         }
 
-        if (!username.matches("^[a-zA-Z0-9_]{4,20}$")) {
+        if (!username.matches("^[a-zA-Z0-9._]{4,20}$")) {
             return "Username deve essere lungo tra 4 e 20 caratteri e contenere solo lettere, numeri o underscore.";
         }
 
-        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
             return "Email non valida.";
         }
 
