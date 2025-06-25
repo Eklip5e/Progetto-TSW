@@ -45,11 +45,11 @@ public class RigaCarrelloDAO {
         return righe;
     }
 
-    public void doDeleteById(int idVideogioco) {
-        String sql = "DELETE FROM RigaCarrello WHERE idVideogioco = ?";
+    public void doDeleteById(int idUtente) {
+        String sql = "DELETE FROM RigaCarrello WHERE idUtente = ?";
         try (Connection con = ConPool.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, idVideogioco);
+            ps.setInt(1, idUtente);
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

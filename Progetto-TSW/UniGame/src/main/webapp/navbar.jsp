@@ -19,7 +19,7 @@
 <%
     String navbar = null;
 
-    if (paginaCorrente.equals("home.jsp")) {
+    if (paginaCorrente.equals("home.jsp") || paginaCorrente.equals("game-page.jsp")) {
         navbar = "navbar";
     } else {
         navbar = "navbar-static";

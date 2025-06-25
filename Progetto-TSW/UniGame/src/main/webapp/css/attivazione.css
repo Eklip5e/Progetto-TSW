@@ -25,14 +25,21 @@
 
 .activation-page {
     display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+
+    width: 100%;
+}
+
+.activation-content {
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 20px;
 
-    margin-top: 50px;
-
-    width: 100%;
 }
 
 .purchased-games {
@@ -43,6 +50,8 @@
     gap: 10px;
 
     padding: 15px;
+
+    width: 400px;
 
     border-radius: 8px;
 

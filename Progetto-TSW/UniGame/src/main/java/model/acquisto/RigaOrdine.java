@@ -1,11 +1,19 @@
 package model.acquisto;
 
 public class RigaOrdine {
+    private int idRigaOrdine;
     private int idOrdine;
     private int idVideogioco;
     private String chiave;
     private double prezzoUnitario;
-    private int quantità;
+
+    public int getIdRigaOrdine() {
+        return idRigaOrdine;
+    }
+
+    public void setIdRigaOrdine(int idRigaOrdine) {
+        this.idRigaOrdine = idRigaOrdine;
+    }
 
     public int getIdOrdine() {
         return idOrdine;
@@ -37,13 +45,5 @@ public class RigaOrdine {
 
     public void setPrezzoUnitario(double prezzoUnitario) {
         this.prezzoUnitario = prezzoUnitario;
-    }
-
-    public int getQuantità() {
-        return quantità;
-    }
-
-    public void setQuantità(int quantità) {
-        this.quantità = quantità;
     }
 }

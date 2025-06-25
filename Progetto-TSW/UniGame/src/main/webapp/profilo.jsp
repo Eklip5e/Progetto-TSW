@@ -33,7 +33,7 @@
         <button onclick="apriModaleUpdateProfile()">Modifica profilo</button>
     </div>
     <div class="user-profile-content">
-        <a class="user-orders">
+        <a onclick="window.location.href='mostraOrdini'" class="user-orders">
             <i class="fa-solid fa-truck-fast"></i>
             <span>I miei ordini</span>
         </a>

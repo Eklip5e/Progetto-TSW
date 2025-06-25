@@ -2,6 +2,8 @@
 <%@ page import="model.DAO.VideogiocoDAO" %>
 
 <%
+    request.setAttribute("paginaCorrente", "game-page.jsp");
+
     String id = request.getParameter("idVideogioco");
     Videogioco videogioco = new VideogiocoDAO().doRetrieveById(Integer.parseInt(id));
 %>
@@ -87,10 +89,14 @@
         <%@ include file="footer.jsp" %>
 
         <% String aggiunto = request.getParameter("aggiunto"); %>
-        <% if ("true".equals(aggiunto)) { %>
+        <%
+            if ("true".equals(aggiunto)) {
+        %>
                 <div class="notifica success">
                     Prodotto aggiunto al carrello!
                 </div>
-        <% } %>
+        <%
+            }
+        %>
     </body>
 </html>

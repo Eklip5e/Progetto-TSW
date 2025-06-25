@@ -1,0 +1,68 @@
+.ordine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    margin-top: 50px;
+
+    width: 100%;
+}
+
+.ordine #back {
+    display: flex;
+    justify-content: left;
+
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.ordine #back:hover {
+    color: var(--color-link-hover);
+}
+
+.ordine h2 {
+    display: flex;
+    justify-content: left;
+
+    width: 1000px;
+}
+
+.ordine-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    gap: 50px;
+
+    max-width: 1000px;
+}
+
+.game-container img {
+    border-radius: 8px;
+}
+
+.ordine-container .game-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    width: 300px;
+
+    background-color: var(--color-medium-dark);
+}
+
+.ordine-container .game .info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ordine-container .game .info #price {
+    font-weight: 400;
+    font-size: 25px;
+}

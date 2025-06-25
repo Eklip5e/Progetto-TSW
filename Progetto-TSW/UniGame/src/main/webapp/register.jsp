@@ -49,7 +49,13 @@
             <!-- Data di Nascita -->
             <input placeholder="Data di nascita (dd/mm/yyyy)" name="dataDiNascita" type="text" pattern="\d\d\/\d\d/\d\d\d\d" required="">
 
-            <p id="warning" style="color:red;"></p>
+            <%
+                if (request.getAttribute("error") != null) {
+            %>
+                    <p><%= request.getAttribute("error") %></p>
+            <%
+                }
+            %>
 
             <!-- Submit -->
             <input type="submit" id="register-button" value="Registrati" onclick="checkUser()">

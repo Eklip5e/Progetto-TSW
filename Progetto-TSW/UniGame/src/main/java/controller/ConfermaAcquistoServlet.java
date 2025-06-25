@@ -16,8 +16,9 @@ import model.acquisto.Ordine;
 import model.acquisto.RigaOrdine;
 
 import java.io.IOException;
-import java.util.Date;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @WebServlet("/confermaAcquisto")
 public class ConfermaAcquistoServlet extends HttpServlet {
@@ -35,8 +36,8 @@ public class ConfermaAcquistoServlet extends HttpServlet {
         String scadenzaStr = request.getParameter("scadenza");
         String cvc =  request.getParameter("cvc");
 
-        if (scadenzaStr == null || scadenzaStr.isEmpty()) {
-            request.setAttribute("error", "La data di scadenza è obbligatoria.");
+        if (!isValid(numeroCarta, titolare, scadenzaStr, cvc)) {
+            request.setAttribute("error", "Tutti i campi sono obbligatori");
             request.getRequestDispatcher("pagamento.jsp").forward(request, response);
             return;
         }
@@ -78,13 +79,16 @@ public class ConfermaAcquistoServlet extends HttpServlet {
         RigaOrdineDAO rigaOrdineDAO = new RigaOrdineDAO();
 
         for (RigaCarrello rigaCarrello : giochiAcquistati) {
-            RigaOrdine rigaOrdine = new RigaOrdine();
-            rigaOrdine.setIdOrdine(ordine.getIdOrdine());
-            rigaOrdine.setIdVideogioco(rigaCarrello.getIdVideogioco());
-            rigaOrdine.setChiave(generaChiaveAcquisto());
-            rigaOrdine.setPrezzoUnitario(rigaCarrello.getPrezzoUnitario());
+            int quantita = rigaCarrello.getQuantità();
+            for (int i = 0; i < quantita; i++) {
+                RigaOrdine rigaOrdine = new RigaOrdine();
+                rigaOrdine.setIdOrdine(ordine.getIdOrdine());
+                rigaOrdine.setIdVideogioco(rigaCarrello.getIdVideogioco());
+                rigaOrdine.setChiave(generaChiaveAcquisto());
+                rigaOrdine.setPrezzoUnitario(rigaCarrello.getPrezzoUnitario());
 
-            rigaOrdineDAO.doSave(rigaOrdine);
+                rigaOrdineDAO.doSave(rigaOrdine);
+            }
         }
 
         rigaCarrelloDAO.doDeleteById(idUtente);
@@ -96,5 +100,12 @@ public class ConfermaAcquistoServlet extends HttpServlet {
 
     private String generaChiaveAcquisto() {
         return java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 32);
+    }
+
+    public boolean isValid(String numeroCarta, String titolare, String scadenza, String cvc) {
+        return numeroCarta != null && !numeroCarta.isEmpty()
+                && titolare != null && !titolare.isEmpty()
+                && scadenza != null && !scadenza.isEmpty()
+                && cvc != null && !cvc.isEmpty();
     }
 }

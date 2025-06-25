@@ -33,21 +33,22 @@
 
       <%@ include file="navbar.jsp" %>
       <div class="activation-page">
-        <%
-          if (!righeOrdine.isEmpty()) {
-            for (RigaOrdine riga : righeOrdine) {
-              Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
-        %>
         <div class="activation-content">
-              <div class="purchased-games">
-                <h2><%= videogioco.getTitolo() %></h2>
-                <span class="activation-key"><%= riga.getChiave() %></span>
-              </div>
+          <h2>Grazie per il tuo acquisto! Ecco le tue chiavi di attivazione</h2>
+          <%
+            if (!righeOrdine.isEmpty()) {
+              for (RigaOrdine riga : righeOrdine) {
+                Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
+          %>
+                <div class="purchased-games">
+                  <h2><%= videogioco.getTitolo() %></h2>
+                  <span class="activation-key"><%= riga.getChiave() %></span>
+                </div>
         </div>
-      <%
-          }
-        }
-      %>
+        <%
+              }
+            }
+        %>
       </div>
 
       <script>

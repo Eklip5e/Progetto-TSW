@@ -12,6 +12,8 @@ import model.DAO.MetodiDAO;
 import model.acquisto.Ordine;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class OrdineDAO implements MetodiDAO<Ordine> {
 
@@ -101,5 +103,30 @@ public class OrdineDAO implements MetodiDAO<Ordine> {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<Ordine> doRetrieveByIdUtente(int idUtente) {
+        String sql = "SELECT * FROM Ordine WHERE idUtente = ?";
+        List<Ordine> ordini = new ArrayList<>();
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setInt(1, idUtente);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Ordine ordine = new Ordine();
+                    ordine.setIdOrdine(rs.getInt("idOrdine"));
+                    ordine.setDataOrdine(rs.getTimestamp("data"));
+                    ordine.setStato(rs.getString("stato"));
+                    ordine.setTotale(rs.getDouble("totale"));
+                    ordine.setIdUtente(rs.getInt("idUtente"));
+                    ordine.setIdFatturazione(rs.getInt("idFatturazione"));
+                    ordini.add(ordine);
+                }
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return ordini;
     }
 }

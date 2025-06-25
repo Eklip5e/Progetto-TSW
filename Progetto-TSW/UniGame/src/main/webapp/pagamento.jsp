@@ -17,6 +17,11 @@
         righeCarrello = new ArrayList<>();
 
     double prezzoTotale = 0;
+
+    for (RigaCarrello riga : righeCarrello) {
+        Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
+        prezzoTotale += videogioco.getPrezzo() * riga.getQuantità();
+    }
 %>
 
 <html>
@@ -41,10 +46,6 @@
                                     <label for="card-number">Numero della carta</label>
                                     <input type="text" id="card-number" name="numeroCarta" placeholder="•••• •••• •••• ••••">
                                 </div>
-                                <div class="form-group">
-                                    <label for="card-holder">Titolare della carta</label>
-                                    <input type="text" id="card-holder" name="titolare" placeholder="J. Smith">
-                                </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="expiry-date">Data di scadenza</label>
@@ -55,7 +56,19 @@
                                         <input type="text" id="cvc" name="cvc" placeholder="CVC">
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label for="card-holder">Titolare della carta</label>
+                                    <input type="text" id="card-holder" name="titolare" placeholder="J. Smith">
+                                </div>
                             </div>
+
+                            <%
+                                if (request.getAttribute("error") != null) {
+                            %>
+                                    <p style="color: var(--color-error)"><%= request.getAttribute("error") %></p>
+                            <%
+                                }
+                            %>
                         </div>
 
                         <div class="pay-button">
