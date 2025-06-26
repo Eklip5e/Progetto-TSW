@@ -8,7 +8,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.DAO.UtenteDAO;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/verificaUsernameEmail")
 public class VerificaUsernameEmailServlet extends HttpServlet {
@@ -27,9 +26,11 @@ public class VerificaUsernameEmailServlet extends HttpServlet {
             exists = utenteDAO.emailExists(email);
         }
 
+        String json = "{" +
+                "\"exists\":" + exists + "}";
+
         response.setContentType("application/json");
-        PrintWriter out = response.getWriter();
-        out.print("{\"exists\": " + exists + "}");
-        out.flush();
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(json);
     }
 }

@@ -11,11 +11,22 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: var(--color-medium-dark);
-    font-size: 15px;
+
+    padding: 15px;
+
     width: 400px;
-    padding: 20px;
+
     border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 15px;
+
+    background-color: var(--color-medium-dark);
+}
+
+.register-container h1 {
+    font-weight: 500;
+    font-size: 30px;
 }
 
 form {
@@ -26,11 +37,14 @@ form {
 
 form input {
     padding: 15px;
+
     border: 1px solid var(--color-medium-light);
     border-radius: 8px;
-    background-color: hsla(0, 0%, 6%, 0.4);
-    color: #fff;
+
     font-size: 15px;
+
+    color: #fff;
+    background-color: hsla(0, 0%, 6%, 0.4);
 }
 
 form input:hover,
@@ -45,28 +59,33 @@ form input:focus {
     gap: 10px;
 }
 
-form #usernameMsg, #emailMsg {
+.form-group #usernameMsg, #emailMsg {
     display: none;
 }
 
 #register-button {
-    background: var(--fire-gradient);
     border: none;
+
+    background: var(--fire-gradient);
 
     cursor: pointer;
 }
 
-#register-button:hover {
-    background: var(--fire-gradient-hover);
+#register-button:hover,
+#register-button:focus {
     outline: none;
+
+    background: var(--fire-gradient-hover);
 }
 
 #login-redirect {
     color: white;
+
     text-decoration: none;
+
+    transition: color 0.3s ease;
 }
 
 #login-redirect:hover {
     color: var(--color-link-hover);
-    text-decoration: none;
 }
