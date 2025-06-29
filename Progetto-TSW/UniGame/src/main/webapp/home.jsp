@@ -43,7 +43,7 @@
         <main>
             <%@ include file="navbar.jsp" %>
             <%
-                if (videogiocoBanner != null) {
+                if (videogiocoBanner != null && videogiocoBanner.isStato()) {
             %>
                     <div class="banner" style="background: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg')">
 

@@ -50,7 +50,7 @@
     gap: 20px;
 }
 
-.user-profile-content .user-orders, .user-favorites, .user-reviews {
+.user-profile-content .user-orders, .user-favorites, .user-reviews, .idle-games {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -70,7 +70,7 @@
     transition: transform 0.2s ease;
 }
 
-.user-profile-content .user-orders:hover, .user-favorites:hover, .user-reviews:hover {
+.user-profile-content .user-orders:hover, .user-favorites:hover, .user-reviews:hover, .idle-games:hover {
     transform: scale(1.03);
 }
 

@@ -33,7 +33,7 @@
         <button onclick="apriModaleUpdateProfile()">Modifica profilo</button>
     </div>
     <div class="user-profile-content">
-        <a onclick="window.location.href='mostraOrdini'" class="user-orders">
+        <a href="mostraOrdini" class="user-orders">
             <i class="fa-solid fa-truck-fast"></i>
             <span>I miei ordini</span>
         </a>
@@ -44,6 +44,10 @@
         <a class="user-reviews">
             <i class="fa-solid fa-star"></i>
             <span>Recensioni</span>
+        </a>
+        <a href="gamesDisabled" class="idle-games">
+            <i class="fa-solid fa-ban"></i>
+            <span>Videogiochi Inattivi</span>
         </a>
     </div>
 </div>

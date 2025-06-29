@@ -1,11 +1,21 @@
 ﻿<%@ page import="model.Videogioco" %>
 <%@ page import="model.DAO.VideogiocoDAO" %>
+<%@ page import="model.RigaCarrello" %>
 
 <%
     request.setAttribute("paginaCorrente", "game-page.jsp");
 
     String id = request.getParameter("idVideogioco");
     Videogioco videogioco = new VideogiocoDAO().doRetrieveById(Integer.parseInt(id));
+
+    double prezzoUfficiale = 0;
+    double scontoTotale = 0;
+    double prezzoTotale = 0;
+
+    double sconto = ((double) videogioco.getSconto() / 100) * videogioco.getPrezzo();
+    prezzoUfficiale += videogioco.getPrezzo();
+    scontoTotale += sconto;
+    prezzoTotale += (videogioco.getPrezzo() - sconto);
 %>
 
 <!DOCTYPE html>
@@ -28,27 +38,25 @@
         <div class="game-banner" style="background-image: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogioco.getAppIdSteam() %>/library_hero.jpg')"></div>
 
         <div class="game-page-content">
-            <a id="game-cover" href="game-page.jsp?idVideogioco=<%=videogioco.getIdVideogioco()%>"><img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>"></a>
+            <div id="game-cover" style="position: relative;">
+                <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>">
+                <div class="admin-actions">
+                    <a class="update-game" onclick="apriModaleUpdateGame()">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </a>
+                    <a class="delete-game" href="deleteVideogame?idVideogame=<%= videogioco.getIdVideogioco() %>">
+                        <i class="fa-solid fa-xmark"></i>
+                    </a>
+                </div>
+            </div>
             <div class="game-info">
                 <h2><%= videogioco.getTitolo() %></h2>
-                <div class="platform">
-                    <select>
-                        <option value="pc">PC</option>
-                        <option value="playstation">PlayStation</option>
-                        <option value="xbox">Xbox</option>
-                        <option value="nintendo">Nintendo</option>
-                    </select>
-                    <div class="stock">
-                        <i class="fa-solid fa-check"></i>
-                        <span>Disponibile</span>
-                    </div>
-                </div>
                     <div class="amount">
                         <div class="discount">
                             <span>-<%= videogioco.getSconto() %>%</span>
                         </div>
                         <div class="total">
-                            <span><%= videogioco.getPrezzo() %> €</span>
+                            <span><%= String.format("%.2f", prezzoTotale) %> €</span>
                         </div>
                     </div>
                     <div class="actions">
@@ -70,12 +78,16 @@
                         <a id="value">Come attivare il prodotto</a>
                     </div>
                     <div class="list-item">
-                        <span id="label">Produttore:</span>
-                        <span id="value"><%= videogioco.getProduttore() %></span>
+                        <span id="label">Piattaforma:</span>
+                        <span id="value"><%= videogioco.getPiattaforma() %></span>
                     </div>
                     <div class="list-item">
                         <span id="label">Data di rilascio:</span>
                         <span id="value"><%= videogioco.getDataRilascio() %></span>
+                    </div>
+                    <div class="list-item">
+                        <span id="label">Produttore:</span>
+                        <span id="value"><%= videogioco.getProduttore() %></span>
                     </div>
                     <div class="list-item">
                         <span id="label">Genere:</span>
@@ -84,6 +96,8 @@
                 </div>
             </div>
         </div>
+
+        <%@ include file="modal-update-game.jsp" %>
     </main>
 
         <%@ include file="footer.jsp" %>

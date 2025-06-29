@@ -13,7 +13,38 @@
 }
 
 #game-cover img {
+    position: relative;
+
     border-radius: 8px;
+}
+
+#game-cover .admin-actions {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.update-game, .delete-game {
+    color: white;
+    padding: 10px;
+    border-radius: 100px;
+    font-size: 15px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-game:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+}
+
+.update-game:hover {
+    background-color: rgba(0, 0, 255, 0.5);
+    color: white;
 }
 
 .game-info {

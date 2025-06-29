@@ -10,6 +10,7 @@ public class Videogioco {
     private int appIdSteam;
     private double prezzo;
     private int sconto;
+    private boolean stato;
 
     public int getIdVideogioco() {
         return idVideogioco;
@@ -81,5 +82,13 @@ public class Videogioco {
 
     public void setSconto(int sconto) {
         this.sconto = sconto;
+    }
+
+    public boolean isStato() {
+        return stato;
+    }
+
+    public void setStato(boolean stato) {
+        this.stato = stato;
     }
 }

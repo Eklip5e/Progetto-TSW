@@ -48,6 +48,16 @@
                         <%
                             }
                         %>
+
+                        <%
+                            if (paginaCorrente.equals("disabled.jsp")) {
+                        %>
+                        <a href="attivaGioco?idVideogioco=<%= videogioco.getIdVideogioco() %>">
+                            <i class="fa-solid fa-check"></i>
+                        </a>
+                        <%
+                            }
+                        %>
                         <div class="game-card-content">
                             <h2><%= videogioco.getTitolo() %> (<%= videogioco.getPiattaforma() %>)</h2>
 
