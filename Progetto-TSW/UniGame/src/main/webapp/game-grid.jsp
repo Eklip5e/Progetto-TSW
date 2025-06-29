@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%
+    String paginaCorrente = (String) request.getAttribute("paginaCorrente");
+
     List<Videogioco> videogiochi = (List<Videogioco>) request.getAttribute("videogiochi");
 
     if (videogiochi == null) {
@@ -20,11 +22,13 @@
         <div class="game-grid">
             <%
                 if (utente != null && utente.isAdmin()) {
+                    if (paginaCorrente.equals("home.jsp")) {
             %>
-                    <div class="game-card card-add-game" onclick="apriModaleAddGame()">
-                        <span class="plus">+</span>
-                    </div>
+                        <div class="game-card card-add-game" onclick="apriModaleAddGame()">
+                            <span class="plus">+</span>
+                        </div>
             <%
+                    }
                 }
             %>
 
@@ -32,9 +36,18 @@
                 for (Videogioco videogioco : videogiochi) {
             %>
                     <div class="game-card">
-                        <a href="game-page.jsp?idVideogioco=<%= videogioco.getIdVideogioco() %>">
+                        <a id="img" href="game-page.jsp?idVideogioco=<%= videogioco.getIdVideogioco() %>">
                             <img src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/<%= videogioco.getAppIdSteam() %>/header.jpg" alt="<%= videogioco.getTitolo() %>">
                         </a>
+                        <%
+                            if (paginaCorrente.equals("wish-list.jsp")) {
+                        %>
+                            <a href="removeFavorites?idVideogioco=<%= videogioco.getIdVideogioco() %>">
+                                <i class="fa-solid fa-xmark"></i>
+                            </a>
+                        <%
+                            }
+                        %>
                         <div class="game-card-content">
                             <h2><%= videogioco.getTitolo() %> (<%= videogioco.getPiattaforma() %>)</h2>
 

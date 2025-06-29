@@ -3,10 +3,10 @@
 <%
     Utente userSession = (Utente) session.getAttribute("utente");
 
-    String paginaCorrente = (String) request.getAttribute("paginaCorrente");
+    String callPage = (String) request.getAttribute("paginaCorrente");
 
-    if (paginaCorrente == null)
-        paginaCorrente = "";
+    if (callPage == null)
+        callPage = "";
 %>
 
 <head>
@@ -19,7 +19,7 @@
 <%
     String navbar = null;
 
-    if (paginaCorrente.equals("home.jsp") || paginaCorrente.equals("game-page.jsp")) {
+    if (callPage.equals("home.jsp") || callPage.equals("game-page.jsp")) {
         navbar = "navbar";
     } else {
         navbar = "navbar-static";
@@ -32,8 +32,8 @@
             <img src="img/logo.png" alt="logo">
         </a>
         <%
-            if (!paginaCorrente.equals("register.jsp") && !paginaCorrente.equals("login.jsp")) {
-                if(!paginaCorrente.equals("search-page.jsp") && !paginaCorrente.equals("carrello.jsp") && !paginaCorrente.equals("pagamento.jsp") && !paginaCorrente.equals("attivazione.jsp")) {
+            if (!callPage.equals("register.jsp") && !callPage.equals("login.jsp")) {
+                if(!callPage.equals("search-page.jsp") && !callPage.equals("carrello.jsp") && !callPage.equals("pagamento.jsp") && !callPage.equals("attivazione.jsp")) {
         %>
                     <div class="nav_links">
                         <a href="search-page.jsp">Ricerca avanzata</a>
@@ -46,7 +46,7 @@
                     </div>
         <%
             }
-            if (paginaCorrente.equals("search-page.jsp")) {
+            if (callPage.equals("search-page.jsp")) {
         %>
                     <div class="search-bar">
                         <form action="cercaVideogiochi" class="search-form">
@@ -81,7 +81,7 @@
                     </div>
         <%
             }
-            if (paginaCorrente.equals("carrello.jsp")) {
+            if (callPage.equals("carrello.jsp")) {
         %>
                 <div class="purchase-progress">
                     <span class="step active">
@@ -100,7 +100,7 @@
                     </span>
                 </div>
         <%
-            } else if (paginaCorrente.equals("pagamento.jsp")) {
+            } else if (callPage.equals("pagamento.jsp")) {
         %>
                 <div class="purchase-progress">
                     <span class="step">
@@ -119,7 +119,7 @@
                     </span>
                 </div>
         <%
-            } else if (paginaCorrente.equals("attivazione.jsp")) {
+            } else if (callPage.equals("attivazione.jsp")) {
         %>
                 <div class="purchase-progress">
                     <span class="step">

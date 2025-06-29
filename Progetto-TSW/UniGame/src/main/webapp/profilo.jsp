@@ -37,7 +37,7 @@
             <i class="fa-solid fa-truck-fast"></i>
             <span>I miei ordini</span>
         </a>
-        <a class="user-favorites">
+        <a href="favorites" class="user-favorites">
             <i class="fa-solid fa-heart"></i>
             <span>Preferiti</span>
         </a>

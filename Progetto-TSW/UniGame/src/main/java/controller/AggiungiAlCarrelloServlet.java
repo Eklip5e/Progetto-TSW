@@ -65,7 +65,7 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
             }
 
         } else {
-            righeCarrello = (ArrayList<RigaCarrello>) session.getAttribute("guestCart");
+            righeCarrello = (ArrayList<RigaCarrello>) session.getAttribute("righeCarrello");
             if (righeCarrello == null) {
                 righeCarrello = new ArrayList<>();
             }
@@ -87,7 +87,7 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
                 righeCarrello.add(rigaCarrello);
             }
 
-            session.setAttribute("guestCart", righeCarrello);
+            session.setAttribute("righeCarrello", righeCarrello);
         }
 
         response.sendRedirect("game-page.jsp?idVideogioco=" + idVideogioco + "&aggiunto=true");

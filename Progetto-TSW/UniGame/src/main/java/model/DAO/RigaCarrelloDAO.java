@@ -57,6 +57,17 @@ public class RigaCarrelloDAO {
         }
     }
 
+    public void doDeleteByIdVideogioco(int idVideogioco) {
+        String sql = "DELETE FROM RigaCarrello WHERE idVideogioco = ?";
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idVideogioco);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public RigaCarrello doRetrieveByIdVideogioco(int idVideogioco) {
         String sql = "SELECT idVideogioco, SUM(quantità) AS totalQuantità FROM RigaCarrello WHERE idVideogioco = ? GROUP BY idVideogioco";
         try (Connection con = ConPool.getConnection();

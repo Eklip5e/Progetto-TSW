@@ -4,7 +4,9 @@
     justify-content: center;
     gap: 30px;
 
-    margin-top: 50px;
+    margin: 50px auto 0 auto;
+
+    max-width: 1400px;
 }
 
 .game-card {
@@ -39,6 +41,10 @@
     font-size: 75px;
 }
 
+.game-card {
+    position: relative;
+}
+
 .game-card img {
     width: 100%;
 
@@ -49,6 +55,18 @@
 
 .game-card img:hover {
     transform: scale(1.03);
+}
+
+.game-card i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+
+    font-size: 20px;
+
+    color: var(--color-error);
+
+    cursor: pointer;
 }
 
 .game-card-content {

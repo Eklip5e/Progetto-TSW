@@ -24,36 +24,19 @@ public class MostraCarrelloServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Utente userSession = (Utente) session.getAttribute("utente");
 
-        List<RigaCarrello> righeCarrello = new ArrayList<>();
-
+        List<RigaCarrello> righeCarrello;
         if (userSession != null) {
             int idUtente = userSession.getIdUtente();
             RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
             righeCarrello = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
 
         } else {
-            righeCarrello = (ArrayList<RigaCarrello>) session.getAttribute("guestCart");
+            righeCarrello = (ArrayList<RigaCarrello>) session.getAttribute("righeCarrello");
 
             if (righeCarrello == null) {
                 righeCarrello = new ArrayList<>();
             }
         }
-
-        double prezzoUfficiale = 0;
-        double scontoTotale = 0;
-        double prezzoTotale = 0;
-        VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-        for (RigaCarrello riga : righeCarrello) {
-            Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
-            double sconto = ((double) videogioco.getSconto() / 100) * videogioco.getPrezzo();
-            prezzoUfficiale += videogioco.getPrezzo() * riga.getQuantità();
-            scontoTotale += sconto * riga.getQuantità();
-            prezzoTotale += (videogioco.getPrezzo() - sconto) * riga.getQuantità();
-        }
-
-        request.setAttribute("prezzoUfficiale", prezzoUfficiale);
-        request.setAttribute("scontoTotale", scontoTotale);
-        request.setAttribute("prezzoTotale", prezzoTotale);
 
         session.setAttribute("righeCarrello", righeCarrello);
 

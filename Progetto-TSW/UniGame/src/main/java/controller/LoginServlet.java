@@ -21,6 +21,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
@@ -36,7 +37,6 @@ public class LoginServlet extends HttpServlet {
             Utente utente = utenteDAO.doRetrieveByUsername(username);
 
             if (utente != null && utente.checkPassword(password)) {
-                HttpSession session = request.getSession();
                 session.setAttribute(ATTR_UTENTE, utente);
 
                 response.sendRedirect(PAGE_PROFILO);
