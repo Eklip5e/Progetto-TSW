@@ -51,7 +51,7 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
             Videogioco videogioco = videogiocoDAO.doRetrieveById(idVideogioco);
             double prezzo = videogioco.getPrezzo();
             int scontoPercentuale = videogioco.getSconto();
-            double prezzoScontato = prezzo * (scontoPercentuale / 100.0);
+            double prezzoScontato = prezzo * ((double) scontoPercentuale / 100);
             double prezzoFinale = prezzo - prezzoScontato;
             if (rigaCarrelloDAO.exists(idUtente, idVideogioco)) {
                 rigaCarrelloDAO.incrementaQuantita(idUtente, idVideogioco, prezzoFinale); // nuovo metodo
@@ -85,6 +85,14 @@ public class AggiungiAlCarrelloServlet extends HttpServlet {
                 RigaCarrello rigaCarrello = new RigaCarrello();
                 rigaCarrello.setQuantità(1);
                 rigaCarrello.setIdVideogioco(idVideogioco);
+
+                Videogioco videogioco = videogiocoDAO.doRetrieveById(idVideogioco);
+                double prezzo = videogioco.getPrezzo();
+                int scontoPercentuale = videogioco.getSconto();
+                double prezzoScontato = prezzo * ((double) scontoPercentuale / 100);
+                double prezzoFinale = prezzo - prezzoScontato;
+
+                rigaCarrello.setPrezzoUnitario(prezzoFinale);
 
                 righeCarrello.add(rigaCarrello);
             }

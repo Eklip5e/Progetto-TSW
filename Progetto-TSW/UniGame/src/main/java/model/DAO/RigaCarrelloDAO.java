@@ -118,7 +118,7 @@ public class RigaCarrelloDAO {
         }
     }
 
-    public void aggiornaQuantita(int idUtente, int idVideogioco, int quantita) {
+    public boolean aggiornaQuantita(int idUtente, int idVideogioco, int quantita) {
         String sql = "UPDATE RigaCarrello SET quantità = ? WHERE idUtente = ? AND idVideogioco = ?";
         try (Connection con = ConPool.getConnection();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -127,10 +127,11 @@ public class RigaCarrelloDAO {
             ps.setInt(2, idUtente);
             ps.setInt(3, idVideogioco);
 
-            ps.executeUpdate();
+            return ps.executeUpdate() > 0;
 
         } catch (SQLException e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

@@ -10,44 +10,53 @@ import org.json.simple.JSONObject;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/aggiornaQuantita")
-public class AggiornaQuantita extends HttpServlet {
+    @WebServlet("/aggiornaQuantita")
+    public class AggiornaQuantita extends HttpServlet {
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String idParam = request.getParameter("idVideogioco");
-        String quantitaParam = request.getParameter("quantita");
+        @Override
+        protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+            String idParam = request.getParameter("idVideogioco");
+            String quantitaParam = request.getParameter("quantita");
 
-        boolean success = false;
+            boolean success = false;
 
-        if (idParam != null && quantitaParam != null) {
-            try {
-                int idVideogioco = Integer.parseInt(idParam);
-                int quantita = Integer.parseInt(quantitaParam);
+            if (idParam != null && quantitaParam != null) {
+                try {
+                    int idVideogioco = Integer.parseInt(idParam);
+                    int quantita = Integer.parseInt(quantitaParam);
 
-                HttpSession session = request.getSession();
-                List<RigaCarrello> righeCarrello = (List<RigaCarrello>) session.getAttribute("righeCarrello");
+                    HttpSession session = request.getSession();
+                    model.Utente utente = (model.Utente) session.getAttribute("utente");
 
-                if (righeCarrello != null) {
-                    for (RigaCarrello riga : righeCarrello) {
-                        if (riga.getIdVideogioco() == idVideogioco) {
-                            riga.setQuantità(quantita);
-                            success = true;
-                            break;
+                    if (utente != null) {
+                        // Utente loggato: aggiorna nel database
+                        model.DAO.RigaCarrelloDAO rigaCarrelloDAO = new model.DAO.RigaCarrelloDAO();
+                        success = rigaCarrelloDAO.aggiornaQuantita(utente.getIdUtente(), idVideogioco, quantita);
+                    } else {
+                        // Utente anonimo: aggiorna in sessione
+                        List<RigaCarrello> righeCarrello = (List<RigaCarrello>) session.getAttribute("righeCarrello");
+                        if (righeCarrello != null) {
+                            for (RigaCarrello riga : righeCarrello) {
+                                if (riga.getIdVideogioco() == idVideogioco) {
+                                    riga.setQuantità(quantita);
+                                    success = true;
+                                    break;
+                                }
+                            }
                         }
                     }
+
+                } catch (NumberFormatException e) {
+                    success = false;
                 }
-            } catch (NumberFormatException e) {
-                success = false;
             }
+
+            // Risposta JSON
+            org.json.simple.JSONObject json = new org.json.simple.JSONObject();
+            json.put("success", success);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(json.toJSONString());
         }
-
-        // Creazione della risposta JSON usando JSON.simple
-        JSONObject json = new JSONObject();
-        json.put("success", success);
-
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        response.getWriter().write(json.toJSONString());
     }
-}
