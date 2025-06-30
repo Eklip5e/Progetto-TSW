@@ -41,10 +41,6 @@
             <i class="fa-solid fa-heart"></i>
             <span>Preferiti</span>
         </a>
-        <a class="user-reviews">
-            <i class="fa-solid fa-star"></i>
-            <span>Recensioni</span>
-        </a>
         <a href="gamesDisabled" class="idle-games">
             <i class="fa-solid fa-ban"></i>
             <span>Videogiochi Inattivi</span>

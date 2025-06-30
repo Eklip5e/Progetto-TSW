@@ -28,7 +28,19 @@ public class BannerDAO implements MetodiDAO<Banner> {
 
     @Override
     public void doDelete(int id) {
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "DELETE FROM Banner WHERE idBanner = ?"
+            );
+            ps.setInt(1, id);
 
+            int affectedRows = ps.executeUpdate();
+            if (affectedRows == 0) {
+                throw new RuntimeException("DELETE failed, no rows affected!");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Errore durante l'eliminazione del banner con ID: " + id, e);
+        }
     }
 
     @Override

@@ -22,10 +22,11 @@ import java.util.*;
 
 @WebServlet("/confermaAcquisto")
 public class ConfermaAcquistoServlet extends HttpServlet {
+    private static final String ATTR_ERROR = "error";
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Utente userSession = (Utente) request.getSession().getAttribute("utente");
-
         int idUtente = userSession.getIdUtente();
 
         RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
@@ -36,19 +37,24 @@ public class ConfermaAcquistoServlet extends HttpServlet {
         String scadenzaStr = request.getParameter("scadenza");
         String cvc =  request.getParameter("cvc");
 
-        if (!isValid(numeroCarta, titolare, scadenzaStr, cvc)) {
-            request.setAttribute("error", "Tutti i campi sono obbligatori");
+        String errore = validaDatiCarta(numeroCarta, titolare, scadenzaStr, cvc);
+        if (errore != null) {
+            request.setAttribute(ATTR_ERROR, errore);
+
+            request.setAttribute("numeroCarta", numeroCarta);
+            request.setAttribute("titolare", titolare);
+            request.setAttribute("scadenza", scadenzaStr);
+            request.setAttribute("cvc", cvc);
+
             request.getRequestDispatcher("pagamento.jsp").forward(request, response);
             return;
         }
 
-        java.util.Date scadenza;
+        Date scadenza;
         try {
-            scadenza = new java.text.SimpleDateFormat("MM/yy").parse(scadenzaStr);
-        } catch (java.text.ParseException e) {
-            request.setAttribute("error", "Formato data non valido.");
-            request.getRequestDispatcher("pagamento.jsp").forward(request, response);
-            return;
+            scadenza = new SimpleDateFormat("MM/yy").parse(scadenzaStr);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
 
         Fatturazione fatturazione = new Fatturazione();
@@ -99,13 +105,47 @@ public class ConfermaAcquistoServlet extends HttpServlet {
     }
 
     private String generaChiaveAcquisto() {
-        return java.util.UUID.randomUUID().toString().replace("-", "").substring(0, 32);
+        String raw = java.util.UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        // Prendi solo i primi 15 caratteri e formatta in blocchi da 5
+        return raw.substring(0, 5) + "-" + raw.substring(5, 10) + "-" + raw.substring(10, 15);
     }
 
-    public boolean isValid(String numeroCarta, String titolare, String scadenza, String cvc) {
-        return numeroCarta != null && !numeroCarta.isEmpty()
-                && titolare != null && !titolare.isEmpty()
-                && scadenza != null && !scadenza.isEmpty()
-                && cvc != null && !cvc.isEmpty();
+    private String validaDatiCarta(String numeroCarta, String titolare, String scadenza, String cvc) {
+        if (isNullOrEmpty(numeroCarta) || isNullOrEmpty(titolare) || isNullOrEmpty(scadenza) || isNullOrEmpty(cvc)) {
+            return "Tutti i campi della carta sono obbligatori.";
+        }
+
+        if (!numeroCarta.matches("^\\d{13,19}$")) {
+            // Controlla che la carta abbia solo cifre e lunghezza tipica (13-19 cifre)
+            return "Numero carta non valido.";
+        }
+
+        if (!titolare.matches("^[a-zA-ZÀ-ÿ\\s']{2,50}$")) {
+            // Nome titolare: solo lettere, spazi e apostrofi
+            return "Nome titolare non valido.";
+        }
+
+        try {
+            // Scadenza nel formato MM/yy
+            java.util.Date dataScadenza = new java.text.SimpleDateFormat("MM/yy").parse(scadenza);
+            // La scadenza deve essere nel futuro (almeno il mese corrente)
+            Date now = new Date();
+            if (dataScadenza.before(now)) {
+                return "La data di scadenza non può essere nel passato.";
+            }
+        } catch (java.text.ParseException e) {
+            return "Formato scadenza non valido. Usa MM/yy.";
+        }
+
+        if (!cvc.matches("^\\d{3,4}$")) {
+            // CVC: 3 o 4 cifre
+            return "CVC non valido.";
+        }
+
+        return null; // tutto ok
+    }
+
+    private boolean isNullOrEmpty(String s) {
+        return s == null || s.trim().isEmpty();
     }
 }

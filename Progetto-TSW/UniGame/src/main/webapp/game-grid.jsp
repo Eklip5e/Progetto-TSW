@@ -2,6 +2,7 @@
 <%@ page import="model.Utente" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="model.RigaCarrello" %>
 
 <%
     String paginaCorrente = (String) request.getAttribute("paginaCorrente");
@@ -33,7 +34,11 @@
             %>
 
             <%
+                double prezzoScontato  = 0;
+
                 for (Videogioco videogioco : videogiochi) {
+                    double sconto = ((double) videogioco.getSconto() / 100) * videogioco.getPrezzo();
+                    prezzoScontato = (videogioco.getPrezzo() - sconto);
             %>
                     <div class="game-card">
                         <a id="img" href="game-page.jsp?idVideogioco=<%= videogioco.getIdVideogioco() %>">
@@ -63,7 +68,7 @@
 
                             <div class="price-row">
                                 <span class="discount-tag">-<%= videogioco.getSconto() %>%</span>
-                                <span class="price"><%=videogioco.getPrezzo()%> €</span>
+                                <span class="price"><%= String.format("%.2f", prezzoScontato) %> €</span>
                             </div>
                         </div>
                     </div>

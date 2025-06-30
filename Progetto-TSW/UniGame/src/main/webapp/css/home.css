@@ -98,3 +98,46 @@
 .banner-not-found:hover .action {
     display: flex;
 }
+
+@media screen and (max-width: 768px) {
+    .banner {
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+        background-position: center;
+        background-size: cover;
+        padding: 20px 0;
+    }
+
+    .banner-content {
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .banner-content h1 {
+        font-size: 28px;
+    }
+
+    .banner-content .price-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .banner-content .price-row .discount-tag {
+        font-size: 18px;
+    }
+
+    .banner-content .price-row .price {
+        font-size: 28px;
+    }
+
+    .action i {
+        font-size: 50px;
+    }
+
+    .banner-not-found h1 {
+        font-size: 28px;
+        text-align: center;
+        padding: 0 10px;
+    }
+}

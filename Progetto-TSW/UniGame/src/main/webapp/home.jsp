@@ -18,7 +18,7 @@
         videogiocoBanner = videogiocoDAO.doRetrieveById(banner.getIdVideogioco());
     }
 
-    request.setAttribute("videogiochi", videogiocoDAO.doRetrieveAll());
+    request.setAttribute("videogiochi", videogiocoDAO.doRetrieveAllActive());
 %>
 
 <!DOCTYPE html>
@@ -43,7 +43,7 @@
         <main>
             <%@ include file="navbar.jsp" %>
             <%
-                if (videogiocoBanner != null && videogiocoBanner.isStato()) {
+                if (videogiocoBanner != null) {
             %>
                     <div class="banner" style="background: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg')">
 

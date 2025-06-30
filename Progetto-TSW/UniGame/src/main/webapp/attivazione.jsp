@@ -33,8 +33,8 @@
 
       <%@ include file="navbar.jsp" %>
       <div class="activation-page">
+        <h2>Grazie per il tuo acquisto! Ecco le tue chiavi di attivazione</h2>
         <div class="activation-content">
-          <h2>Grazie per il tuo acquisto! Ecco le tue chiavi di attivazione</h2>
           <%
             if (!righeOrdine.isEmpty()) {
               for (RigaOrdine riga : righeOrdine) {
@@ -44,11 +44,11 @@
                   <h2><%= videogioco.getTitolo() %></h2>
                   <span class="activation-key"><%= riga.getChiave() %></span>
                 </div>
-        </div>
         <%
               }
             }
         %>
+        </div>
       </div>
 
       <script>

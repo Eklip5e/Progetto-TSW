@@ -15,6 +15,16 @@
 
     if (righeCarrello == null)
         righeCarrello = new ArrayList<>();
+
+    String numeroCarta = (String) request.getAttribute("numeroCarta");
+    String titolare = (String) request.getAttribute("titolare");
+    String scadenza = (String) request.getAttribute("scadenza");
+    String cvc = (String) request.getAttribute("cvc");
+
+    if (numeroCarta == null) { numeroCarta = ""; }
+    if (titolare == null) { titolare = ""; }
+    if (scadenza == null) { scadenza = ""; }
+    if (cvc == null) { cvc = ""; }
 %>
 
 <html>
@@ -37,21 +47,21 @@
                             <div class="credit-card-controls">
                                 <div class="form-group">
                                     <label for="card-number">Numero della carta</label>
-                                    <input type="text" id="card-number" name="numeroCarta" placeholder="•••• •••• •••• ••••">
+                                    <input type="text" id="card-number" name="numeroCarta" placeholder="•••• •••• •••• ••••" value="<%= numeroCarta %>">
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="expiry-date">Data di scadenza</label>
-                                        <input type="text" id="expiry-date" name="scadenza" placeholder="MM/YY">
+                                        <input type="text" id="expiry-date" name="scadenza" placeholder="MM/YY" value="<%= scadenza %>">
                                     </div>
                                     <div class="form-group">
                                         <label for="cvc">Codice di sicurezza</label>
-                                        <input type="text" id="cvc" name="cvc" placeholder="CVC">
+                                        <input type="text" id="cvc" name="cvc" placeholder="CVC" value="<%= cvc %>">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="card-holder">Titolare della carta</label>
-                                    <input type="text" id="card-holder" name="titolare" placeholder="J. Smith">
+                                    <input type="text" id="card-holder" name="titolare" placeholder="J. Smith" value="<%= titolare %>">
                                 </div>
                             </div>
 

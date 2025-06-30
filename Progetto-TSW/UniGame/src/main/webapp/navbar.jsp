@@ -36,16 +36,15 @@
                 if(!callPage.equals("search-page.jsp") && !callPage.equals("carrello.jsp") && !callPage.equals("pagamento.jsp") && !callPage.equals("attivazione.jsp")) {
         %>
                     <div class="nav_links">
-                        <a href="search-page.jsp">Ricerca avanzata</a>
                         <ul>
-                            <li id="platform"><a href="CategoriaServlet?categoria=pc"><i class="fa-solid fa-laptop"></i>PC</a></li>
-                            <li id="platform"><a href="CategoriaServlet?categoria=playstation"><i class="fa-brands fa-playstation"></i>PlayStation</a></li>
-                            <li id="platform"><a href="CategoriaServlet?categoria=xbox"><i class="fa-brands fa-xbox"></i>Xbox</a></li>
-                            <li id="platform"><a href="CategoriaServlet?categoria=nintendo"><i class="fa-solid fa-star"></i>Nintendo</a></li>
+                            <li id="platform"><a href="categorie.jsp?piattaforma=pc"><i class="fa-solid fa-laptop"></i>PC</a></li>
+                            <li id="platform"><a href="categorie.jsp?piattaforma=playstation"><i class="fa-brands fa-playstation"></i>PlayStation</a></li>
+                            <li id="platform"><a href="categorie.jsp?piattaforma=xbox"><i class="fa-brands fa-xbox"></i>Xbox</a></li>
+                            <li id="platform"><a href="categorie.jsp?piattaforma=nintendo"><i class="fa-solid fa-star"></i>Nintendo</a></li>
                         </ul>
                     </div>
         <%
-            }
+                }
             if (callPage.equals("search-page.jsp")) {
         %>
                     <div class="search-bar">

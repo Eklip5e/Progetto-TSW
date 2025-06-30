@@ -69,7 +69,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     }
 
     @Override
-    public void doUpdate(Videogioco videogioco, int id) {
+    public void doUpdate(Videogioco videogioco, int idVideogioco) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "UPDATE VIDEOGIOCO SET titolo = ?, piattaforma = ?, dataRilascio = ?, descrizione = ?, prezzo = ?, sconto = ?, Produttore = ?, appIdSteam = ? WHERE idVideogioco = ?");
@@ -81,7 +81,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
             ps.setInt(6, videogioco.getSconto());
             ps.setString(7, videogioco.getProduttore());
             ps.setInt(8, videogioco.getAppIdSteam());
-            ps.setInt(9, id);
+            ps.setInt(9, idVideogioco);
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
@@ -172,11 +172,40 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
     }
 
     public List<Videogioco> doRetrieveAllActive() {
-        List<Videogioco> giochi = new ArrayList<>();
+        List<Videogioco> videogiochi = new ArrayList<>();
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
                     "SELECT * FROM VIDEOGIOCO WHERE stato = TRUE ORDER BY idVideogioco DESC");
             ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Videogioco videogioco = new Videogioco();
+                videogioco.setIdVideogioco(rs.getInt("idVideogioco"));
+                videogioco.setTitolo(rs.getString("titolo"));
+                videogioco.setPiattaforma(rs.getString("piattaforma"));
+                videogioco.setDataRilascio(rs.getDate("dataRilascio"));
+                videogioco.setDescrizione(rs.getString("descrizione"));
+                videogioco.setProduttore(rs.getString("produttore"));
+                videogioco.setAppIdSteam(rs.getInt("appIdSteam"));
+                videogioco.setPrezzo(rs.getDouble("prezzo"));
+                videogioco.setSconto(rs.getInt("sconto"));
+                videogioco.setStato(rs.getBoolean("stato"));
+                videogiochi.add(videogioco);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return videogiochi;
+    }
+
+    public List<Videogioco> doRetrieveByPiattaformaAttivi(String piattaforma) {
+        List<Videogioco> giochi = new ArrayList<>();
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement(
+                    "SELECT * FROM VIDEOGIOCO WHERE piattaforma = ? AND stato = TRUE ORDER BY idVideogioco DESC"
+            );
+            ps.setString(1, piattaforma);
+            ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
                 Videogioco gioco = new Videogioco();
                 gioco.setIdVideogioco(rs.getInt("idVideogioco"));
@@ -188,33 +217,7 @@ public class VideogiocoDAO implements MetodiDAO<Videogioco> {
                 gioco.setAppIdSteam(rs.getInt("appIdSteam"));
                 gioco.setPrezzo(rs.getDouble("prezzo"));
                 gioco.setSconto(rs.getInt("sconto"));
-                gioco.setStato(rs.getBoolean("stato")); // <-- non dimenticare questo!
-                giochi.add(gioco);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return giochi;
-    }
-
-    public List<Videogioco> doRetrieveByPiattaforma(String piattaforma) {
-        List<Videogioco> giochi = new ArrayList<>();
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM VIDEOGIOCO WHERE piattaforma = ? ORDER BY idVideogioco DESC");
-            ps.setString(1, piattaforma);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Videogioco gioco = new Videogioco();
-                gioco.setIdVideogioco(rs.getInt("idVideogioco"));
-                gioco.setTitolo(rs.getString("titolo"));
-                gioco.setPiattaforma(rs.getString("piattaforma"));
-                gioco.setDataRilascio(rs.getDate("ReleaseDate"));
-                gioco.setDescrizione(rs.getString("descrizione"));
-                gioco.setProduttore(rs.getString("produttore"));
-                gioco.setAppIdSteam(rs.getInt("appIdSteam"));
-                gioco.setPrezzo(rs.getDouble("prezzo"));
-                gioco.setSconto(rs.getInt("sconto"));
+                gioco.setStato(rs.getBoolean("stato"));
                 giochi.add(gioco);
             }
         } catch (SQLException e) {

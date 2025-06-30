@@ -47,6 +47,7 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("nome", nome);
             request.setAttribute("cognome", cognome);
             request.setAttribute("dataDiNascita", dataDiNascitaStr);
+
             request.getRequestDispatcher("register.jsp").forward(request, response);
             return;
         }

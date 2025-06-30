@@ -5,8 +5,8 @@
 <%
     request.setAttribute("paginaCorrente", "game-page.jsp");
 
-    String id = request.getParameter("idVideogioco");
-    Videogioco videogioco = new VideogiocoDAO().doRetrieveById(Integer.parseInt(id));
+    String idVideogioco = request.getParameter("idVideogioco");
+    Videogioco videogioco = new VideogiocoDAO().doRetrieveById(Integer.parseInt(idVideogioco));
 
     double prezzoUfficiale = 0;
     double scontoTotale = 0;

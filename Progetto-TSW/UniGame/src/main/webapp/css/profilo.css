@@ -74,6 +74,12 @@
     transform: scale(1.03);
 }
 
+.user-profile-content a {
+    color: #fff;
+
+    text-decoration: none;
+}
+
 .user-profile-content i{
     color: var(--color);
 

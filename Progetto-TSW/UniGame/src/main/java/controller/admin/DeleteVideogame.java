@@ -5,6 +5,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Banner;
+import model.DAO.BannerDAO;
 import model.DAO.VideogiocoDAO;
 import model.Videogioco;
 
@@ -29,6 +31,13 @@ public class DeleteVideogame extends HttpServlet {
         } else {
             resp.sendError(HttpServletResponse.SC_BAD_REQUEST, "Parametro mancante");
             return;
+        }
+
+        BannerDAO bannerDAO = new BannerDAO();
+        Banner banner = bannerDAO.doRetrieveById(1);
+
+        if (banner.getIdVideogioco() == idVideogame) {
+            bannerDAO.doDelete(1);
         }
 
         VideogiocoDAO videogiocoDAO = new VideogiocoDAO();

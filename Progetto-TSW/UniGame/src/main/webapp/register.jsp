@@ -66,7 +66,7 @@
                         %>
                                 <p style="color: var(--color-error)"><%= request.getAttribute("error") %></p>
                         <%
-                            } else
+                            }
                         %>
 
                         <!-- Submit -->

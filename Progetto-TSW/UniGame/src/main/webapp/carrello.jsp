@@ -7,6 +7,8 @@
 <%
     request.setAttribute("paginaCorrente", "carrello.jsp");
 
+    Utente utente = (Utente) session.getAttribute("utente");
+
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 
     List<RigaCarrello> righeCarrello = (List<RigaCarrello>) session.getAttribute("righeCarrello");
@@ -66,7 +68,7 @@
                                                 <div class="price-container">
                                                     <div class="price">
                                                         <span id="discount-tag">-<%= videogioco.getSconto() %>%</span>
-                                                        <span id="price"><%= videogioco.getPrezzo() %> €</span>
+                                                        <span id="price"><%= String.format("%.2f", riga.getPrezzoUnitario()) %> €</span>
                                                     </div>
                                                     <select class="quantity-select" data-id="<%= videogioco.getIdVideogioco() %>">
                                                         <%
@@ -116,15 +118,18 @@
                             </div>
 
                             <div class="actions">
-                                <form action="pagamento" method="post">
-                                    <%
-                                        String statoBottone = "";
-                                        if (righeCarrello.isEmpty()) {
-                                            statoBottone = "disabled";
-                                        }
-                                    %>
-                                    <button id="pagamento-button" <%= statoBottone %>>Vai al pagamento</button>
-                                </form>
+                                <%
+                                    String statoBottone = "";
+                                    if (righeCarrello.isEmpty()) {
+                                        statoBottone = "disabled";
+                                    }
+                                %>
+                                <%
+                                    String redirect = "pagamento";
+                                    if (utente == null)
+                                        redirect = "login.jsp";
+                                %>
+                                <a href="<%= redirect %>" id="pagamento-button" <%= statoBottone %>>Vai al pagamento</a>
                                 <span id="choice">o</span>
                                 <a id="back" href="home.jsp">Continua lo shopping</a>
                             </div>
@@ -135,5 +140,41 @@
         </main>
 
         <%@ include file="footer.jsp" %>
+
+        <script>
+            // Prendi tutte le select quantità
+            const quantitySelects = document.querySelectorAll('.quantity-select');
+
+            quantitySelects.forEach(select => {
+                select.addEventListener('change', function() {
+                    const idVideogioco = this.getAttribute('data-id');
+                    const quantita = this.value;
+
+                    // Crea XMLHttpRequest
+                    const xhttp = new XMLHttpRequest();
+
+                    xhttp.onreadystatechange = function() {
+                        if (this.readyState === 4) {
+                            if (this.status === 200) {
+                                // Opzionale: gestisci risposta JSON
+                                const response = JSON.parse(this.responseText);
+                                if (response.success) {
+                                    console.log("Quantità aggiornata con successo");
+                                    window.location.reload();  // <-- ricarica pagina
+                                } else {
+                                    alert("Errore nell'aggiornamento della quantità");
+                                }
+                            } else {
+                                alert("Errore nella richiesta AJAX");
+                            }
+                        }
+                    };
+
+                    xhttp.open("POST", "aggiornaQuantita", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    xhttp.send("idVideogioco=" + encodeURIComponent(idVideogioco) + "&quantita=" + encodeURIComponent(quantita));
+                });
+            });
+        </script>
 </body>
 </html>
