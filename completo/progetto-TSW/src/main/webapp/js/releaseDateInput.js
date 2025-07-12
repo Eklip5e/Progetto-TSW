@@ -1,0 +1,14 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const releaseDateInput = document.getElementById("dataRilascio");
+
+    releaseDateInput.addEventListener('input', () => {
+        let val = releaseDateInput.value.replace(/\D/g, '').slice(0, 8); // max 8 cifre
+
+        // spezza in gruppi di 2,2,4 (giorno, mese, anno)
+        const parts = val.match(/^(\d{0,2})(\d{0,2})(\d{0,4})$/);
+
+        if (!parts) return;
+
+        releaseDateInput.value = parts[1] + (parts[2] ? '/' + parts[2] : '') + (parts[3] ? '/' + parts[3] : '');
+    });
+});
