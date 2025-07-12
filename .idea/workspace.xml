@@ -2,79 +2,20 @@
 <project version="4">
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="uniGame:war exploded" />
+      <artifact name="progetto-TSW:war" />
+      <artifact name="progetto-TSW:war exploded" />
     </artifacts-to-build>
   </component>
   <component name="AutoImportSettings">
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/wallpaper.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Tabelle aggiornate.sql" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Tabelle aggiornate.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-grid.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-grid.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-page.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/game-page.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/navbar.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/navbar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/register.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/register.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/game-grid.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/game-grid.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/game-page.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/game-page.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/home.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/img/logo.png" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/img/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/navbar.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/uniGame/src/main/webapp/register.jsp" afterDir="false" />
-    </list>
-=======
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
->>>>>>> Stashed changes
-=======
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
->>>>>>> Stashed changes
-=======
-    <list default="true" id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
->>>>>>> Stashed changes
+    <list default="true" id="1b82b3a1-dd6f-44ef-bcdc-389702611770" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-        <option value="JavaScript File" />
-        <option value="Jsp File" />
-        <option value="Python Script" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="Gennaro" />
-      </map>
-    </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Eklip5e&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Eklip5e/Progetto-TSW.git&quot;,
-    &quot;accountId&quot;: &quot;97b5d9ed-c00e-433e-ad78-65929e60b984&quot;
-  }
-}</component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -83,178 +24,59 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 2
 }</component>
-  <component name="ProjectId" id="2x8tfEGel0LRWglJcw6kyZ3vgbp" />
+  <component name="ProjectId" id="2zmTCeSM5XI9V6xxfEw2jLUoAbx" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven.uniGame [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
-    "Maven.uniGame [org.apache.maven.plugins:maven-war-plugin:3.3.1:exploded].executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Python.syncdb.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "Tomcat Server.Tomcat 11.0.6.executor": "Run",
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    "git-widget-placeholder": "Merging main",
-=======
-    "git-widget-placeholder": "Nello",
->>>>>>> Stashed changes
-=======
-    "git-widget-placeholder": "c81cd29e",
-    "ignore.virus.scanning.warn.message": "true",
->>>>>>> Stashed changes
-=======
-    "git-widget-placeholder": "c81cd29e",
-    "ignore.virus.scanning.warn.message": "true",
->>>>>>> Stashed changes
-    "last_opened_file_path": "D:/Github/Progetto-TSW/src/main/webapp/img/user",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 11.0.6.executor&quot;: &quot;Run&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Github/Progetto-TSW2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
-  <component name="Push.Settings">
-    <force-push-targets>
-      <force-push-target remote-path="origin" branch="Third" />
-    </force-push-targets>
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp\img\user" />
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp\img" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp\utenti" />
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp\principali" />
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp\games" />
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp" />
-      <recent name="D:\Github\Progetto-TSW\src\main\webapp\img" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 11.0.6">
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Doctests">
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-    <configuration name="syncdb" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="unigame" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/External Scripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/External Scripts/syncdb.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+}</component>
+  <component name="RunManager">
     <configuration name="Tomcat 11.0.6" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 11.0.6" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
-        <artifact name="uniGame:war exploded">
+        <artifact name="progetto-TSW:war exploded">
           <settings>
-            <option name="CONTEXT_PATH" value="/uniGame_war_exploded" />
+            <option name="CONTEXT_PATH" value="/progetto_TSW_war_exploded" />
+          </settings>
+        </artifact>
+        <artifact name="progetto-TSW:war">
+          <settings>
+            <option name="CONTEXT_PATH" value="/progetto_TSW_war" />
           </settings>
         </artifact>
       </deployment>
       <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="4fb8a569-0b5c-4658-b5dd-8c52389140f5" />
+        <option name="BASE_DIRECTORY_NAME" value="282d5e92-daac-4305-bec7-13e4e4b22819" />
       </server-settings>
       <predefined_log_file enabled="true" id="Tomcat" />
       <predefined_log_file enabled="true" id="Tomcat Catalina" />
       <predefined_log_file id="Tomcat Manager" />
       <predefined_log_file id="Tomcat Host Manager" />
       <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="AppServerDebuggerRunner">
-        <option name="DEBUG_PORT" value="59014" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="56800" />
       </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="AppServerDebuggerRunner">
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
           <option name="USE_DEFAULT" value="true" />
@@ -269,7 +91,7 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
         <option name="USE_ENV_VARIABLES" value="true" />
         <STARTUP>
           <option name="USE_DEFAULT" value="true" />
@@ -315,15 +137,13 @@
         </SHUTDOWN>
       </ConfigurationWrapper>
       <method v="2">
-        <option name="Make" enabled="true" />
+        <option name="MakeProject" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="uniGame:war exploded" />
+          <artifact name="progetto-TSW:war exploded" />
+          <artifact name="progetto-TSW:war" />
         </option>
       </method>
     </configuration>
-    <list>
-      <item itemvalue="Tomcat Server.Tomcat 11.0.6" />
-    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -335,34 +155,14 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ee55821b-32ee-4e06-8190-75ca201ebee9" name="Changes" comment="" />
-      <created>1747331631694</created>
+      <changelist id="1b82b3a1-dd6f-44ef-bcdc-389702611770" name="Changes" comment="" />
+      <created>1752335122452</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1747331631694</updated>
-      <workItem from="1747331633695" duration="281000" />
-      <workItem from="1747407149797" duration="4041000" />
-      <workItem from="1747652340023" duration="9643000" />
-      <workItem from="1747739333091" duration="2051000" />
-      <workItem from="1747743727364" duration="48000" />
-      <workItem from="1747743787335" duration="3804000" />
-      <workItem from="1747987059021" duration="2588000" />
-      <workItem from="1747998101091" duration="10616000" />
-      <workItem from="1748101148539" duration="10864000" />
-      <workItem from="1748118689954" duration="46000" />
-      <workItem from="1748163857628" duration="2000" />
-      <workItem from="1748361888505" duration="1000" />
-      <workItem from="1748893732180" duration="286000" />
-      <workItem from="1749476352980" duration="5513000" />
-      <workItem from="1749496325882" duration="644000" />
-      <workItem from="1749501542355" duration="1967000" />
-      <workItem from="1750157769098" duration="4756000" />
-      <workItem from="1750258654428" duration="218000" />
-      <workItem from="1750335730051" duration="1852000" />
-      <workItem from="1750343866459" duration="3853000" />
-      <workItem from="1750415990930" duration="3123000" />
-      <workItem from="1750419186565" duration="876000" />
-      <workItem from="1750629922832" duration="28000" />
+      <updated>1752335122452</updated>
+      <workItem from="1752335123544" duration="2444000" />
+      <workItem from="1752337600173" duration="7348000" />
+      <workItem from="1752353136930" duration="950000" />
     </task>
     <servers />
   </component>
