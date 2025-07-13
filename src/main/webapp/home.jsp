@@ -1,7 +1,8 @@
-﻿<%@ page import="model.Banner" %>
-<%@ page import="model.DAO.VideogiocoDAO" %>
-<%@ page import="model.DAO.BannerDAO" %>
+﻿<%@ page import="model.DAO.VideogiocoDAO" %>
 <%@ page import="model.Videogioco" %>
+<%@ page import="model.DAO.BannerDAO" %>
+<%@ page import="model.Banner" %>
+
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
@@ -9,7 +10,7 @@
 
     VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
 
-    BannerDAO bannerDAO = new model.DAO.BannerDAO();
+    BannerDAO bannerDAO = new BannerDAO();
     Banner banner = bannerDAO.doRetrieveById(1);
 
     Videogioco videogiocoBanner = null;
@@ -25,40 +26,42 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <title>UniGame</title>
 
         <%-- css --%>
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/home.css">
+
+        <%-- font-awesome --%>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <%-- google-font --%>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
     </head>
     <body>
-        <main>
-            <%@ include file="WEB-INF/navbar.jsp" %>
 
+        <main>
+            <%@ include file="navbar.jsp" %>
             <%
                 if (videogiocoBanner != null) {
             %>
-                    <div class="banner" style="background: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg') center center / cover no-repeat;">
+                    <div class="banner" style="background: url('http://cdn.cloudflare.steamstatic.com/steam/apps/<%= videogiocoBanner.getAppIdSteam() %>/library_hero.jpg')">
 
-                        <c:if test="${sessionScope.utente != null  and sessionScope.utente.admin}">
-                            <div class="action">
-                                <button  onclick="apriModaleUpdateBanner()">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                            </div>
-
-                            <div class="action-mobile">
-                                <button onclick="apriModaleUpdateBanner()">
-                                    <i class="fa-solid fa-pen-nib"></i>
-                                </button>
-                            </div>
-                        </c:if>
-                        <div class="banner-container">
+                        <%
+                            if (userSession != null && userSession.isAdmin()) {
+                        %>
+                                <div class="action">
+                                    <i class="fa-solid fa-pen-nib" onclick="apriModaleUpdateBanner()"></i>
+                                </div>
+                        <%
+                            }
+                        %>
+                        <div class="banner-content">
                             <h1><%= videogiocoBanner.getTitolo() %></h1>
 
                             <div class="price-row">
                                 <span class="discount-tag">-<%= videogiocoBanner.getSconto() %>%</span>
-                                <p class="price"><%= String.format("%.2f", videogiocoBanner.getPrezzoScontato()) %> €</p>
+                                <p class="price"><%= videogiocoBanner.getPrezzo() %> €</p>
                             </div>
                         </div>
                     </div>
@@ -68,35 +71,31 @@
                     <div class="banner-not-found">
                         <h1>Banner non disponibile</h1>
 
-                        <c:if test="${sessionScope.utente != null  and sessionScope.utente.admin}">
-                            <div class="action">
-                                <button>
+                        <%
+                            if (userSession != null && userSession.isAdmin()) {
+                        %>
+                                <div class="action">
                                     <i class="fa-solid fa-plus" onclick="apriModaleAddBanner()"></i>
-                                </button>
-                            </div>
-
-                            <div class="action-mobile">
-                                <button>
-                                    <i class="fa-solid fa-plus" onclick="apriModaleAddBanner()"></i>
-                                </button>
-                            </div>
-                        </c:if>
+                                </div>
+                        <%
+                            }
+                        %>
                     </div>
             <%
                 }
             %>
 
-            <%@ include file="WEB-INF/game-grid.jsp" %>
+            <%@ include file="game-grid.jsp" %>
 
-            <%-- modali --%>
-            <%@ include file="WEB-INF/modal-add-banner.jsp" %>
+            <%-- modals --%>
+            <%@ include file="modal-add-banner.jsp" %>
 
-            <%@ include file="WEB-INF/modal-update-banner.jsp" %>
+            <%@ include file="modal-update-banner.jsp" %>
 
-            <%@ include file="WEB-INF/modal-add-game.jsp" %>
-
+            <%@ include file="modal-add-game.jsp" %>
         </main>
 
-        <%@ include file="WEB-INF/footer.jsp" %>
+        <%@ include file="footer.jsp" %>
+
     </body>
 </html>

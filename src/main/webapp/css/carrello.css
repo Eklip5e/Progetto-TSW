@@ -128,8 +128,10 @@
 
 .actions {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+
+    width: 150px;
 }
 
 .actions a {
@@ -301,23 +303,4 @@
 
 .summary-content .actions #back:hover {
     color: var(--color-link-hover);
-}
-
-@media (max-width: 1049px) {
-    .cart-page-content {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .cart-content {
-        width: 330px;
-    }
-
-    .cart-item {
-        flex-direction: column;
-    }
-
-    .item-container {
-
-    }
 }

@@ -7,9 +7,7 @@ public class Videogioco {
     private java.util.Date dataRilascio;
     private String descrizione;
     private String produttore;
-    private String genere;
     private int appIdSteam;
-    private int quantità;
     private double prezzo;
     private int sconto;
     private boolean stato;
@@ -62,28 +60,12 @@ public class Videogioco {
         this.produttore = produttore;
     }
 
-    public String getGenere() {
-        return genere;
-    }
-
-    public void setGenere(String genere) {
-        this.genere = genere;
-    }
-
     public int getAppIdSteam() {
         return appIdSteam;
     }
 
     public void setAppIdSteam(int appIdSteam) {
         this.appIdSteam = appIdSteam;
-    }
-
-    public int getQuantità() {
-        return quantità;
-    }
-
-    public void setQuantità(int quantità) {
-        this.quantità = quantità;
     }
 
     public double getPrezzo() {
@@ -108,9 +90,5 @@ public class Videogioco {
 
     public void setStato(boolean stato) {
         this.stato = stato;
-    }
-
-    public double getPrezzoScontato() {
-        return prezzo - (prezzo * ((double) sconto / 100));
     }
 }

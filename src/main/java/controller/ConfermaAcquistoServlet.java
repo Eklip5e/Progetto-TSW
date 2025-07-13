@@ -5,18 +5,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.DAO.MetodoPagamentoDAO;
+import model.DAO.FatturazioneDAO;
 import model.DAO.RigaCarrelloDAO;
-import model.DAO.VideogiocoDAO;
 import model.Fatturazione;
 import model.RigaCarrello;
 import model.Utente;
-import model.Videogioco;
-import model.DAO.OrdineDAO;
-import model.DAO.RigaOrdineDAO;
-import model.Ordine;
-import model.RigaOrdine;
+import model.acquisto.DAO.OrdineDAO;
+import model.acquisto.DAO.RigaOrdineDAO;
+import model.acquisto.Ordine;
+import model.acquisto.RigaOrdine;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -26,117 +23,85 @@ import java.util.*;
 @WebServlet("/confermaAcquisto")
 public class ConfermaAcquistoServlet extends HttpServlet {
     private static final String ATTR_ERROR = "error";
-    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM/yy");
-
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
-        int idUtente = utente.getIdUtente();
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Utente userSession = (Utente) request.getSession().getAttribute("utente");
+        int idUtente = userSession.getIdUtente();
 
         RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
-        List<RigaCarrello> carrello = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
+        List<RigaCarrello> giochiAcquistati = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
 
-        if (carrello == null || carrello.isEmpty()) {
-            resp.sendRedirect("carrello");
-            return;
-        }
-
-        String numeroCarta =  req.getParameter("numeroCarta");
-        String titolare =  req.getParameter("titolare");
-        String scadenzaStr = req.getParameter("scadenza");
-        String cvc =  req.getParameter("cvc");
+        String numeroCarta =  request.getParameter("numeroCarta");
+        String titolare =  request.getParameter("titolare");
+        String scadenzaStr = request.getParameter("scadenza");
+        String cvc =  request.getParameter("cvc");
 
         String errore = validaDatiCarta(numeroCarta, titolare, scadenzaStr, cvc);
-
         if (errore != null) {
-            req.setAttribute(ATTR_ERROR, errore);
+            request.setAttribute(ATTR_ERROR, errore);
 
-            req.setAttribute("numeroCarta", numeroCarta);
-            req.setAttribute("titolare", titolare);
-            req.setAttribute("scadenza", scadenzaStr);
-            req.setAttribute("cvc", cvc);
+            request.setAttribute("numeroCarta", numeroCarta);
+            request.setAttribute("titolare", titolare);
+            request.setAttribute("scadenza", scadenzaStr);
+            request.setAttribute("cvc", cvc);
 
-            req.getRequestDispatcher("pagamento").forward(req, resp);
+            request.getRequestDispatcher("pagamento.jsp").forward(request, response);
             return;
         }
 
+        Date scadenza;
         try {
-            java.util.Date scadenza = DATE_FORMAT.parse(scadenzaStr);
-            String numero = numeroCarta.replaceAll("\\s", "");
-
-            MetodoPagamentoDAO metodoPagamentoDAO = new MetodoPagamentoDAO();
-            Fatturazione fatturazione = metodoPagamentoDAO.doRetrieveByNumeroAndUtente(numero, idUtente);
-
-            if (fatturazione == null) {
-                fatturazione = new Fatturazione();
-                fatturazione.setNumero(numero);
-                fatturazione.setTitolare(titolare);
-                fatturazione.setScadenza(scadenza);
-                fatturazione.setCvc(cvc);
-                fatturazione.setIdUtente(idUtente);
-
-                metodoPagamentoDAO.doSave(fatturazione);
-            }
-
-            double totale = 0;
-            for (RigaCarrello riga : carrello) {
-                totale += riga.getPrezzoUnitario() * riga.getQuantità();
-            }
-
-            OrdineDAO ordineDAO = new OrdineDAO();
-            Ordine ordine = new Ordine();
-            ordine.setDataOrdine(new Date());
-            ordine.setStato("Completato");
-            ordine.setTotale(totale);
-            ordine.setIdUtente(idUtente);
-            ordine.setIdFatturazione(fatturazione.getIdFatturazione());
-
-            ordineDAO.doSave(ordine);
-
-            RigaOrdineDAO rigaOrdineDAO = new RigaOrdineDAO();
-            for (RigaCarrello riga : carrello) {
-                int quantita = riga.getQuantità();
-                for (int i = 0; i < quantita; i++) {
-                    RigaOrdine rigaOrdine = new RigaOrdine();
-                    rigaOrdine.setIdOrdine(ordine.getIdOrdine());
-                    rigaOrdine.setIdVideogioco(riga.getIdVideogioco());
-                    rigaOrdine.setChiave(generaChiaveAcquisto());
-                    rigaOrdine.setPrezzoUnitario(riga.getPrezzoUnitario());
-
-                    rigaOrdineDAO.doSave(rigaOrdine);
-                }
-            }
-
-            rigaCarrelloDAO.doDeleteById(idUtente);
-
-            List<RigaOrdine> righeOrdine = rigaOrdineDAO.doRetrieveByOrdineId(ordine.getIdOrdine());
-            List<Videogioco> videogiochi = new ArrayList<>();
-
-            VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-            for (RigaOrdine riga : righeOrdine) {
-                Videogioco videogioco = videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
-
-                if (videogioco != null) {
-                    videogiochi.add(videogioco);
-                }
-            }
-
-            List<String> chiavi = new ArrayList<>();
-            for (RigaOrdine riga : righeOrdine) {
-                chiavi.add(riga.getChiave());
-            }
-
-            req.setAttribute("idOrdine", ordine.getIdOrdine());
-            req.setAttribute("videogiochi", videogiochi);
-            req.setAttribute("chiavi", chiavi);
-
-            req.getRequestDispatcher("WEB-INF/attivazione.jsp").forward(req, resp);
-
-        } catch (Exception e) {
-            resp.sendRedirect("error.jsp");
+            scadenza = new SimpleDateFormat("MM/yy").parse(scadenzaStr);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
+
+        Fatturazione fatturazione = new Fatturazione();
+        fatturazione.setNumero(numeroCarta);
+        fatturazione.setTitolare(titolare);
+        fatturazione.setScadenza(scadenza);
+        fatturazione.setCvc(cvc);
+        fatturazione.setIdUtente(idUtente);
+
+        FatturazioneDAO fatturazioneDAO = new FatturazioneDAO();
+        fatturazioneDAO.doSave(fatturazione);
+
+        double totale = 0;
+        for(RigaCarrello riga : giochiAcquistati){
+            totale += riga.getPrezzoUnitario() * riga.getQuantità();
+        }
+
+        Ordine ordine = new Ordine();
+        ordine.setDataOrdine(new Date());
+        ordine.setStato("In elaborazione");
+        ordine.setTotale(totale);
+        ordine.setIdUtente(idUtente);
+        ordine.setIdFatturazione(fatturazione.getIdFatturazione());
+
+        OrdineDAO ordineDAO = new OrdineDAO();
+        ordineDAO.doSave(ordine);
+
+        RigaOrdineDAO rigaOrdineDAO = new RigaOrdineDAO();
+
+        for (RigaCarrello rigaCarrello : giochiAcquistati) {
+            int quantita = rigaCarrello.getQuantità();
+            for (int i = 0; i < quantita; i++) {
+                RigaOrdine rigaOrdine = new RigaOrdine();
+                rigaOrdine.setIdOrdine(ordine.getIdOrdine());
+                rigaOrdine.setIdVideogioco(rigaCarrello.getIdVideogioco());
+                rigaOrdine.setChiave(generaChiaveAcquisto());
+                rigaOrdine.setPrezzoUnitario(rigaCarrello.getPrezzoUnitario());
+
+                rigaOrdineDAO.doSave(rigaOrdine);
+            }
+        }
+
+        rigaCarrelloDAO.doDeleteById(idUtente);
+
+        List<RigaOrdine> righeOrdine = rigaOrdineDAO.doRetrieveByOrdineId(ordine.getIdOrdine());
+        request.setAttribute("righeOrdine", righeOrdine);
+        request.getRequestDispatcher("attivazione.jsp").forward(request, response);
     }
 
     private String generaChiaveAcquisto() {
@@ -150,9 +115,8 @@ public class ConfermaAcquistoServlet extends HttpServlet {
             return "Tutti i campi della carta sono obbligatori.";
         }
 
-        String numeroCartaPulito = numeroCarta.replaceAll("\\s", "");
-
-        if (!numeroCartaPulito.matches("^\\d{16}$")) {
+        if (!numeroCarta.matches("^\\d{13,19}$")) {
+            // Controlla che la carta abbia solo cifre e lunghezza tipica (13-19 cifre)
             return "Numero carta non valido.";
         }
 
@@ -183,9 +147,5 @@ public class ConfermaAcquistoServlet extends HttpServlet {
 
     private boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty();
-    }
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
     }
 }

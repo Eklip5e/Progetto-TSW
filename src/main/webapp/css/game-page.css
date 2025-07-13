@@ -2,15 +2,6 @@
     height: 500px;
 }
 
-.game-banner::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-
-    height: 500px;
-}
-
 .game-page-content {
     position: relative;
     top: -107.5px;
@@ -18,7 +9,7 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20px;
+    gap: 50px;
 }
 
 #game-cover img {
@@ -37,31 +28,30 @@
     gap: 10px;
 }
 
-.delete-game:hover, .update-game:hover {
-    transform: scale(1.03);
-}
-
-.admin-actions .update-game {
-    border: none;
-
-    background: none;
-}
-
-.admin-actions .update-game i, .delete-game i {
-    padding: 15px;
-
+.update-game, .delete-game {
+    color: white;
+    padding: 10px;
     border-radius: 100px;
+    font-size: 15px;
 
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-game:hover {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+}
+
+.update-game:hover {
+    background-color: rgba(0, 0, 255, 0.5);
+    color: white;
 }
 
 .game-info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 25px;
 
     width: 400px;
 
@@ -72,33 +62,60 @@
     background: linear-gradient(to bottom, #323232, #272727);
 }
 
-.game-info h2 {
-    width: 300px;
+.game-info .platform {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
 
-    text-align: center;
+    width: 100%;
+}
 
-    font-weight: 400;
-    font-size: 20px;
+.game-info select {
+    background-color: hsla(0, 0%, 6%, 0.4);
+    border: 1px solid var(--color-medium-light);
+    border-radius: 8px;
+    width: 100%;
+    color: white;
+    padding: 15px;
+    font-size: 15px;
 
-    white-space: nowrap;           /* Impedisce il ritorno a capo */
-    overflow: hidden;              /* Nasconde il testo che esce dal contenitore */
-    text-overflow: ellipsis;       /* mostra i 3 puntini alla fine */
+    appearance: none;
+}
+
+.stock {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background-color: hsla(0, 0%, 6%, 0.4);
+
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.stock i {
+    padding: 5px;
+
+    border: 1px solid green;
+    border-radius: 100px;
+
+    color: green;
 }
 
 .amount {
     display: flex;
-    align-items: center;
+    align-items: end;
     gap: 10px;
 }
 
 .discount {
-    font-size: 20px;
+    font-size: 25px;
 
     color: var(--color);
 }
 
 .total {
-    font-size: 30px;
+    font-size: 45px;
     font-weight: 400;
 }
 
@@ -108,22 +125,6 @@
     align-items: center;
     gap: 15px;
     width: 100%;
-}
-
-#add-to-favourites, #remove-from-favorites {
-    padding: 15px;
-
-    border-radius: 8px;
-
-    color: white;
-    background: var(--fire-gradient);
-
-    cursor: pointer;
-}
-
-#add-to-favourites, #remove-from-favorites a {
-    font-weight: 400;
-    font-size: 15px;
 }
 
 .add-to-cart {
@@ -151,15 +152,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 20px;
-
-    margin-top: 50px;
+    gap: 50px;
 }
 
 .product-text {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
 
     width: 460px;
 }
@@ -175,7 +174,7 @@
 .specifics {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
 
     width: 440px;
 }
@@ -191,44 +190,4 @@
 
 .list-item #label {
     color: var(--color-light);
-}
-
-@media (max-width: 768px) {
-    .game-page-content {
-        position: static;
-
-        flex-direction: column;
-        align-items: center;
-
-        margin-top: 50px;
-    }
-
-    #game-cover img {
-        width: 340px;
-    }
-
-    .game-info {
-        width: 300px;
-    }
-
-    .details {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .product-text {
-        width: 300px;
-    }
-
-    .specifics {
-        width: 300px;
-    }
-
-    .list-item #value {
-        width: 150px;
-
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
 }

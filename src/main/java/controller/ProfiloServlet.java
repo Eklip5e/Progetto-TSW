@@ -6,22 +6,27 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.Utente;
 
 import java.io.IOException;
 
 @WebServlet("/profilo")
 public class ProfiloServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
+        HttpSession session = request.getSession(false); // false = non crearne una nuova
+
+        if (session != null && session.getAttribute("utente") != null) {
+            // Utente loggato → vai al profilo
+            request.getRequestDispatcher("/profilo.jsp").forward(request, response);
+        } else {
+            // Utente non loggato → reindirizza al login
+            response.sendRedirect("login.jsp");
+        }
+    }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-        Utente utente = (Utente) session.getAttribute("utente");
-
-        if (utente != null) {
-            request.getRequestDispatcher("WEB-INF/profilo.jsp").forward(request, response);
-        } else {
-            response.sendRedirect("home.jsp");
-        }
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req, resp);
     }
 }

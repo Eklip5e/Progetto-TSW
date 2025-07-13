@@ -19,11 +19,17 @@ public class RegisterServlet extends HttpServlet {
     private static final String ATTR_ERROR = "error";
     private static final String ATTR_UTENTE = "utente";
     private static final String PAGE_REGISTER = "register.jsp";
-    private static final String PAGE_PROFILO = "WEB-INF/profilo.jsp";
+    private static final String PAGE_PROFILO = "profilo.jsp";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException, ServletException {
 
         String username = request.getParameter("username");
         String email = request.getParameter("email");
@@ -33,7 +39,6 @@ public class RegisterServlet extends HttpServlet {
         String dataDiNascitaStr =  request.getParameter("dataDiNascita");
 
         String errore = validaCampi(username, email, password, nome, cognome, dataDiNascitaStr);
-
         if (errore != null) {
             request.setAttribute(ATTR_ERROR, errore);
 
@@ -43,33 +48,41 @@ public class RegisterServlet extends HttpServlet {
             request.setAttribute("cognome", cognome);
             request.setAttribute("dataDiNascita", dataDiNascitaStr);
 
+            request.getRequestDispatcher("register.jsp").forward(request, response);
+            return;
+        }
+
+        Date dataDiNascita;
+        try {
+            dataDiNascita = DATE_FORMAT.parse(dataDiNascitaStr);
+        } catch (java.text.ParseException e) {
+            request.setAttribute("error", "Formato data non valido. Usa dd/mm/yyyy.");
             request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
             return;
         }
 
+        // Crea un nuovo utente
+        Utente utente = new Utente();
+        utente.setAdmin(false);
+        utente.setUsername(username);
+        utente.setEmail(email);
+        utente.setPassword(password);
+        utente.setNome(nome);
+        utente.setCognome(cognome);
+        utente.setDataDiNascita(dataDiNascita);
+
         try {
-            Date dataDiNascita;
-            dataDiNascita = DATE_FORMAT.parse(dataDiNascitaStr);
-
-            Utente utente = new Utente();
-            utente.setAdmin(false);
-            utente.setUsername(username);
-            utente.setEmail(email);
-            utente.setPassword(password);
-            utente.setNome(nome);
-            utente.setCognome(cognome);
-            utente.setDataDiNascita(dataDiNascita);
-
             UtenteDAO utenteDAO = new UtenteDAO();
             utenteDAO.doSave(utente);
 
             HttpSession session = request.getSession();
             session.setAttribute(ATTR_UTENTE, utente);
 
-            request.getRequestDispatcher(PAGE_PROFILO).forward(request, response);
-
-        } catch (Exception e) {
-            response.sendRedirect("error.jsp");
+            response.sendRedirect(PAGE_PROFILO);
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+            request.setAttribute(ATTR_ERROR, "Errore durante la registrazione.");
+            request.getRequestDispatcher(PAGE_REGISTER).forward(request, response);
         }
     }
 
@@ -83,7 +96,7 @@ public class RegisterServlet extends HttpServlet {
             return "Username deve essere lungo tra 4 e 20 caratteri e contenere solo lettere, numeri o underscore.";
         }
 
-        if (!email.matches("^[A-Za-z0-9._+]+@[A-Za-z0-9.]+\\.[A-Za-z]{2,}$")) {
+        if (!email.matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
             return "Email non valida.";
         }
 
@@ -91,11 +104,11 @@ public class RegisterServlet extends HttpServlet {
             return "La password deve contenere almeno 8 caratteri, una maiuscola, una minuscola e un numero.";
         }
 
-        if (!nome.matches("^[a-zA-Z\\s]{2,30}$")) {
+        if (!nome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ'\\s]{2,30}$")) {
             return "Nome non valido. Usa solo lettere.";
         }
 
-        if (!cognome.matches("^[a-zA-Z\\s]{2,30}$")) {
+        if (!cognome.matches("^[a-zA-ZàèéìòùÀÈÉÌÒÙ'\\s]{2,30}$")) {
             return "Cognome non valido. Usa solo lettere.";
         }
 

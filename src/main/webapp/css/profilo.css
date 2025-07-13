@@ -2,24 +2,44 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 50px;
+    gap: 75px;
 
-    margin-top: 100px;
+    margin-top: 50px;
 
     width: 100%;
 }
 
 .user-profile-header {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.user-profile-header h1 {
-    text-align: center;
+.user-profile-header span {
+    font-size: 30px;
 
+    color: #fff;
+}
+
+.user-profile button {
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
 
     font-weight: 400;
-    font-size: 30px;
+    font-size: 15px;
+
+    color: #fff;
+    background: var(--fire-gradient);
+
+    cursor: pointer;
+}
+
+.user-profile button:hover {
+    background: var(--fire-gradient-hover);
 }
 
 
@@ -30,20 +50,7 @@
     gap: 20px;
 }
 
-.user-profile-content button {
-    border: none;
-
-    background: none;
-}
-
-.user-profile-content span {
-    font-weight: 400;
-    font-size: 15px;
-
-    color: #fff;
-}
-
-#user-orders, #user-favorites {
+.user-profile-content .user-orders, .user-favorites, .user-reviews, .idle-games {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -63,51 +70,7 @@
     transition: transform 0.2s ease;
 }
 
-#idle-games, #update-user, #update-password{
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-
-    width: 200px;
-    height: 200px;
-
-    border-radius: 8px;
-
-    background-color: var(--color-medium-dark);
-
-    cursor: pointer;
-    user-select: none;
-
-    transition: transform 0.2s ease;
-}
-
-#update-section, #admin-section, #user-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-
-    padding: 15px;
-
-    width: 170px;
-
-    border-radius: 100px;
-
-    background-color: var(--color-medium-dark);
-
-    cursor: pointer;
-    user-select: none;
-
-    transition: transform 0.2s ease;
-}
-
-#admin-section, #user-section {
-    display: none; !important;
-}
-
-#user-orders:hover, #user-favorites:hover, #idle-games:hover, #admin-section:hover, #user-section:hover, #update-section:hover, #update-user:hover, #update-password:hover {
+.user-profile-content .user-orders:hover, .user-favorites:hover, .user-reviews:hover, .idle-games:hover {
     transform: scale(1.03);
 }
 
@@ -121,15 +84,4 @@
     color: var(--color);
 
     font-size: 30px;
-}
-
-@media (max-width: 768px) {
-    .user-profile-content {
-        flex-direction: column;
-    }
-
-    .user-profile-header h1 {
-        font-weight: 400;
-        font-size: 20px;
-    }
 }

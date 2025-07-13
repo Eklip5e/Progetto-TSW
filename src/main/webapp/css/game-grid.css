@@ -2,21 +2,19 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 380px);
     justify-content: center;
-    gap: 50px;
+    gap: 30px;
 
-    margin: 100px auto 0;
+    margin: 50px auto 0 auto;
 
     max-width: 1400px;
 }
 
 .game-card {
-    position: relative;
-
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     gap: 10px;
+
+    height: 220px;
 }
 
 .card-add-game {
@@ -24,62 +22,27 @@
     justify-content: center;
     align-items: center;
 
-    height: 230px;
-
     outline: 5px dashed #fff;
     outline-offset: -5px;
     border-radius: 8px;
 
-    transition: transform 0.2s ease;
-}
-
-.card-add-game button {
-    border: none;
-
-    background: none;
-
     cursor: pointer;
+    user-select: none;
+
+    transition: transform 0.2s ease;
 }
 
 .card-add-game:hover {
     transform: scale(1.03);
 }
 
-.card-add-game #plus {
-    font-size: 70px;
-
-    color: #fff;
+.card-add-game .plus {
+    font-weight: 600;
+    font-size: 75px;
 }
 
-#back-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-
-    padding: 15px;
-
-    width: 170px;
-
-    border-radius: 100px;
-
-    color: #fff;
-    background-color: var(--color-medium-dark);
-
-    text-decoration: none;
-
-    transition: transform 0.2s ease;
-}
-
-#back-container:hover {
-    transform: scale(1.03);
-}
-
-#back-container i {
-    font-size: 30px;
-
-    color: var(--color);
+.game-card {
+    position: relative;
 }
 
 .game-card img {
@@ -94,12 +57,12 @@
     transform: scale(1.03);
 }
 
-.game-card #rimuovi, #attiva  {
+.game-card i {
     position: absolute;
     top: 15px;
     right: 15px;
 
-    font-size: 30px;
+    font-size: 20px;
 
     color: var(--color-error);
 
@@ -108,31 +71,25 @@
 
 .game-card-content {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.game-card-content .game-info {
-    display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    width: 380px;
+    flex-wrap: nowrap;
 }
 
-.game-info h2 {
-    width: 200px;
-
+.game-card-content h2 {
     font-weight: 400;
-    font-size: 20px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    font-size: 15px;
+    white-space: nowrap;           /* Impedisce il ritorno a capo */
+    overflow: hidden;              /* Nasconde il testo che esce dal contenitore */
+    text-overflow: ellipsis;       /* Mostra "..." alla fine del testo tagliato */
+    flex-grow: 1;                  /* Fa sì che il titolo occupi tutto lo spazio disponibile */
+    min-width: 0;                  /* Essenziale con flexbox per far funzionare overflow:hidden */
+    margin-right: 15px;           /* Spazio tra il titolo e il prezzo */
 }
 
-.game-info .price-row {
+.game-card-content .price-row {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -140,7 +97,7 @@
     white-space: nowrap;
 }
 
-.game-info .price-row .discount-tag {
+.game-card-content .price-row .discount-tag {
     padding: 4px 8px;
 
     border-radius: 8px;
@@ -148,51 +105,11 @@
     font-weight: 400;
     font-size: 15px;
 
+    color: #fff;
     background: var(--fire-gradient);
 }
 
-.game-info .price-row .price {
+.game-card-content .price-row .price {
     font-weight: 400;
     font-size: 25px;
-}
-
-.game-card-content #game-key {
-    display: flex;
-    justify-content: center;
-
-    padding: 15px;
-
-    border-radius: 100px;
-
-    font-weight: 600;
-    font-size: 20px;
-
-    background: var(--fire-gradient);
-}
-
-@media (max-width: 768px) {
-    .game-grid {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .game-card {
-        width: 300px;
-    }
-
-    .game-card-content .game-info {
-        width: 300px;
-    }
-
-    .game-card-content .game-info h2 {
-        font-weight: 400;
-        font-size: 15px;
-
-        width: 175px;
-    }
-
-    .card-add-game {
-        height: 194px;
-    }
 }

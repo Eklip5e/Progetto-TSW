@@ -9,14 +9,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>UniGame - Login</title>
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/login.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
-        <%@ include file="WEB-INF/navbar.jsp" %>
+        <%@ include file="navbar.jsp" %>
 
         <div class="login">
             <div class="login-container">
@@ -24,18 +33,18 @@
                 <form action="login" method="post">
 
                     <!-- Email -->
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input id="username" type="text" name="username" required>
-                    </div>
+                    <input placeholder="Il tuo username:" type="text" name="username" required>
 
                     <!-- Password -->
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" name="password" required>
-                    </div>
+                    <input placeholder="La tua password:" type="password" name="password" required>
 
-                    <p style="color: var(--color-error)">${error}</p>
+                    <%
+                        if (request.getAttribute("error") != null) {
+                    %>
+                            <p style="color: var(--color-error)"><%= request.getAttribute("error") %></p>
+                    <%
+                        } else
+                    %>
 
                     <input type="submit" id="login-button" value="Login">
                 </form>
@@ -45,6 +54,6 @@
         </div>
     </main>
 
-    <%@ include file="WEB-INF/footer.jsp" %>
+    <%@ include file="footer.jsp" %>
 </body>
 </html>

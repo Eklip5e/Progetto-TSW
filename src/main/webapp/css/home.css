@@ -24,16 +24,8 @@
     background-color: rgba(0, 0, 0, 0.6);
 }
 
-.action button {
-    border: none;
-
-    background: none;
-}
-
-.action button i {
+.action i {
     font-size: 75px;
-
-    color: #fff;
 
     cursor: pointer;
 
@@ -44,11 +36,7 @@
     transform: scale(1.03);
 }
 
-.action-mobile {
-    display: none;
-}
-
-.banner-container {
+.banner-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -62,22 +50,18 @@
     background-color: hsla(0, 0%, 0%, 0.6);
 }
 
-.banner-container h1 {
-    font-weight: 400;
-    font-size: 50px;
-
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.banner-content h1 {
+    font-weight: 600;
+    font-size: 40px;
 }
 
-.banner-container .price-row {
+.banner-content .price-row {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
-.banner-container .price-row .discount-tag {
+.banner-content .price-row .discount-tag {
     padding: 4px 8px;
 
     border-radius: 8px;
@@ -86,11 +70,12 @@
     font-size: 20px;
 
     background: var(--fire-gradient);
+
 }
 
-.banner-container .price-row .price {
-    font-weight: 400;
-    font-size: 40px;
+.banner-content .price-row .price {
+    font-weight: 500;
+    font-size: 35px;
 }
 
 .banner-not-found {
@@ -114,63 +99,45 @@
     display: flex;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .banner {
-        height: 450px;
+        flex-direction: column;
+        height: auto;
+        text-align: center;
+        background-position: center;
+        background-size: cover;
+        padding: 20px 0;
     }
 
-    .banner-container h1 {
-        width: 80%;
-
-        font-size: 35px;
+    .banner-content {
+        padding-left: 0;
+        align-items: center;
     }
 
-    .banner-container .price-row .discount-tag {
-        font-size: 15px;
+    .banner-content h1 {
+        font-size: 28px;
     }
 
-    .banner-container .price-row .price {
-        font-size: 30px;
+    .banner-content .price-row {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .banner:hover .action {
-        display: none;
+    .banner-content .price-row .discount-tag {
+        font-size: 18px;
     }
 
-    .action-mobile {
-        position: absolute;
-        bottom: 20px;
-
-        display: flex;
-        justify-content: center;
-
-        margin: 0 auto;
-
-        width: 100%;
+    .banner-content .price-row .price {
+        font-size: 28px;
     }
 
-    .action-mobile button {
-        border: none;
-
-        background: none;
+    .action i {
+        font-size: 50px;
     }
 
-    .action-mobile button i {
-        padding: 15px;
-
-        border-radius: 100px;
-
-        font-size: 30px;
-
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.6);
-
-        cursor: pointer;
-
-        transition: transform 0.2s ease;
-    }
-
-    .action-mobile i:hover {
-        transform: scale(1.03);
+    .banner-not-found h1 {
+        font-size: 28px;
+        text-align: center;
+        padding: 0 10px;
     }
 }

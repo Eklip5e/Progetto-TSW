@@ -15,7 +15,7 @@ public class WishListDAO implements MetodiDAO<WishList>{
     public void doSave(WishList wishList) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "INSERT INTO Preferito (idUtente, idVideogioco) VALUES (?, ?)");
+                    "INSERT INTO wishlist (idUtente, idVideogioco) VALUES (?, ?)");
             ps.setInt(1, wishList.getIdUtente());
             ps.setInt(2, wishList.getIdVideogioco());
 
@@ -32,7 +32,7 @@ public class WishListDAO implements MetodiDAO<WishList>{
     public void doDelete(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM Preferito WHERE idUtente = ?");
+                    "DELETE FROM wishlist WHERE idUtente = ?");
             ps.setInt(1, idUtente);
             ps.executeUpdate();
         } catch (SQLException e) {
@@ -44,7 +44,7 @@ public class WishListDAO implements MetodiDAO<WishList>{
     public void doDeleteByGame(int idUtente, int idVideogioco) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "DELETE FROM Preferito WHERE idUtente = ? AND idVideogioco = ?");
+                    "DELETE FROM wishlist WHERE idUtente = ? AND idVideogioco = ?");
             ps.setInt(1, idUtente);
             ps.setInt(2, idVideogioco);
             ps.executeUpdate();
@@ -63,7 +63,7 @@ public class WishListDAO implements MetodiDAO<WishList>{
     public WishList doRetrieveById(int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM Preferito WHERE idUtente = ?");
+                    "SELECT * FROM wishlist WHERE idUtente = ?");
             ps.setInt(1, idUtente);
             ResultSet rs = ps.executeQuery();
 
@@ -82,7 +82,7 @@ public class WishListDAO implements MetodiDAO<WishList>{
     public WishList doRetrieveByUtenteAndVideogioco(int idUtente, int idVideogioco) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM Preferito WHERE idUtente = ? AND idVideogioco = ?");
+                    "SELECT * FROM wishlist WHERE idUtente = ? AND idVideogioco = ?");
             ps.setInt(1, idUtente);
             ps.setInt(2, idVideogioco);
             ResultSet rs = ps.executeQuery();
@@ -105,7 +105,7 @@ public class WishListDAO implements MetodiDAO<WishList>{
 
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "SELECT * FROM Preferito WHERE idUtente = ?");
+                    "SELECT * FROM wishlist WHERE idUtente = ?");
             ps.setInt(1, idUtente);
             ResultSet rs = ps.executeQuery();
 
@@ -120,20 +120,5 @@ public class WishListDAO implements MetodiDAO<WishList>{
         }
 
         return preferiti;
-    }
-
-    public static boolean isPreferito(int idUtente, int idVideogioco) {
-        boolean trovato = false;
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(
-                    "SELECT 1 FROM Preferito WHERE idUtente = ? AND idVideogioco = ?");
-            ps.setInt(1, idUtente);
-            ps.setInt(2, idVideogioco);
-            ResultSet rs = ps.executeQuery();
-            trovato = rs.next();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return trovato;
     }
 }

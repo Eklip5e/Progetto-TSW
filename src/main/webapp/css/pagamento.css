@@ -6,14 +6,13 @@
     margin-top: 50px;
 
     width: 100%;
+    height: 100vh;
 }
 
 .payment-container {
     display: flex;
     justify-content: center;
-    gap: 20px;
-
-    width: 300px;
+    gap: 50px;
 }
 
 .payment-container h2 {
@@ -36,7 +35,7 @@
     flex-direction: column;
     gap: 20px;
 
-    width: 100%;
+    width: 300px;
 }
 
 .credit-card-controls .form-group {
@@ -154,11 +153,4 @@
     display: flex;
     flex-direction: row;
     gap: 10px;
-}
-
-@media (max-width: 900px) {
-    .payment-container {
-        flex-direction: column;
-        align-items: center;
-    }
 }

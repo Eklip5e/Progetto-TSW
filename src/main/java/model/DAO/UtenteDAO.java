@@ -1,5 +1,6 @@
 package model.DAO;
 
+import model.DAO.MetodiDAO;
 import model.Utente;
 
 import java.sql.*;
@@ -56,45 +57,19 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doUpdate(Utente utente, int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE Utente SET username = ?, email = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
+                    "UPDATE Utente SET admin = ?, email = ?, username = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
             );
-            ps.setString(1, utente.getUsername());
+            ps.setBoolean(1, utente.isAdmin());
             ps.setString(2, utente.getEmail());
-<<<<<<< HEAD:src/main/java/model/DAO/UtenteDAO.java
             ps.setString(3, utente.getUsername());
             ps.setString(4, utente.getPassword());
             ps.setString(5, utente.getNome());
             ps.setString(6, utente.getCognome());
-            ps.setDate(7, new java.sql.Date(utente.getDataDiNascita().getTime()));
-            ps.setInt(8, idUtente);
-=======
-            ps.setString(3, utente.getPassword());
-            ps.setString(4, utente.getNome());
-            ps.setString(5, utente.getCognome());
-            ps.setDate(6, new java.sql.Date(utente.getDataDiNascita().getTime()));
-            ps.setInt(7, idUtente);
->>>>>>> Gennaro:unigame-site/src/main/java/model/DAO/UtenteDAO.java
+            ps.setDate(7, new Date(utente.getDataDiNascita().getTime()));
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {
                 throw new RuntimeException("UPDATE failed, no rows affected.");
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void updatePassword(int idUtente, String nuovaPassword) {
-        try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(
-                    "UPDATE Utente SET password = ? WHERE idUtente = ?"
-            );
-            ps.setString(1, nuovaPassword);
-            ps.setInt(2, idUtente);
-
-            int affectedRows = ps.executeUpdate();
-            if (affectedRows == 0) {
-                throw new RuntimeException("UPDATE password failed, no rows affected.");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -189,37 +164,5 @@ public class UtenteDAO implements MetodiDAO<Utente> {
             throw new RuntimeException(e);
         }
         return exists;
-    }
-
-    public boolean usernameExistsForOtherUser(String username, int idUtente) {
-        String sql = "SELECT COUNT(*) FROM utente WHERE username = ? AND idUtente != ?";
-        try (Connection conn = ConPool.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, username);
-            stmt.setInt(2, idUtente);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public boolean emailExistsForOtherUser(String email, int idUtente) {
-        String sql = "SELECT COUNT(*) FROM utente WHERE email = ? AND idUtente != ?";
-        try (Connection conn = ConPool.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, email);
-            stmt.setInt(2, idUtente);
-            ResultSet rs = stmt.executeQuery();
-            if (rs.next()) {
-                return rs.getInt(1) > 0;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
     }
 }

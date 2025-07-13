@@ -1,28 +1,52 @@
 package controller;
 
+import com.mysql.cj.Session;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.DAO.VideogiocoDAO;
-import model.Videogioco;
 
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet("/categoria")
+@WebServlet("/CategoriaServlet")
 public class CategoriaServlet extends HttpServlet {
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String piattaforma =  request.getParameter("piattaforma");
+        String categoria = request.getParameter("categoria");
 
-        VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-        List<Videogioco> videogiochi = videogiocoDAO.doRetrieveByPiattaformaAttivi(piattaforma);
+        String paginaDestinazione;
 
-        request.setAttribute("videogiochi", videogiochi);
-        request.setAttribute("piattaforma", piattaforma);
+        switch (categoria) {
+            case "pc":
+                paginaDestinazione = "categorie/pc.jsp";
+                request.setAttribute("paginaAttuale", "pc");
+                break;
+            case "playstation":
+                paginaDestinazione = "categorie/playstation.jsp";
+                request.setAttribute("paginaAttuale", "playstation");
+                break;
+            case "xbox":
+                paginaDestinazione = "categorie/xbox.jsp";
+                request.setAttribute("paginaAttuale", "xbox");
+                break;
+            case "nintendo":
+                paginaDestinazione = "categorie/nintendo.jsp";
+                request.setAttribute("paginaAttuale", "nintendo");
+                break;
+            default:
+                paginaDestinazione = "home.jsp";
+                request.setAttribute("paginaAttuale", "home");
+                break;
+        }
 
-        request.getRequestDispatcher("WEB-INF/categorie.jsp").forward(request, response);
+        // Puoi anche passare attributi alla JSP se ti servono
+        request.getRequestDispatcher(paginaDestinazione).forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doGet(req, resp);
     }
 }

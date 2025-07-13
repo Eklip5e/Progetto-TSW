@@ -9,15 +9,24 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <title>UniGame - Registrazione</title>
 
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/register.css">
+
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+        <!-- Google Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     </head>
     <body>
         <main>
             <%-- nav-bar --%>
-            <%@ include file="WEB-INF/navbar.jsp" %>
+            <%@ include file="navbar.jsp" %>
 
             <div class="register">
                 <div class="register-container">
@@ -25,43 +34,40 @@
                     <form action="register" method="post">
                         <!-- Username -->
                         <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" required value="${username != null ? username : ''}" onblur="verificaUsername()">
+                            <input type="text" id="username" name="username" required placeholder="Il tuo username:"
+                                value="<%= request.getAttribute("username") != null ? request.getAttribute("username") : "" %>" onblur="verificaUsername()">
                             <p id="usernameMsg"></p>
                         </div>
 
                         <!-- Email -->
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required value="${email != null ? email : ''}" onblur="verificaEmail()">
+                            <input type="email" id="email" name="email" required placeholder="La tua email:"
+                                value="<%= request.getAttribute("email") != null ? request.getAttribute("email") : "" %>" onblur="verificaEmail()">
                             <p id="emailMsg"></p>
                         </div>
 
                         <!-- Password -->
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input id="password" name="password" type="password" required value="">
-                        </div>
+                        <input placeholder="La tua password:" name="password" type="password" required value="">
 
                         <!-- Nome -->
-                        <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input id="nome" type="text" name="nome" required value="${nome != null ? nome : ''}">
-                        </div>
+                        <input type="text" name="nome" required placeholder="Nome:"
+                            value="<%= request.getAttribute("nome") != null ? request.getAttribute("nome") : "" %>">
 
                         <!-- Cognome -->
-                        <div class="form-group">
-                            <label for="cognome">Cognome</label>
-                            <input id="cognome" type="text" name="cognome" required value="${cognome != null ? cognome : ''}">
-                        </div>
+                        <input type="text" name="cognome" required placeholder="Cognome:"
+                            value="<%= request.getAttribute("cognome") != null ? request.getAttribute("cognome") : "" %>">
 
                         <!-- Data di Nascita -->
-                        <div class="form-group">
-                            <label for="dataNascita">Data di nascita</label>
-                            <input id="dataNascita" name="dataDiNascita" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required value="${dataDiNascita != null ? dataDiNascita : ''}">
-                        </div>
+                        <input placeholder="Data di nascita (dd/mm/yyyy)" name="dataDiNascita" type="text" pattern="[0-9]{2}/[0-9]{2}/[0-9]{4}" required
+                            value="<%= request.getAttribute("dataDiNascita") != null ? request.getAttribute("dataDiNascita") : "" %>">
 
-                        <p style="color: var(--color-error)">${error}</p>
+                        <%
+                            if (request.getAttribute("error") != null) {
+                        %>
+                                <p style="color: var(--color-error)"><%= request.getAttribute("error") %></p>
+                        <%
+                            }
+                        %>
 
                         <!-- Submit -->
                         <input type="submit" id="register-button" value="Registrati">
@@ -73,9 +79,9 @@
             </div>
         </main>
 
-        <%@ include file="WEB-INF/footer.jsp" %>
+        <%@ include file="footer.jsp" %>
 
-        <script src="js/inputDateBirth.js"></script>
+        <script src="js/formatDateInput.js"></script>
 
         <script>
             function verificaUsername() {
@@ -87,7 +93,7 @@
                     if (this.readyState === 4 && this.status === 200) {
                         const response = JSON.parse(this.responseText);
                         const msg = document.getElementById("usernameMsg");
-                        if (response.exist) {
+                        if (response.exists) {
                             msg.textContent = "Username già esistente";
                             msg.style.display = "flex";
                             msg.style.color = "#e05c6d";
@@ -112,7 +118,7 @@
                     if (this.readyState === 4 && this.status === 200) {
                         const response = JSON.parse(this.responseText);
                         const msg = document.getElementById("emailMsg");
-                        if (response.exist) {
+                        if (response.exists) {
                             msg.textContent = "Email già esistente";
                             msg.style.display = "flex";
                             msg.style.color = "#e05c6d";
