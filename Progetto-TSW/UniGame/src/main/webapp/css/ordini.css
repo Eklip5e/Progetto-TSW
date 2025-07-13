@@ -1,0 +1,54 @@
+.ordini {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    margin-top: 50px;
+
+    width: 100%;
+}
+
+.ordini-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    justify-content: center;
+    gap: 50px;
+
+    max-width: 1000px;
+}
+
+.ordini #back {
+    display: flex;
+    justify-content: left;
+}
+
+.ordini #back:hover {
+    color: var(--color-link-hover);
+}
+
+.ordini a {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.ordine {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    width: 300px;
+
+    background-color: var(--color-medium-dark);
+
+    transition: transform 0.2s ease;
+}
+
+.ordine:hover {
+    transform: scale(1.03);
+}

@@ -1,0 +1,114 @@
+.order-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 380px);
+    justify-content: center;
+    gap: 50px;
+
+    margin: 100px auto 0;
+
+    max-width: 1400px;
+}
+
+.order-card {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#back-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    padding: 15px;
+
+    width: 170px;
+
+    border-radius: 100px;
+
+    color: #fff;
+    background-color: var(--color-medium-dark);
+
+    text-decoration: none;
+
+    transition: transform 0.2s ease;
+}
+
+#back-container:hover {
+    transform: scale(1.03);
+}
+
+#back-container i {
+    font-size: 30px;
+
+    color: var(--color);
+}
+
+.order-card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: 15px;
+
+    width: 350px;
+    height: 170px;
+
+    border-radius: 8px;
+
+    color: #fff;
+    background-color: var(--color-medium-dark);
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.order-card-container:hover {
+    transform: scale(1.03);
+}
+
+.order-card-container h2 {
+    font-weight: 400;
+    font-size: 25px;
+}
+
+.order-card-container .order-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    font-weight: 400;
+    font-size: 17px;
+}
+
+@media (max-width: 768px) {
+    .order-grid {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .order-card {
+        width: 300px;
+    }
+
+    .order-card-container .game-info {
+        width: 300px;
+    }
+
+    .order-card-container .game-info h2 {
+        font-weight: 400;
+        font-size: 15px;
+
+        width: 175px;
+    }
+}

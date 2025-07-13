@@ -56,16 +56,24 @@ public class UtenteDAO implements MetodiDAO<Utente> {
     public void doUpdate(Utente utente, int idUtente) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement(
-                    "UPDATE Utente SET admin = ?, email = ?, username = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
+                    "UPDATE Utente SET username = ?, email = ?, password = ?, nome = ?, cognome = ?, dataDiNascita = ? WHERE idUtente = ?"
             );
-            ps.setBoolean(1, utente.isAdmin());
+            ps.setString(1, utente.getUsername());
             ps.setString(2, utente.getEmail());
+<<<<<<< HEAD:src/main/java/model/DAO/UtenteDAO.java
             ps.setString(3, utente.getUsername());
             ps.setString(4, utente.getPassword());
             ps.setString(5, utente.getNome());
             ps.setString(6, utente.getCognome());
             ps.setDate(7, new java.sql.Date(utente.getDataDiNascita().getTime()));
             ps.setInt(8, idUtente);
+=======
+            ps.setString(3, utente.getPassword());
+            ps.setString(4, utente.getNome());
+            ps.setString(5, utente.getCognome());
+            ps.setDate(6, new java.sql.Date(utente.getDataDiNascita().getTime()));
+            ps.setInt(7, idUtente);
+>>>>>>> Gennaro:unigame-site/src/main/java/model/DAO/UtenteDAO.java
 
             int affectedRows = ps.executeUpdate();
             if (affectedRows == 0) {

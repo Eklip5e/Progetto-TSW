@@ -1,0 +1,87 @@
+.user-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 75px;
+
+    margin-top: 50px;
+
+    width: 100%;
+}
+
+.user-profile-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-profile-header span {
+    font-size: 30px;
+
+    color: #fff;
+}
+
+.user-profile button {
+    padding: 15px;
+
+    border: none;
+    border-radius: 8px;
+
+    font-weight: 400;
+    font-size: 15px;
+
+    color: #fff;
+    background: var(--fire-gradient);
+
+    cursor: pointer;
+}
+
+.user-profile button:hover {
+    background: var(--fire-gradient-hover);
+}
+
+
+.user-profile-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.user-profile-content .user-orders, .user-favorites, .user-reviews, .idle-games {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+
+    width: 200px;
+    height: 200px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: transform 0.2s ease;
+}
+
+.user-profile-content .user-orders:hover, .user-favorites:hover, .user-reviews:hover, .idle-games:hover {
+    transform: scale(1.03);
+}
+
+.user-profile-content a {
+    color: #fff;
+
+    text-decoration: none;
+}
+
+.user-profile-content i{
+    color: var(--color);
+
+    font-size: 30px;
+}

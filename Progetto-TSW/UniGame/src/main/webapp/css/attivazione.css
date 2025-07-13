@@ -1,0 +1,62 @@
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: 100vh;
+
+    background-color: hsla(0, 0%, 0%, 0.6);
+}
+
+.spinner {
+    border: 8px solid #fff;
+    border-top: 8px solid var(--color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.activation-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 50px;
+
+    width: 100%;
+}
+
+.activation-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    padding: 50px;
+
+}
+
+.purchased-games {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    padding: 15px;
+
+    width: 400px;
+
+    border-radius: 8px;
+
+    background-color: var(--color-medium-dark);
+}
