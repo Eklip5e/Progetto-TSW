@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="exploded-ear" name="unnamed">
-    <output-path>$PROJECT_DIR$/out/artifacts/unnamed</output-path>
-    <root id="root">
-      <element id="dir-copy" path="$PROJECT_DIR$/../../../../../Program Files/Apache Software Foundation/Tomcat 11.0/webapps/unigame_site_war" />
-    </root>
-  </artifact>
-</component>

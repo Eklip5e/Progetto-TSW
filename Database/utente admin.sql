@@ -1,1 +1,0 @@
-INSERT INTO Utente (Username, Nome, Cognome, Email, Password, IsAdmin) VALUE ('gennaroalbano', 'Gennaro Pio', 'Albano', 'gennaropio.albano@outlook.it', 'G11p10@03', 1)

@@ -1,4 +1,4 @@
-# Unigame - Progetto TSW 2024/25
+# [Unigame - Progetto TSW 2024/25](https://github.com/Eklip5e/Progetto-TSW)
 
 ## Contesto del Progetto:
 Questo progetto è stato realizzato nell'ambito del corso universitario **"Tecnologie e Software per il Web"** presso l'**Università degli Studi di Salerno**. 
@@ -8,7 +8,7 @@ Il lavoro nasce come applicazione pratica delle nozioni teoriche e degli eserciz
 - [Mattia De Rosa](https://docenti.unisa.it/024901/home)
 ### Studenti:
 - [Aniello Del Prete](https://github.com/Eklip5e) - *Mat.* 0515119517
-- Gennaro Albano - *Mat.* 0512119547
+- [Gennaro Albano](https://github.com/gennaroalbano) - *Mat.* 0512119547
 
 # Sommario
 
