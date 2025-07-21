@@ -21,7 +21,7 @@ public class AggiungiCarrelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // Sessione utente
+        // Recupero sessione utente
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
@@ -33,8 +33,7 @@ public class AggiungiCarrelloServlet extends HttpServlet {
 
         RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
 
-        //Utente registrato
-        if (utente != null) {
+        if (utente != null) { // Utente registrato
             int idUtente = utente.getIdUtente();
 
             try {
@@ -54,12 +53,12 @@ public class AggiungiCarrelloServlet extends HttpServlet {
             }
         } else { // Utente non registrato
             carrello = (ArrayList<RigaCarrello>) session.getAttribute("carrello");
-            if (carrello == null) { // crea nuovo carrello se non esiste
+            if (carrello == null) { // Se non esiste un carrello attivo, crea un nuovo carrello
                 carrello = new ArrayList<>();
             }
 
             boolean trovato = false;
-            for (RigaCarrello riga : carrello) { // se il videogioco esiste già nel carrello aggiorna la quantità
+            for (RigaCarrello riga : carrello) { // Se il videogioco è già presente nel carrello aggiorna la quantità
                 if (riga.getIdVideogioco() == idVideogioco) {
                     riga.setQuantità(riga.getQuantità() + 1);
                     trovato = true;
@@ -67,7 +66,7 @@ public class AggiungiCarrelloServlet extends HttpServlet {
                 }
             }
 
-            if (!trovato) { // se non esiste aggiungi un nuovo videogioco al carrello
+            if (!trovato) { // Se il videogioco non è presente nel carrello aggiungilo
                 RigaCarrello nuovaRiga = new RigaCarrello();
                 nuovaRiga.setIdVideogioco(idVideogioco);
                 nuovaRiga.setQuantità(1);
@@ -76,6 +75,7 @@ public class AggiungiCarrelloServlet extends HttpServlet {
                 carrello.add(nuovaRiga);
             }
 
+            // Salva il carrello in sessione
             session.setAttribute("carrello", carrello);
         }
 

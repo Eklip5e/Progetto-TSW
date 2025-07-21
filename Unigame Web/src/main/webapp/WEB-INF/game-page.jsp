@@ -38,7 +38,7 @@
                 </c:if>
             </div>
             <div class="game-info">
-                <h2>(${videogioco.piattaforma}) - ${videogioco.titolo}</h2>
+                <h2>(${videogioco.piattaforma}) ${videogioco.titolo}</h2>
                     <div class="amount">
                         <div class="discount">
                             <span>-${videogioco.sconto}%</span>
@@ -82,10 +82,6 @@
             <div class="specifics">
                 <h2>Specifiche</h2>
                 <div class="list">
-                    <div class="list-item">
-                        <span id="label">Installazione:</span>
-                        <a id="value">Come attivare il prodotto</a>
-                    </div>
                     <div class="list-item">
                         <span id="label">Piattaforma:</span>
                         <span id="value">${videogioco.piattaforma}</span>

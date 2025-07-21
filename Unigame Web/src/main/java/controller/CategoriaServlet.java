@@ -15,10 +15,12 @@ import java.util.List;
 public class CategoriaServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // In base alla categoria selezionata mostrerà giochi solo di una specifica piattaforma
+
         String piattaforma =  request.getParameter("piattaforma");
 
         VideogiocoDAO videogiocoDAO = new VideogiocoDAO();
-        List<Videogioco> videogiochi = videogiocoDAO.doRetrieveByPiattaformaAttivi(piattaforma);
+        List<Videogioco> videogiochi = videogiocoDAO.doRetrieveByPiattaformaAttivi(piattaforma); // Recupera tutti i videogiochi della piattaforma selezionata
 
         request.setAttribute("videogiochi", videogiochi);
         request.setAttribute("piattaforma", piattaforma);

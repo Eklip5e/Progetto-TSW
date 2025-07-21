@@ -10,7 +10,7 @@
                 <label for="idVideogioco">Videogioco</label>
                 <select id="idVideogioco" name="idVideogioco">
                     <c:forEach var="videogioco" items="${videogiochi}">
-                        <option value="${videogioco.idVideogioco}">${videogioco.titolo}</option>
+                        <option value="${videogioco.idVideogioco}">(${videogioco.piattaforma}) ${videogioco.titolo}</option>
                     </c:forEach>
                 </select>
             </div>

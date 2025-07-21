@@ -53,8 +53,14 @@ public class OrdineServlet extends HttpServlet {
             chiavi.add(riga.getChiave());
         }
 
+        List<Double> prezzi = new ArrayList<>();
+        for (RigaOrdine riga : righeOrdine) {
+            prezzi.add(riga.getPrezzoUnitario());
+        }
+
         request.setAttribute("idOrdine", idOrdine);
         request.setAttribute("videogiochi", videogiochi);
+        request.setAttribute("prezzi", prezzi);
         request.setAttribute("chiavi", chiavi);
 
         request.getRequestDispatcher("WEB-INF/ordine.jsp").forward(request, response);

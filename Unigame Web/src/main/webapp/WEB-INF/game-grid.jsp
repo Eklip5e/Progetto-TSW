@@ -44,11 +44,20 @@
 
             <div class="game-card-content">
                 <div class="game-info">
-                    <h2>(${videogioco.piattaforma}) - ${videogioco.titolo}</h2>
+                    <h2>(${videogioco.piattaforma}) ${videogioco.titolo}</h2>
 
                     <div class="price-row">
-                        <span class="discount-tag">-${videogioco.sconto}%</span>
-                        <span class="price"><fmt:formatNumber value="${videogioco.prezzoScontato}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
+                        <c:choose>
+                            <c:when test="${paginaCorrente ne 'ordine.jsp'}">
+                                <span class="discount-tag">-${videogioco.sconto}%</span>
+                                <span class="price"><fmt:formatNumber value="${videogioco.prezzoScontato}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:set var="prezzo" value="${prezzi[status.index]}" />
+                                <span class="price"><fmt:formatNumber value="${prezzo}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
 

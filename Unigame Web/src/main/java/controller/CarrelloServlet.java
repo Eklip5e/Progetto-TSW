@@ -22,6 +22,7 @@ import java.util.Map;
 public class CarrelloServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Recupero la sessione dell'utente
         HttpSession session = request.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
@@ -31,18 +32,19 @@ public class CarrelloServlet extends HttpServlet {
         List<RigaCarrello> carrello;
         List<Videogioco> videogiochiCarrello = new ArrayList<>();
 
-        if (utente != null) {
+        if (utente != null) { // Recupero carrello utente registrato
             int idUtente = utente.getIdUtente();
             carrello = rigaCarrelloDAO.doRetrieveByUtenteId(idUtente);
 
-        } else {
+        } else { // Recupero carrello utente non registrato
             carrello = (List<RigaCarrello>) session.getAttribute("carrello");
 
-            if (carrello == null) {
+            if (carrello == null) { // Se non è presente nessun carrello attivo
                 carrello = new ArrayList<>();
             }
         }
 
+        // Map carrello, per recuperare nella jsp sia le informazioni di rigaCarrello e sia quelle del videogioco nel for
         Map<Integer, RigaCarrello> carrelloMap = new HashMap<>();
         for (RigaCarrello riga : carrello) {
             carrelloMap.put(riga.getIdVideogioco(), riga);
@@ -53,6 +55,7 @@ public class CarrelloServlet extends HttpServlet {
             }
         }
 
+        // Codice per calcolare tutti i relativi prezzi nel carrello
         double prezzoUfficiale = 0;
         double scontoTotale = 0;
         double prezzoTotale = 0;

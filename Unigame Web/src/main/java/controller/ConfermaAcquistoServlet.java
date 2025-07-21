@@ -28,11 +28,16 @@ public class ConfermaAcquistoServlet extends HttpServlet {
     private static final String ATTR_ERROR = "error";
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("MM/yy");
 
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Recupero la sessione dell'utente
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
+
+        if (utente == null) {
+            resp.sendRedirect("login.jsp");
+        }
+
         int idUtente = utente.getIdUtente();
 
         RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
@@ -43,13 +48,16 @@ public class ConfermaAcquistoServlet extends HttpServlet {
             return;
         }
 
+        // Recupero i dati della carta dell'utente
         String numeroCarta =  req.getParameter("numeroCarta");
         String titolare =  req.getParameter("titolare");
         String scadenzaStr = req.getParameter("scadenza");
         String cvc =  req.getParameter("cvc");
 
+        // Controllo che i dati sono inseriti correttamente
         String errore = validaDatiCarta(numeroCarta, titolare, scadenzaStr, cvc);
 
+        // Se i dati non sono corretti invio l'errore alla pagina e lo mostra
         if (errore != null) {
             req.setAttribute(ATTR_ERROR, errore);
 
@@ -62,6 +70,7 @@ public class ConfermaAcquistoServlet extends HttpServlet {
             return;
         }
 
+        // Inserisco i dati della carta e quelli dei videogiochi acquistati nell'ordine
         try {
             java.util.Date scadenza = DATE_FORMAT.parse(scadenzaStr);
             String numero = numeroCarta.replaceAll("\\s", "");
@@ -140,7 +149,7 @@ public class ConfermaAcquistoServlet extends HttpServlet {
     }
 
     private String generaChiaveAcquisto() {
-        String raw = java.util.UUID.randomUUID().toString().replace("-", "").toUpperCase();
+        String raw = java.util.UUID.randomUUID().toString().replace("-", "").toUpperCase(); // Genera un identificatore unico e rimuove tutti i trattini
         // Prendi solo i primi 15 caratteri e formatta in blocchi da 5
         return raw.substring(0, 5) + "-" + raw.substring(5, 10) + "-" + raw.substring(10, 15);
     }
@@ -184,6 +193,7 @@ public class ConfermaAcquistoServlet extends HttpServlet {
     private boolean isNullOrEmpty(String s) {
         return s == null || s.trim().isEmpty();
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
