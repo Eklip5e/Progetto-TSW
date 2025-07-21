@@ -29,7 +29,10 @@
                                             <img id="cover" src="https://shared.cloudflare.steamstatic.com/store_item_assets/steam/apps/${videogioco.appIdSteam}/header.jpg" alt="${videogioco.titolo}" width="200">
                                             <div class="item-container">
                                                 <div class="info-container">
-                                                    <h3>${videogioco.titolo}</h3>
+                                                    <h3>
+                                                        (${videogioco.piattaforma})
+                                                        <span>${videogioco.titolo}</span>
+                                                    </h3>
                                                     <div class="actions">
                                                         <a href="rimuoviCarrello?idVideogioco=${videogioco.idVideogioco}" method="post">
                                                             <i class="fa-solid fa-trash"></i>

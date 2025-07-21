@@ -38,7 +38,7 @@
                 </c:if>
             </div>
             <div class="game-info">
-                <h2>${videogioco.titolo}</h2>
+                <h2>(${videogioco.piattaforma}) - ${videogioco.titolo}</h2>
                     <div class="amount">
                         <div class="discount">
                             <span>-${videogioco.sconto}%</span>

@@ -21,6 +21,7 @@ public class AggiungiCarrelloServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        // Sessione utente
         HttpSession session = req.getSession();
         Utente utente = (Utente) session.getAttribute("utente");
 
@@ -31,13 +32,15 @@ public class AggiungiCarrelloServlet extends HttpServlet {
         List<RigaCarrello> carrello;
 
         RigaCarrelloDAO rigaCarrelloDAO = new RigaCarrelloDAO();
+
+        //Utente registrato
         if (utente != null) {
             int idUtente = utente.getIdUtente();
 
             try {
-                if (rigaCarrelloDAO.exists(idUtente, idVideogioco)) {
+                if (rigaCarrelloDAO.exists(idUtente, idVideogioco)) { // Carrello già esistente (aggiungi videogioco al carrello esistente)
                     rigaCarrelloDAO.incrementaQuantita(idUtente, idVideogioco, videogioco.getPrezzoScontato());
-                } else {
+                } else { // Crea nuovo carrello e aggiungi il videogioco
                     RigaCarrello rigaCarrello = new RigaCarrello();
                     rigaCarrello.setPrezzoUnitario(videogioco.getPrezzoScontato());
                     rigaCarrello.setQuantità(1);
@@ -49,14 +52,14 @@ public class AggiungiCarrelloServlet extends HttpServlet {
             } catch (Exception e) {
                 resp.sendRedirect("error.jsp");
             }
-        } else {
+        } else { // Utente non registrato
             carrello = (ArrayList<RigaCarrello>) session.getAttribute("carrello");
-            if (carrello == null) {
+            if (carrello == null) { // crea nuovo carrello se non esiste
                 carrello = new ArrayList<>();
             }
 
             boolean trovato = false;
-            for (RigaCarrello riga : carrello) {
+            for (RigaCarrello riga : carrello) { // se il videogioco esiste già nel carrello aggiorna la quantità
                 if (riga.getIdVideogioco() == idVideogioco) {
                     riga.setQuantità(riga.getQuantità() + 1);
                     trovato = true;
@@ -64,7 +67,7 @@ public class AggiungiCarrelloServlet extends HttpServlet {
                 }
             }
 
-            if (!trovato) {
+            if (!trovato) { // se non esiste aggiungi un nuovo videogioco al carrello
                 RigaCarrello nuovaRiga = new RigaCarrello();
                 nuovaRiga.setIdVideogioco(idVideogioco);
                 nuovaRiga.setQuantità(1);

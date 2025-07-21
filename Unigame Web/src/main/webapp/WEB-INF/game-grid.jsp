@@ -44,7 +44,7 @@
 
             <div class="game-card-content">
                 <div class="game-info">
-                    <h2>${videogioco.titolo} (${videogioco.piattaforma})</h2>
+                    <h2>(${videogioco.piattaforma}) - ${videogioco.titolo}</h2>
 
                     <div class="price-row">
                         <span class="discount-tag">-${videogioco.sconto}%</span>
