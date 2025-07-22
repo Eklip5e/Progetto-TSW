@@ -59,18 +59,33 @@ public class CarrelloServlet extends HttpServlet {
         double prezzoUfficiale = 0;
         double scontoTotale = 0;
         double prezzoTotale = 0;
+        double tuttoTotale = 0;
+        int numeroarticoli = 0;
 
         for (RigaCarrello riga : carrello) {
             Videogioco videogioco =  videogiocoDAO.doRetrieveById(riga.getIdVideogioco());
 
             prezzoUfficiale += videogioco.getPrezzo() * riga.getQuantità();
             scontoTotale += (((double) videogioco.getSconto() / 100) * videogioco.getPrezzo()) * riga.getQuantità();
+            if (riga.getQuantità() > 1)
+            {
+                numeroarticoli= numeroarticoli+ riga.getQuantità();
+            }
+            else
+                numeroarticoli++;
+
         }
         prezzoTotale = prezzoUfficiale - scontoTotale;
+        if (numeroarticoli >= 5) {
+            double applicazionesconto = (prezzoTotale * 10)/100;
+            tuttoTotale = prezzoTotale - applicazionesconto;
+        }
 
+        request.setAttribute("numeroarticoli", numeroarticoli);
         request.setAttribute("prezzoUfficiale", prezzoUfficiale);
         request.setAttribute("scontoTotale", scontoTotale);
         request.setAttribute("prezzoTotale", prezzoTotale);
+        request.setAttribute("tuttoTotale", tuttoTotale);
 
         request.setAttribute("carrello", carrello);
         request.setAttribute("videogiochi", videogiochiCarrello);

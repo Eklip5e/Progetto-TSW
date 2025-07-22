@@ -81,10 +81,27 @@
                                     <span><strong>Sconto</strong></span>
                                     <span><fmt:formatNumber value="${scontoTotale}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
                                 </div>
-                                <div class="price-row total">
-                                    <span><strong>Totale</strong></span>
-                                    <span><fmt:formatNumber value="${prezzoTotale}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
-                                </div>
+
+
+                                <c:if test="${numeroarticoli ge 5}">
+
+                                    <div class="price-row">
+                                        <span><strike>Totale</strike></span>
+                                        <span><strike><fmt:formatNumber value="${prezzoTotale}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</strike></span>
+                                    </div>
+                                    <div class="price-row total2">
+                                        <span><strong>Totale con Sconto 10%</strong></span>
+                                        <span><fmt:formatNumber value="${tuttoTotale}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
+                                    </div>
+                                </c:if>
+                                <c:if test="${numeroarticoli lt 5}">
+                                    <div class="price-row">
+                                        <span><strong>Totale</strong></span>
+                                        <span><fmt:formatNumber value="${prezzoTotale}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</span>
+                                    </div>
+                                </c:if>
+
+
                             </div>
 
                             <div class="actions">
