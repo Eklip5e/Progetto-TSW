@@ -27,7 +27,7 @@ Il lavoro nasce come applicazione pratica delle nozioni teoriche e degli eserciz
 
 # 1. Obiettivo del Progetto
 
-## Il sito nasce con l’obiettivo di offrire un’alternativa "economicamente" per l’acquisto di videogiochi digitali. 
+## Il sito nasce con l’obiettivo di offrire un’alternativa "economica" per l’acquisto di videogiochi digitali. 
 ### Si rivolge a un pubblico ampio di videogiocatori: dai giocatori occasionali agli appassionati e i più esperti.
 
 Il bisogno principale che intende soddisfare è quello di trovare videogiochi ottenibili tramite una **chiave di attivazione** a prezzi competitivi, rifornendo quindi il sito di giochi popolari ed *"ultima generazione"* garantendo allo stesso tempo affidabilità, rapidità nella consegna delle key digitali e un’interfaccia semplice e intuitiva.
